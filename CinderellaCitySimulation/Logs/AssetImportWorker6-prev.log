@@ -1,0 +1,491 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.4/staging' branch; Version is '6000.4.0f1 (8cf496087c8f) revision 9237654'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Enterprise' Language: 'en' Physical Memory: 32689 MB
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR" at "2026-06-01T06:27:03.7729165Z"
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-06-01T06:27:03Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.4.0f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker6
+-projectPath
+C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+-logFile
+Logs/AssetImportWorker6.log
+-srvPort
+58022
+-force-d3d12
+-job-worker-count
+19
+-background-job-worker-count
+8
+-gc-helper-count
+1
+-name
+AssetImport
+Successfully changed project path to: C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Player connection [43332]  Target information:
+
+Player connection [43332]  * "[IP] 192.168.1.217 [Port] 0 [Flags] 2 [Guid] 1422736227 [EditorId] 1422736227 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-UC90R3D) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [43332] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [43332] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 19
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 8.61 ms, found 2 plugins.
+Initialize engine version: 6000.4.0f1 (8cf496087c8f)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation/Assets
+Forcing GfxDevice: Direct3D 12
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-Boulder-VR"
+[Licensing::IpcConnector] LicenseClient-Boulder-VR channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR-6000.4.0" at "2026-06-01T06:27:05.7496504Z"
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.1]
+    Renderer:        NVIDIA GeForce GTX 1080 (ID=0x1b80)
+    Vendor:          NVIDIA
+    VRAM:            8059 MB
+    App VRAM Budget: 7291 MB
+    Driver:          32.0.15.6636
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              5cedb76f314245c1a85d6f34df5b8164
+  Correlation Id:          c7774d33189924d3987f011516ab410f
+  External correlation Id: 1332534499060321744
+  Machine Id:              nzoQQWsMwFXkfPkeVZc+YYGv80A=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Boulder-VR-6000.4.0" (connect: 0.00s, validation: 0.00s, handshake: 2.14s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR-6000.4.0-notifications" at "2026-06-01T06:27:07.8921331Z"
+[Licensing::Module] Licensing Background thread has ended after 4.12s
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56188
+CodeReloadManager initialized
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.005508 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.747 seconds
+Domain Reload Profiling: 1607ms
+	BeginReloadAssembly (241ms)
+	RebuildCommonClasses (73ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (125ms)
+	LoadAllAssembliesAndSetupDomain (391ms)
+		LoadAssemblies (232ms)
+		AnalyzeDomain (376ms)
+			TypeCache.Refresh (372ms)
+				TypeCache.ScanAssembly (344ms)
+	FinalizeReload (750ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (95ms)
+			BeforeProcessingInitializeOnLoad (152ms)
+			ProcessInitializeOnLoadAttributes (202ms)
+			ProcessInitializeOnLoadMethodAttributes (161ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-J6YX-KHFT-CZRA-4X5Z-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: Unlimited
+[Licensing::Module] License group:
+  Id: 2473931900003-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Sprite.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Sprite.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Tilemap.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Tilemap.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Analytics.DataPrivacy.Tests.dll at Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Analytics.StandardEvents.EditorTests.dll at Library/ScriptAssemblies/Unity.Analytics.StandardEvents.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Postprocessing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Postprocessing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Postprocessing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.Postprocessing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinition.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinition.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.VisualEffectGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.VisualEffectGraph.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.VisualEffectGraph.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.XR.LegacyInputHelpers.Tests.dll at Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Advertisements.Editor.Tests.dll at Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Advertisements.Tests.dll at Library/ScriptAssemblies/UnityEngine.Advertisements.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.Apple.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.Apple.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.AppleMacos.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.AppleMacos.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.Security.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.Security.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.WinRT.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.WinRT.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.SpatialTracking.Tests.dll at Library/ScriptAssemblies/UnityEngine.SpatialTracking.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Refreshing native plugins compatible for Editor in 9.05 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Refreshing native plugins compatible for Editor in 7.74 ms, found 2 plugins.
+Updated version to: 0.8.2.20260601
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+VersionUpdater:.cctor () (at Assets/Scripts/Editor/UpdateVersion.cs:22)
+System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+(Filename: Assets/Scripts/Editor/UpdateVersion.cs Line: 22)
+
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.474 seconds
+Domain Reload Profiling: 4322ms
+	BeginReloadAssembly (337ms)
+		DisableScriptedObjects (11ms)
+		CreateAndSetChildDomain (54ms)
+	RebuildCommonClasses (74ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (145ms)
+	LoadAllAssembliesAndSetupDomain (1264ms)
+		LoadAssemblies (804ms)
+		AnalyzeDomain (640ms)
+			TypeCache.Refresh (406ms)
+				TypeCache.ScanAssembly (373ms)
+			BuildScriptInfoCaches (206ms)
+			ResolveRequiredComponents (23ms)
+	FinalizeReload (2475ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			BeforeProcessingInitializeOnLoad (317ms)
+			ProcessInitializeOnLoadAttributes (597ms)
+			ProcessInitializeOnLoadMethodAttributes (1243ms)
+			AfterProcessingInitializeOnLoad (15ms)
+		AwakeInstancesAfterBackupRestoration (12ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Refreshing native plugins compatible for Editor in 7.95 ms, found 2 plugins.
+Unloading 42 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7330 unused Assets / (8.0 MB). Loaded Objects now: 8474.
+Memory consumption went from 292.0 MB to 284.0 MB.
+Total: 22.350900 ms (FindLiveObjects: 1.230800 ms CreateObjectMapping: 1.226200 ms MarkObjects: 15.059900 ms  DeleteObjects: 4.830800 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 3744251.466501 seconds.
+  path: Assets/Scenes/60s70s/Global Volume Profile.asset
+  importAddress: Guid(3e7bde132aa6e344495bc05b4df7a381) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/60s70s/Global Volume Profile.asset using Guid(3e7bde132aa6e344495bc05b4df7a381) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'c974b90d5dd5b54620ce7c639f2d13bf') in 0.0828876 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bb309613cb29406aaee39bffb3968b07 DependenciesID=76a2e055c575fa70aec4fc30a18c21d3 StaticDependenciesID=ff565f7367544fbc169fc97d693fe60f 
+Number of updated asset objects reloaded before import = 1Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 40.166689 seconds.
+  path: Assets/FBX/60s-70s/mall-signage/Materials/wood grain - colorized cinder alley dark.mat
+  importAddress: Guid(ac98c3081979bf54b907dba2ed4360a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/mall-signage/Materials/wood grain - colorized cinder alley dark.mat using Guid(ac98c3081979bf54b907dba2ed4360a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '5ad5b5de53a82a85ba803e8ef853a39f') in 4.5726575 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3677157d1fa3ffabfa4180194a2a37aa DependenciesID=e6624d7770feb5702a74b04bc2fee4c1 StaticDependenciesID=f45aa5d737ddca871099cdb60ea25789 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/FBX/60s-70s/store-detailing/Materials/wood grain - whitewash.mat
+  importAddress: Guid(e2e3e80adf376e14c954a328277eefb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/store-detailing/Materials/wood grain - whitewash.mat using Guid(e2e3e80adf376e14c954a328277eefb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '2e15d00c0445b8bdf24581254d704bed') in 0.1448985 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a939c19ca873df73227918d18f49848b DependenciesID=eb47e0b63b2a2bebf0e601eabdb80576 StaticDependenciesID=aa86a85f66481bbe53ec295884c2ed56 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000065 seconds.
+  path: Assets/FBX/80s-90s/store-detailing/Materials/wood grain - fashion conspiracy.mat
+  importAddress: Guid(d41a6ae4ffd58064592dc0c3e019f5db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/80s-90s/store-detailing/Materials/wood grain - fashion conspiracy.mat using Guid(d41a6ae4ffd58064592dc0c3e019f5db) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '660fbe7524eafab56fab09ef81978af8') in 0.2002665 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=947f9010ecaf5f5c8942d94f218137f9 DependenciesID=45a2765faa0bbc31e0b18037877e6b9a StaticDependenciesID=6dc668bc3607a1b3bf1650263a4fd7ad 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/FBX/80s-90s/store-detailing/Materials/wood grain - colorized cinder alley dark.mat
+  importAddress: Guid(0bb7bf4c0ca0fec43a44df6e9c01ceda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/80s-90s/store-detailing/Materials/wood grain - colorized cinder alley dark.mat using Guid(0bb7bf4c0ca0fec43a44df6e9c01ceda) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '0fd122dcf575a36285052d31b14db64f') in 0.0991632 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=91c2d03bed6c229045e431b83bbf2321 DependenciesID=666899b729ee622c20c4a3853551b4df StaticDependenciesID=59fbeeac1422b288c8b7b9842d04f3d3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000095 seconds.
+  path: Assets/FBX/80s-90s/store-detailing/Materials/wood grain - colorized cinder alley whiteout.mat
+  importAddress: Guid(109d65dcc4308cf46b88bdfd3aae7998) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/80s-90s/store-detailing/Materials/wood grain - colorized cinder alley whiteout.mat using Guid(109d65dcc4308cf46b88bdfd3aae7998) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '8f885dfc5a2a00d1092ebf107ea33d63') in 0.1924201 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bfe7d24b7cc1ff4dc2b51a5c7c4b20db DependenciesID=34131e82b344057c00b26068811d2c29 StaticDependenciesID=7cc32efdd6da9b59df2057b77b35aa90 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/FBX/80s-90s/store-detailing/Materials/Wood Grain - colorized Front Page.mat
+  importAddress: Guid(245342b516ec5f24a9b78f6a44dd61e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/80s-90s/store-detailing/Materials/Wood Grain - colorized Front Page.mat using Guid(245342b516ec5f24a9b78f6a44dd61e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '7416e86d1132ab0eabd7223c6b4c0f1b') in 0.1819843 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=257a221239c0727657b08c20d5757a99 DependenciesID=9d144182399d64c91a1f35c94a0843d6 StaticDependenciesID=feb64818e0ddfc240b056c427ddea25a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000088 seconds.
+  path: Assets/FBX/60s-70s/mall-doors-windows-interior/Materials/wood grain - colorized dark 1.mat
+  importAddress: Guid(0f3697430b64497469ba9d2d0c5ea9fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/mall-doors-windows-interior/Materials/wood grain - colorized dark 1.mat using Guid(0f3697430b64497469ba9d2d0c5ea9fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'f4d30cfe6b408c634d9bda9b7852c97c') in 0.1504385 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ea650d417456a518a973b4222c70813b DependenciesID=d14406af908bb1477369c2f356344706 StaticDependenciesID=7e8e422f58dbf7563c0d715ee9d4f6df 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/FBX/60s-70s/store-detailing/Materials/wood grain - colorized dark 1.mat
+  importAddress: Guid(fbf573c1aa739b448ba45e2f5b1f9bd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/store-detailing/Materials/wood grain - colorized dark 1.mat using Guid(fbf573c1aa739b448ba45e2f5b1f9bd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '6195fd5ae6e14556579a570d36aa38c6') in 0.0968503 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d6872609b245a93ece4ab88fd9669394 DependenciesID=fe1db3cb9a5ecc1ae119eabf75fbd7e7 StaticDependenciesID=11736d5e57dc029855ee03c9056d3b8e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 170708.354686 seconds.
+  path: Assets/Scenes/60s70s/Global Volume Profile.asset
+  importAddress: Guid(3e7bde132aa6e344495bc05b4df7a381) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/60s70s/Global Volume Profile.asset using Guid(3e7bde132aa6e344495bc05b4df7a381) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '95fc043064b7c6c150640a8cc02bb3b4') in 0.5678938 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bb309613cb29406aaee39bffb3968b07 DependenciesID=01fe262b53a737a1ef4790129640d30a StaticDependenciesID=f560394a9d186986408bcf1fc9194f2f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 447.415289 seconds.
+  path: Assets/FBX/60s-70s/mall-signage/Materials/Wood Grain - Colorized 1.mat
+  importAddress: Guid(55c7359604092544c8645e564c0bc203) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/mall-signage/Materials/Wood Grain - Colorized 1.mat using Guid(55c7359604092544c8645e564c0bc203) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'afe6593bf34ef9a053140a3f16c72fc7') in 5.777154 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2a3fbc07a7fa5ea4e8dd052624e89d43 DependenciesID=addd96389f0c1d446180b1e738387edf StaticDependenciesID=32e2dd77a325a859bff5e7a8a43d2ac4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000086 seconds.
+  path: Assets/FBX/60s-70s/store-detailing/Materials/Wood Grain - Colorized 2.mat
+  importAddress: Guid(322f6bc0b27211a4cbd039496d9b49f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/store-detailing/Materials/Wood Grain - Colorized 2.mat using Guid(322f6bc0b27211a4cbd039496d9b49f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'd17a59f4bbb23126300518f1415a5d6b') in 0.114859 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9d02aca2fa670fc5c6c65b1dbf46a322 DependenciesID=4680204f47dc5d7b2020ed238c091863 StaticDependenciesID=1d1d39c3fd775d1c56dea719bd80dcfd 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/FBX/80s-90s/mall-signage/Materials/wood grain - colorized cinder alley dark.mat
+  importAddress: Guid(f8526e5f7ad39404193de2c53d9d0020) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/80s-90s/mall-signage/Materials/wood grain - colorized cinder alley dark.mat using Guid(f8526e5f7ad39404193de2c53d9d0020) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '48fba990ed77e030b37a5a6d8470a4bc') in 0.0655985 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=726088d1ae65156799f543403b282732 DependenciesID=a123ee69c8d1dc37855a35a302e3dea6 StaticDependenciesID=1ccd55db6f4b6815531c8d368daf71d6 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/FBX/60s-70s/mall-floors-vert/Materials/white.mat
+  importAddress: Guid(856f1a4ba6b68b649bd37729f10b3dae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/mall-floors-vert/Materials/white.mat using Guid(856f1a4ba6b68b649bd37729f10b3dae) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'dc9f77b66ee5c67fce459d5c0ddc2f28') in 0.05001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a3e65dc05a5e618e5eecc7de433aa181 DependenciesID=9142cf8fdf7adf6c0911557b53dcb697 StaticDependenciesID=7d8ed8d20241ba9154e0f74098a5195d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/FBX/60s-70s/mall-furniture/Materials/white metal.mat
+  importAddress: Guid(0dabc201e6dcea6489ceb40a4f826b2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/mall-furniture/Materials/white metal.mat using Guid(0dabc201e6dcea6489ceb40a4f826b2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '3b00fe963c04f7134b8da4c2c55bc640') in 0.5305235 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=dbf9d5962dff909b88e9fcd847e48bc6 DependenciesID=63c13e6b6bca01398459d71a9d1cc4f6 StaticDependenciesID=793d1105a392834822fc668ee0886417 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/FBX/Experimental/mall-wayfinding/Materials/white.mat
+  importAddress: Guid(92494481b9d7d5140896356dd18e4e6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/Experimental/mall-wayfinding/Materials/white.mat using Guid(92494481b9d7d5140896356dd18e4e6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '4448a811650391cbebca14b4b883ae2c') in 0.0507606 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4919037197d082341ba0e32783d6a350 DependenciesID=67a969727a8450f952882d4228be2e9a StaticDependenciesID=3297c75850ee79209e4d3a7886050bf7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Packages/com.unity.render-pipelines.high-definition/Editor/SceneTemplates/Materials/White.mat
+  importAddress: Guid(17399726d9220c94ea7d2ad3f528079f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.render-pipelines.high-definition/Editor/SceneTemplates/Materials/White.mat using Guid(17399726d9220c94ea7d2ad3f528079f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '0ca9bf9886f50859e9972762c730b652') in 0.0441839 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3fd4122cfffe5e4fb3455c6db2090a5f DependenciesID=35d6bd250272071c147ec987408081f9 StaticDependenciesID=7dc3e2211b00213384e9e31ab9cdd221 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/FBX/80s-90s/mall-vents/Materials/white.mat
+  importAddress: Guid(3a79e8c31ce8e474eaaa89f80ee5a18e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/80s-90s/mall-vents/Materials/white.mat using Guid(3a79e8c31ce8e474eaaa89f80ee5a18e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '5b096b112744211abf99ef29baf0bd12') in 0.0433087 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2a81f9c60df7e8f32dbb5512a8eb2cae DependenciesID=e3f1664dd569e867605e8e7167ad0e95 StaticDependenciesID=966e711e5df036517428b45d6fdd0112 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-floors-vert/Materials/white.mat
+  importAddress: Guid(d2e89330071aaa7499ed3b67645606b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/anchor-joslins-floors-vert/Materials/white.mat using Guid(d2e89330071aaa7499ed3b67645606b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'ccf6b316fc561620c7adff8e7c411d12') in 0.0406124 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=22e9c2c6e9fc680933b538b34f4d4583 DependenciesID=916168df45d2a643c307814ceb9edf38 StaticDependenciesID=f1d38a28216d0728369e39874794ae3f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/FBX/60s-70s/mall-detailing-interior/Materials/white.mat
+  importAddress: Guid(016697683ac33894cb25f92d4937ef35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/mall-detailing-interior/Materials/white.mat using Guid(016697683ac33894cb25f92d4937ef35) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'f115785d159a3f5355c626b6b177918a') in 0.0369672 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=104835237e907490d0c837b2682105f8 DependenciesID=20343776720b38e0bf29d8c8dbdafeed StaticDependenciesID=2dd53906388d1dd7f1aef5ceccb865c2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/FBX/60s-70s/mall-doors-windows-solid/Materials/white.mat
+  importAddress: Guid(4c4a2dae7887cc54182558291cc24448) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/mall-doors-windows-solid/Materials/white.mat using Guid(4c4a2dae7887cc54182558291cc24448) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'eaca71f20bc68505a95cec14c3d08e8c') in 0.036237 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9bd73a55c493490bd07a07aa9f21fdc8 DependenciesID=c56e9a05f213daaef78ca6b942764f50 StaticDependenciesID=0c158beb0de2bc15fbe80c25142badae 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/FBX/60s-70s/mall-signage/Materials/white.mat
+  importAddress: Guid(e844352d423d6e84fadd177b35ef81e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/mall-signage/Materials/white.mat using Guid(e844352d423d6e84fadd177b35ef81e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '0546374fa98088d57d69455c542aae16') in 0.0407461 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=01aaf16cdff6a659eb79b8ba1988e650 DependenciesID=afcb9882883834fb25bd610a05999979 StaticDependenciesID=4556c9a3a233f02d415545c57305448c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000063 seconds.
+  path: Assets/FBX/60s-70s/anchor-denver-lights/Materials/white.mat
+  importAddress: Guid(33235cd2a4760b041a625c75a031507d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/anchor-denver-lights/Materials/white.mat using Guid(33235cd2a4760b041a625c75a031507d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'c338d557bc9d731c76f30342334a3cfc') in 0.034431 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8fc96f7c9907684fa59771a509d474ce DependenciesID=178d495c9e0225dba9fddda6d3844c14 StaticDependenciesID=0e639997dc0a7c417408577807135b31 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-walls-interior/Materials/white.mat
+  importAddress: Guid(df4ea6656106ee1468464d3aa50653e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/anchor-joslins-walls-interior/Materials/white.mat using Guid(df4ea6656106ee1468464d3aa50653e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '3d6c2b703fbb50d62094204fefe9a69a') in 0.0370901 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d2ec240e8b7a2376d73a7bc8f5734753 DependenciesID=1cdfe16aa0ce0b75900980c56c289fe0 StaticDependenciesID=0d0ed05b37c319b685e9b74eb0759b9e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000078 seconds.
+  path: Assets/3rdParty/Snow Mountain/Materials/whitePlane.mat
+  importAddress: Guid(0b4d14158efca2b4aa691b18b8a58e67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/Snow Mountain/Materials/whitePlane.mat using Guid(0b4d14158efca2b4aa691b18b8a58e67) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '2dfd2a64acb2e2394f0c2330503f5594') in 0.0379579 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ce87e384c03f362c8bc3fca306b83b6d DependenciesID=a424d94b9a4d964c9a2dd41434c030d9 StaticDependenciesID=cc0a0aec9c166bfebeb12eb49e276247 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000063 seconds.
+  path: Assets/FBX/60s-70s/mall-vents/Materials/white.mat
+  importAddress: Guid(20531939704b42c4697fa47fb06af371) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/mall-vents/Materials/white.mat using Guid(20531939704b42c4697fa47fb06af371) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'fd8e39fb668b2f3d4e319485fcbdc481') in 0.033959 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5ec8a08e76308fb0dd9402d8b48a9dd4 DependenciesID=4bb9053bd035fe008d3e069d7866ace0 StaticDependenciesID=f564fc645f7ac5ea78f030d9cfc6a608 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/FBX/80s-90s/mall-floors-vert/Materials/white.mat
+  importAddress: Guid(c63576a96eb022b4ab96ae7ef37a7cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/80s-90s/mall-floors-vert/Materials/white.mat using Guid(c63576a96eb022b4ab96ae7ef37a7cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'a2060f33194be01eb5c8cbd8b6dc88f8') in 0.5888234 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4edc74beadcffd26480b79df1680e526 DependenciesID=8e115ae625a69336b930e08c5e0c2645 StaticDependenciesID=9e46df2aa4d7d99ba78bc9b56af0f5e1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/FBX/60s-70s/store-detailing/Materials/wood grain - colorized cinder alley dark.mat
+  importAddress: Guid(32a962cd3d857f34c9a49bed49b4844f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/store-detailing/Materials/wood grain - colorized cinder alley dark.mat using Guid(32a962cd3d857f34c9a49bed49b4844f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '2d48125ab6c2ca0197a0c0c99b3782cf') in 0.1141709 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=68573a72e5fa0043b3b8c84a9fdc2077 DependenciesID=4086b02d77041a1c5e082539a5b2acc2 StaticDependenciesID=cc4863b444c5f56fe7763fb0001042b0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

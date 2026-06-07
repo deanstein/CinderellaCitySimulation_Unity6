@@ -1,0 +1,575 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.4/staging' branch; Version is '6000.4.0f1 (8cf496087c8f) revision 9237654'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Enterprise' Language: 'en' Physical Memory: 32689 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-06-04T07:01:30Z
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR" at "2026-06-04T07:01:30.5794348Z"
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.4.0f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker6
+-projectPath
+C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+-logFile
+Logs/AssetImportWorker6.log
+-srvPort
+60048
+-licensingIpc
+LicenseClient-Boulder-VR
+-force-d3d12
+-job-worker-count
+19
+-background-job-worker-count
+8
+-gc-helper-count
+1
+-name
+AssetImport
+Successfully changed project path to: C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Player connection [51808]  Target information:
+
+Player connection [51808]  * "[IP] 192.168.1.217 [Port] 0 [Flags] 2 [Guid] 2944542273 [EditorId] 2944542273 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-UC90R3D) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [51808] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [51808] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 19
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 8.74 ms, found 2 plugins.
+Initialize engine version: 6000.4.0f1 (8cf496087c8f)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation/Assets
+Forcing GfxDevice: Direct3D 12
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.1]
+    Renderer:        NVIDIA GeForce GTX 1080 (ID=0x1b80)
+    Vendor:          NVIDIA
+    VRAM:            8059 MB
+    App VRAM Budget: 7291 MB
+    Driver:          32.0.15.6636
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-Boulder-VR"
+[Licensing::IpcConnector] LicenseClient-Boulder-VR channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR-6000.4.0" at "2026-06-04T07:01:33.610605Z"
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56656
+CodeReloadManager initialized
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              b9cb5223df964874b9dbd26660800a6d
+  Correlation Id:          91604656144424b752f53f8170a3eee9
+  External correlation Id: 793628402511503863
+  Machine Id:              nzoQQWsMwFXkfPkeVZc+YYGv80A=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Boulder-VR-6000.4.0" (connect: 0.00s, validation: 0.00s, handshake: 4.25s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR-6000.4.0-notifications" at "2026-06-04T07:01:37.8627824Z"
+[Licensing::Module] Licensing Background thread has ended after 7.29s
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.580710 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.195 seconds
+Domain Reload Profiling: 2955ms
+	BeginReloadAssembly (298ms)
+		CreateAndSetChildDomain (9ms)
+	RebuildCommonClasses (99ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (743ms)
+	LoadAllAssembliesAndSetupDomain (591ms)
+		LoadAssemblies (295ms)
+		AnalyzeDomain (553ms)
+			TypeCache.Refresh (551ms)
+				TypeCache.ScanAssembly (516ms)
+	FinalizeReload (1198ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (394ms)
+			BeforeProcessingInitializeOnLoad (154ms)
+			ProcessInitializeOnLoadAttributes (238ms)
+			ProcessInitializeOnLoadMethodAttributes (231ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-J6YX-KHFT-CZRA-4X5Z-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: Unlimited
+[Licensing::Module] License group:
+  Id: 2473931900003-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Sprite.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Sprite.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Tilemap.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Tilemap.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Analytics.DataPrivacy.Tests.dll at Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Analytics.StandardEvents.EditorTests.dll at Library/ScriptAssemblies/Unity.Analytics.StandardEvents.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Postprocessing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Postprocessing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Postprocessing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.Postprocessing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinition.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinition.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.VisualEffectGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.VisualEffectGraph.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.VisualEffectGraph.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.XR.LegacyInputHelpers.Tests.dll at Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Advertisements.Editor.Tests.dll at Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Advertisements.Tests.dll at Library/ScriptAssemblies/UnityEngine.Advertisements.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.Apple.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.Apple.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.AppleMacos.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.AppleMacos.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.Security.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.Security.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.WinRT.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.WinRT.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.SpatialTracking.Tests.dll at Library/ScriptAssemblies/UnityEngine.SpatialTracking.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Symbol file LoadedFromMemory is not a mono symbol file
+Refreshing native plugins compatible for Editor in 7.39 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Refreshing native plugins compatible for Editor in 7.51 ms, found 2 plugins.
+Updated version to: 0.8.2.20260604
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+VersionUpdater:.cctor () (at Assets/Scripts/Editor/UpdateVersion.cs:22)
+System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+(Filename: Assets/Scripts/Editor/UpdateVersion.cs Line: 22)
+
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.302 seconds
+Domain Reload Profiling: 32135ms
+	BeginReloadAssembly (334ms)
+		DisableScriptedObjects (10ms)
+		CreateAndSetChildDomain (49ms)
+	RebuildCommonClasses (79ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (21382ms)
+	LoadAllAssembliesAndSetupDomain (8011ms)
+		LoadAssemblies (7579ms)
+		AnalyzeDomain (611ms)
+			TypeCache.Refresh (412ms)
+				TypeCache.ScanAssembly (379ms)
+			BuildScriptInfoCaches (174ms)
+			ResolveRequiredComponents (21ms)
+	FinalizeReload (2302ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			BeforeProcessingInitializeOnLoad (282ms)
+			ProcessInitializeOnLoadAttributes (623ms)
+			ProcessInitializeOnLoadMethodAttributes (1102ms)
+			AfterProcessingInitializeOnLoad (13ms)
+		AwakeInstancesAfterBackupRestoration (11ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 10.35 ms, found 2 plugins.
+Unloading 42 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7330 unused Assets / (8.2 MB). Loaded Objects now: 8474.
+Memory consumption went from 282.0 MB to 273.8 MB.
+Total: 22.281500 ms (FindLiveObjects: 1.282100 ms CreateObjectMapping: 1.070300 ms MarkObjects: 14.688200 ms  DeleteObjects: 5.238000 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 4163743.457126 seconds.
+  path: Assets/3rdParty/TreesVariety/birch/birch_tex_SOURCE/bark 1 gloss.psd
+  importAddress: Guid(20a0bcf3d9f3ec147a88ad9e34d3c34c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/birch/birch_tex_SOURCE/bark 1 gloss.psd using Guid(20a0bcf3d9f3ec147a88ad9e34d3c34c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '27e2eb81477d02f6e504594487f8655f') in 0.7957493 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=aa18011e884cea1bc1d46b43fd0c8bba DependenciesID=11bf9c037e9557d4674a45cc475581ce StaticDependenciesID=f6a59e25fd3aaa79033dfa2ed1670e64 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/3rdParty/TreesVariety/bush/bush 4_Textures/translucency_gloss.png
+  importAddress: Guid(494c7e51c5caf1e4e9071a128ff8d959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/bush/bush 4_Textures/translucency_gloss.png using Guid(494c7e51c5caf1e4e9071a128ff8d959) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'cd196f3a7a1e6dfdb76db0bb3ae36365') in 0.0448804 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=231a58b1ac6ddc6b4ec1df6cfab78f8c DependenciesID=25ad675d0b3cd360d5925fe143b0cd21 StaticDependenciesID=9770f674aa95875dc0dc1f44e6c339ff 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/3rdParty/TreesVariety/spruce/spruce 1_Textures/translucency_gloss.png
+  importAddress: Guid(44b6645f5400833488e8a0a45848900a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/spruce/spruce 1_Textures/translucency_gloss.png using Guid(44b6645f5400833488e8a0a45848900a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '90dafd1a4b31f23b016adda522b185dd') in 0.03125 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=06df7ee86fc838602ea9e2a1cecb278e DependenciesID=5d24322e91b80a0bac1a156dee4f232b StaticDependenciesID=8c443b9485da6ef5bab2cad605b3467d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/3rdParty/TreesVariety/spruce/spruce 4_Textures/translucency_gloss.png
+  importAddress: Guid(ac5ffa4ea91160744927f2c4c61a97d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/spruce/spruce 4_Textures/translucency_gloss.png using Guid(ac5ffa4ea91160744927f2c4c61a97d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '5c4f1320f5603c86f5031040bd58afc0') in 0.1498385 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=85fe4608b2fdbe3f8e1c10b2cab8278d DependenciesID=3de4db5b83cb07ee8447f51e6d2942bf StaticDependenciesID=e22a3fc48dfa78816fc64e86f8ff0f2b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/FBX/80s-90s/mall-detailing-interior/Materials/store - black glossy_MaskMap.png
+  importAddress: Guid(46edf3a90a630d44ab7f6f7adef0b389) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/80s-90s/mall-detailing-interior/Materials/store - black glossy_MaskMap.png using Guid(46edf3a90a630d44ab7f6f7adef0b389) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '8f4ddd8fd12095197c2cbe561d4b5dcd') in 0.0341488 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2deb186158d2633986bc8abe6a36cfc7 DependenciesID=1a6daa1615c4fba2b82705e2ef0dad95 StaticDependenciesID=35faaf232207689527fefbf3dd508e8e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/3rdParty/TreesVariety/spruce/spruce_tex_SOURCE/leaf 2 gloss.psd
+  importAddress: Guid(6f5a994d06199bf41aabdf9f321133f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/spruce/spruce_tex_SOURCE/leaf 2 gloss.psd using Guid(6f5a994d06199bf41aabdf9f321133f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '4f52666076f9cb9037db8b1a137fbf99') in 0.0257815 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=17e55206ddf5de3c118a52df5c898209 DependenciesID=d09f90a9769d5ad16682804287e8e55e StaticDependenciesID=ede2c66475ad6f10ca2e990c76bebcda 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/FBX/80s-90s/store-detailing/Materials/store - white tile glossy.mat
+  importAddress: Guid(0791f02378a08cf49ace29036f982f14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/80s-90s/store-detailing/Materials/store - white tile glossy.mat using Guid(0791f02378a08cf49ace29036f982f14) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '1f35c967fa79ca3c3068028d81827af7') in 4.6433439 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=90289f79d9bf4348eebacb209ef5f407 DependenciesID=1c91e812a7ff6f3e9eedaee2da516ba2 StaticDependenciesID=991014db584648f895a0f46dd71fc476 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/FBX/80s-90s/store-detailing/Materials/store - black glossy_MaskMap.png
+  importAddress: Guid(69ef9bf17be00ce41a6f3d93de89e365) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/80s-90s/store-detailing/Materials/store - black glossy_MaskMap.png using Guid(69ef9bf17be00ce41a6f3d93de89e365) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '6f8d24c80b9c5b23215071880978bef0') in 0.0087442 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=23b5718fe65bbdfc3e99b821aced7bf9 DependenciesID=79994f9ef02bf3d1a13d33adfd281d19 StaticDependenciesID=0873833ef64d2dd10e7bdad69f5881cb 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000072 seconds.
+  path: Assets/3rdParty/TreesVariety/spruce/spruce 2_Textures/translucency_gloss.png
+  importAddress: Guid(7412aac4226bbaf4b99de4b65210e7d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/spruce/spruce 2_Textures/translucency_gloss.png using Guid(7412aac4226bbaf4b99de4b65210e7d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '35e8480555dc3c7bae6608112ba7d262') in 0.0258504 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bf52cc769f255dad2e3371dfe4d6be43 DependenciesID=40adcc627d564a701de8454131f3ce2e StaticDependenciesID=a90576b16b88a061c7d8849171973167 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/3rdParty/TreesVariety/plants/grape_plant_Textures/translucency_gloss.png
+  importAddress: Guid(4cab64bf48cd8714d957f1c1ae394cc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/plants/grape_plant_Textures/translucency_gloss.png using Guid(4cab64bf48cd8714d957f1c1ae394cc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '337f7e52f7a2fde0bca1d8bb905b93f9') in 0.172439 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ba077899deb1d21183d1c8bed9495a0f DependenciesID=65218b5b365d9579bb21c06afd414527 StaticDependenciesID=290e72685756b9408ee875fc2e7eaa2e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000069 seconds.
+  path: Assets/3rdParty/TreesVariety/birch/birch 6_Textures/translucency_gloss.png
+  importAddress: Guid(4d319f9dada44fd44860d9bbf3dadec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/birch/birch 6_Textures/translucency_gloss.png using Guid(4d319f9dada44fd44860d9bbf3dadec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'e774e9b65eda1adf6ecaa3f3e2bd2a0c') in 0.0157861 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=46cd4fa2f5ec64e015db7867dcec36f3 DependenciesID=b1eda13f0110d6e1fc317951d4ec4bd4 StaticDependenciesID=ca7736f56345862a11b99010a98c9a99 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/3rdParty/TreesVariety/bush/bush 2_Textures/translucency_gloss.png
+  importAddress: Guid(a011e98d5110fc448a7298278f77cadb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/bush/bush 2_Textures/translucency_gloss.png using Guid(a011e98d5110fc448a7298278f77cadb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '3f98c29a5180a152a072a63d4f51743c') in 0.024884 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=530f726860e1e99d7bf2edf5d393144e DependenciesID=217c9d447f61730d644e67471b70915d StaticDependenciesID=e46f94496060ac12c467c846cc03a198 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000074 seconds.
+  path: Assets/3rdParty/TreesVariety/bush/bush 1_Textures/translucency_gloss.png
+  importAddress: Guid(b7e578dcf8c3d174f8b03aefcb6cb48e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/bush/bush 1_Textures/translucency_gloss.png using Guid(b7e578dcf8c3d174f8b03aefcb6cb48e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b72bed0c7a7f0091f94abcf7660b4976') in 0.0296948 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c8f976a879381f09396f073b684e5f74 DependenciesID=12edef4e9d64fa96dee4621bafa59671 StaticDependenciesID=0b550ee4485360725ef7d269101b0592 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/FBX/80s-90s/mall-doors-windows-interior/Materials/store - black glossy.mat
+  importAddress: Guid(70f5a183f133ecc4baebb90a430f28cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/80s-90s/mall-doors-windows-interior/Materials/store - black glossy.mat using Guid(70f5a183f133ecc4baebb90a430f28cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'faf00203e19067d77f3c6633425bfc6b') in 0.1144643 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=400bfd4e2feff442cdc562b8108b7043 DependenciesID=61b4a9be1a9252f6ba65573cd8c884f6 StaticDependenciesID=ecb8cae5e002fc20f8df042107692a10 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000078 seconds.
+  path: Assets/3rdParty/TreesVariety/oak/oak 7_Textures/translucency_gloss.png
+  importAddress: Guid(6190d16340a0d714584c6a99ab4616d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/oak/oak 7_Textures/translucency_gloss.png using Guid(6190d16340a0d714584c6a99ab4616d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '90d8ff26a9c345cb6084f1d7d0deae7e') in 0.0106321 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ea1b6f4db1cac31515f7388e6e503eb8 DependenciesID=083198873b35694bc4e1d18d4f63ff54 StaticDependenciesID=ed2a87407b9d21a6000450b1c90e0bc9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/3rdParty/TreesVariety/oak/oak 3_Textures/translucency_gloss.png
+  importAddress: Guid(a701b4c1b09910f40bfb0713f0ac9444) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/oak/oak 3_Textures/translucency_gloss.png using Guid(a701b4c1b09910f40bfb0713f0ac9444) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '7472022dc557451538d55d18922f3157') in 0.0266694 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=deef101aec55ccce95f19b86713e9405 DependenciesID=4c584730f7bcbce5efbd0716a7e5427a StaticDependenciesID=5f94aab6eab03c0e5afae5acd6912761 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/FBX/Experimental/mall-detailing-interior/Materials/store - black glossy.mat
+  importAddress: Guid(029df4d74f16c754887f663647e17e58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/Experimental/mall-detailing-interior/Materials/store - black glossy.mat using Guid(029df4d74f16c754887f663647e17e58) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'a1f8a5125b79940b170c00ddbd395a9f') in 0.0513729 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9e07101dfe1245e9801b80a90dc5dfe7 DependenciesID=bfe452b449a19787f771a6feb3b877c6 StaticDependenciesID=de7f4ad05ab4bf471ca602f486782db7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000060 seconds.
+  path: Assets/3rdParty/TreesVariety/oak/oak_tex_SOURCE/leaf 2 gloss.psd
+  importAddress: Guid(df5e5093846e4834aba7c916340e0ae5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/oak/oak_tex_SOURCE/leaf 2 gloss.psd using Guid(df5e5093846e4834aba7c916340e0ae5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b0ab395c46f642c4df6f9f602f9ebb0d') in 0.2425086 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d10035462027e7999bc534fdbbfa49c7 DependenciesID=ee5923a5b2f0f865b8cb19f86201fc70 StaticDependenciesID=dc19a8d58652b078d05a0f953d879889 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/3rdParty/TreesVariety/oak/oak 5_Textures/translucency_gloss.png
+  importAddress: Guid(85a1986bfd4fd284498bdd82f4ad57d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/oak/oak 5_Textures/translucency_gloss.png using Guid(85a1986bfd4fd284498bdd82f4ad57d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'c71956b36240ebea0fc1faee39e94fbc') in 0.069295 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5385514ff38a85a889719f33fc349470 DependenciesID=1129d3e6f4562a59dd60fc700ad0ddee StaticDependenciesID=a45a6753a5c0740568e1d4b0f0d4a3b2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000055 seconds.
+  path: Assets/FBX/Experimental/mall-detailing-interior/Materials/store - black glossy_MaskMap.png
+  importAddress: Guid(73752c0bee9163f48900adf7620dba8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/Experimental/mall-detailing-interior/Materials/store - black glossy_MaskMap.png using Guid(73752c0bee9163f48900adf7620dba8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'fef440ff78779ceeeb0922360b5cfaa0') in 0.0654754 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d39b3dc72905b074bbbd92de2b6e6882 DependenciesID=0e443b1e6f6118bd8ff8ca208140c201 StaticDependenciesID=8d03aaadf8b5090b1a4cee00c133b3ff 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000068 seconds.
+  path: Assets/FBX/60s-70s/mall-detailing-interior/Materials/store - black glossy.mat
+  importAddress: Guid(817c7c8095aedf845a018879f39170f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/mall-detailing-interior/Materials/store - black glossy.mat using Guid(817c7c8095aedf845a018879f39170f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '08ae91cdd074d7458ab56f8acb8c96e1') in 0.6371489 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b729492e5bf8d04bde80420692c1c469 DependenciesID=0237dca2fed98948cbddf9dccfb8b053 StaticDependenciesID=61732c2398f089065da592cc987b475a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/3rdParty/TreesVariety/cherry_plum based/cherry_plum based 2_Textures/translucency_gloss.png
+  importAddress: Guid(6c12136c6770fd94f802dba16c100aab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/cherry_plum based/cherry_plum based 2_Textures/translucency_gloss.png using Guid(6c12136c6770fd94f802dba16c100aab) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '2b06ccf25a26010c12a0998d511dd649') in 0.1084265 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=14ad8ae33e0d35e480b5f93dcecd5789 DependenciesID=fe23661da8e6dd313e4cfd9dfa39a514 StaticDependenciesID=9f420b2e294ffd61416890378a17f556 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000064 seconds.
+  path: Assets/3rdParty/TreesVariety/linden based/linden based 2_Textures/translucency_gloss.png
+  importAddress: Guid(2bf7f965cb6f8154db93ac011b03d6cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/linden based/linden based 2_Textures/translucency_gloss.png using Guid(2bf7f965cb6f8154db93ac011b03d6cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '45de336238a4a4998666665b95d40d4a') in 0.0268084 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fdf0fe2e4a675ad2f248e27016b06d9c DependenciesID=30debdf2abdd2aff4fe51ef7f10277d7 StaticDependenciesID=052d94fa7952135dd31a976b2cfb0032 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/3rdParty/TreesVariety/plants/potato_plant_Textures/translucency_gloss.png
+  importAddress: Guid(4a217f5c3c75f6c4c801a919940060ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/plants/potato_plant_Textures/translucency_gloss.png using Guid(4a217f5c3c75f6c4c801a919940060ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '6cf7d5905fcd387c4dfca56c03883a90') in 0.0149631 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d232b170326498014acf39ae2cee3383 DependenciesID=15e92bb24b5bffa8fad5df79bf8089cf StaticDependenciesID=8f29fe6ce1fc800fe9786ea815040258 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/3rdParty/TreesVariety/plants/cotton_plant 2_Textures/translucency_gloss.png
+  importAddress: Guid(46df219cb0181494a9fd7fd33ad197e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/plants/cotton_plant 2_Textures/translucency_gloss.png using Guid(46df219cb0181494a9fd7fd33ad197e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'a381cda3e00a093d116e2d3e4902707d') in 0.0116532 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=51218f0c267651d0947d9b464576704d DependenciesID=0208949464c54ad1c126a1a9dc996d2b StaticDependenciesID=c5866e90827805442d23106d8b6fd8a7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000085 seconds.
+  path: Assets/FBX/60s-70s/store-detailing/Materials/store - black glossy_MaskMap.png
+  importAddress: Guid(6b9502a98e49ac24e8cb801c7eec8504) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FBX/60s-70s/store-detailing/Materials/store - black glossy_MaskMap.png using Guid(6b9502a98e49ac24e8cb801c7eec8504) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '2ad19e8a6fd60375fe40d2c9d1b3c12c') in 0.0108904 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e58ddddb9c46a98e982470fc3a13086d DependenciesID=af56f872a85e7940a0a11082dbf0629f StaticDependenciesID=76bd95219f67a70c38c49a3b12bad7d2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/3rdParty/TreesVariety/cypress/cypress 2_Textures/translucency_gloss.png
+  importAddress: Guid(006a1ac3ec47b394b87bc8058ee71479) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/cypress/cypress 2_Textures/translucency_gloss.png using Guid(006a1ac3ec47b394b87bc8058ee71479) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '5dacb27e012265fca2722ef42dc9acfe') in 0.0118714 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6efe2d43de71002172afd3aed7f93625 DependenciesID=5cd26f1db08fff23ef377db5ea5251d2 StaticDependenciesID=0227b3ec4d8421d2aa9f7d1e2d060fa5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/3rdParty/TreesVariety/maple/maple_tex_SOURCE/leaf 2 gloss.psd
+  importAddress: Guid(46a8d7b3d0c903b4098e0b0186bdda58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/maple/maple_tex_SOURCE/leaf 2 gloss.psd using Guid(46a8d7b3d0c903b4098e0b0186bdda58) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '3d303ae453cda54d022457f4ca763b44') in 0.0269426 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7f36beeaf70edea4c8c036806c82defd DependenciesID=36c5642b32e036d8c0ff2d6e640262c7 StaticDependenciesID=ff359092d2eac3f56b273493f250a16b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000061 seconds.
+  path: Assets/Standard Assets/Characters/RollerBall/Textures/RollerBallSpecularGloss.png
+  importAddress: Guid(7700d93a317c89246a647c7a6c3e7399) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Standard Assets/Characters/RollerBall/Textures/RollerBallSpecularGloss.png using Guid(7700d93a317c89246a647c7a6c3e7399) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '3c4e6c05776897f149bc985f073dbc34') in 0.0200386 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=58ee42b7977aa6fe742a4e162f1116af DependenciesID=40e9cd3cc59a3f423329363d21fe7af4 StaticDependenciesID=3f92c2482063626e3551aa9e2ca8f39d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/3rdParty/TreesVariety/cherry_plum based/cherry_plum based 1_Textures/translucency_gloss.png
+  importAddress: Guid(dc66c2646523d8a40a5b602b15b35852) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/cherry_plum based/cherry_plum based 1_Textures/translucency_gloss.png using Guid(dc66c2646523d8a40a5b602b15b35852) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b50e71e4609115d7785c3ce711da2676') in 0.0303966 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=28432c78a76261127a21d586e3ecac3c DependenciesID=526b0d49059315b71cee4a36acbb796f StaticDependenciesID=8cafdfeddc510f5161eeb4a66c3bcd3d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000074 seconds.
+  path: Assets/3rdParty/TreesVariety/cherry_plum based/cherry_plum based 3_Textures/translucency_gloss.png
+  importAddress: Guid(c9343c1ede0146c48b432e90269dac19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/cherry_plum based/cherry_plum based 3_Textures/translucency_gloss.png using Guid(c9343c1ede0146c48b432e90269dac19) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '13b5d7d633783efc15cc09c7d964191a') in 0.0127327 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ac7d89c0aaf78fbdf5852c8c4be6e43d DependenciesID=6add9da761a3092ddb52e77e0f326758 StaticDependenciesID=06c02fd023010f11d5ebd9bf32f36ea2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/3rdParty/TreesVariety/spruce/spruce 5_Textures/translucency_gloss.png
+  importAddress: Guid(a0977aa2aa9fce4498df81cc2fb2854f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/spruce/spruce 5_Textures/translucency_gloss.png using Guid(a0977aa2aa9fce4498df81cc2fb2854f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '2b22bc118ebeb880cf7bb7a6099cbae1') in 0.0116361 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0deb698348bb162a9994e6babf239846 DependenciesID=63762c4e3e69f05b46559edf150360f3 StaticDependenciesID=0b1d98f8a9a6d11051aad7f21df4a83f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/3rdParty/TreesVariety/birch/birch_tex_SOURCE/leaf 3 gloss.psd
+  importAddress: Guid(8f3ad1e59cad1f64ea2c3edca51e6522) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/birch/birch_tex_SOURCE/leaf 3 gloss.psd using Guid(8f3ad1e59cad1f64ea2c3edca51e6522) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'a1fb769ea7c5b7bd4c76cca63e878ab9') in 0.1384317 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c7df6740f85e99e7fcecf4202a55b37a DependenciesID=a7b584d6ce1caf245b221732a6e805ae StaticDependenciesID=a7d3a889434cfab4df8655c9b9b6dc72 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Assets/3rdParty/TreesVariety/spruce/spruce 3_Textures/translucency_gloss.png
+  importAddress: Guid(d6e2bbdf0001ab74aacbda98f7dc0abb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/spruce/spruce 3_Textures/translucency_gloss.png using Guid(d6e2bbdf0001ab74aacbda98f7dc0abb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '81ffb4efca10c9483fbd50d86cfaffff') in 0.1242334 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=357357fd66bdd2c6bd992cb773a44ed6 DependenciesID=4e57e53c3fbe1064cd85830ef88b524d StaticDependenciesID=ccd2a05e3b10934976df5c6acef1a33d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Assets/3rdParty/TreesVariety/oak/oak 1_Textures/translucency_gloss.png
+  importAddress: Guid(e15c15f319834664e85fa5677b62779b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/oak/oak 1_Textures/translucency_gloss.png using Guid(e15c15f319834664e85fa5677b62779b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'd5c01303c133acd4bc84d75bad611ad3') in 0.0135979 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8724a1dbfbce111ea0d21bb7f448c9de DependenciesID=973507a8a8d9041390520a32f6ea4a86 StaticDependenciesID=3f83e2b9800dfdb5fca44a73f78ba4e5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/3rdParty/TreesVariety/oak/oak 4_Textures/translucency_gloss.png
+  importAddress: Guid(3468dda48bf2d9e4698df967bfe13d5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/oak/oak 4_Textures/translucency_gloss.png using Guid(3468dda48bf2d9e4698df967bfe13d5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '49c9b5dddb4993156630dd2688734706') in 0.0269298 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2b795de431a49bb2829730c5489ebd3e DependenciesID=87d56a79a2320ca42c30831d07a38702 StaticDependenciesID=1f3d75faee34aca451f12cf79e8141f6 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000063 seconds.
+  path: Assets/3rdParty/TreesVariety/birch/birch_tex_SOURCE/bark 3 gloss.psd
+  importAddress: Guid(0600bbfac699fba45b8c26a8c53a561e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/birch/birch_tex_SOURCE/bark 3 gloss.psd using Guid(0600bbfac699fba45b8c26a8c53a561e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '7755bf9024036891daa984f0383b42cd') in 0.0242601 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=861eb988109258af3bb55d3e2838783a DependenciesID=b4bc1c132491d1c4f4899e7a1e892c20 StaticDependenciesID=de3157e883264c0f787a9768f46d3951 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/3rdParty/TreesVariety/bush/bush_tex_SOURCE/leaf 2 gloss.psd
+  importAddress: Guid(b3485450313469e44a469956c35030d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/TreesVariety/bush/bush_tex_SOURCE/leaf 2 gloss.psd using Guid(b3485450313469e44a469956c35030d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b3abb92b84c6faf69a1cbdc7f2f72dd5') in 0.028389 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b7d541ad485e025ca8d47f2cb5beaaa3 DependenciesID=2590f662ac6d3da172b786eaf95d4a07 StaticDependenciesID=5b48ce2e9100275f96ade30f2a798c6e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

@@ -1,0 +1,1818 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR" at "2026-06-01T04:31:43.2766297Z"
+Built from '6000.4/staging' branch; Version is '6000.4.0f1 (8cf496087c8f) revision 9237654'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Enterprise' Language: 'en' Physical Memory: 32689 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-06-01T04:31:43Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.4.0f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker2
+-projectPath
+C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+-logFile
+Logs/AssetImportWorker2.log
+-srvPort
+58022
+-force-d3d12
+-job-worker-count
+19
+-background-job-worker-count
+8
+-gc-helper-count
+1
+-name
+AssetImport
+Successfully changed project path to: C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Player connection [41156]  Target information:
+
+Player connection [41156]  * "[IP] 192.168.1.217 [Port] 0 [Flags] 2 [Guid] 1199088012 [EditorId] 1199088012 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-UC90R3D) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [41156] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [41156] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 19
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 12.59 ms, found 2 plugins.
+Initialize engine version: 6000.4.0f1 (8cf496087c8f)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation/Assets
+Forcing GfxDevice: Direct3D 12
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.1]
+    Renderer:        NVIDIA GeForce GTX 1080 (ID=0x1b80)
+    Vendor:          NVIDIA
+    VRAM:            8059 MB
+    App VRAM Budget: 7291 MB
+    Driver:          32.0.15.6636
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-Boulder-VR"
+[Licensing::IpcConnector] LicenseClient-Boulder-VR channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR-6000.4.0" at "2026-06-01T04:31:46.6261171Z"
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56720
+CodeReloadManager initialized
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              fbd0fe9b458644cdbde432db6d728523
+  Correlation Id:          c7774d33189924d3987f011516ab410f
+  External correlation Id: 4305402090148815598
+  Machine Id:              nzoQQWsMwFXkfPkeVZc+YYGv80A=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Boulder-VR-6000.4.0" (connect: 0.00s, validation: 0.00s, handshake: 3.05s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR-6000.4.0-notifications" at "2026-06-01T04:31:49.6780236Z"
+[Licensing::Module] Licensing Background thread has ended after 6.40s
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.573615 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.107 seconds
+Domain Reload Profiling: 2775ms
+	BeginReloadAssembly (279ms)
+	RebuildCommonClasses (76ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (712ms)
+	LoadAllAssembliesAndSetupDomain (571ms)
+		LoadAssemblies (291ms)
+		AnalyzeDomain (538ms)
+			TypeCache.Refresh (535ms)
+				TypeCache.ScanAssembly (507ms)
+	FinalizeReload (1110ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (398ms)
+			BeforeProcessingInitializeOnLoad (156ms)
+			ProcessInitializeOnLoadAttributes (218ms)
+			ProcessInitializeOnLoadMethodAttributes (195ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-J6YX-KHFT-CZRA-4X5Z-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: Unlimited
+[Licensing::Module] License group:
+  Id: 2473931900003-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Sprite.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Sprite.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Tilemap.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Tilemap.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Analytics.DataPrivacy.Tests.dll at Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Analytics.StandardEvents.EditorTests.dll at Library/ScriptAssemblies/Unity.Analytics.StandardEvents.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Postprocessing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Postprocessing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Postprocessing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.Postprocessing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinition.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinition.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.VisualEffectGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.VisualEffectGraph.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.VisualEffectGraph.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.XR.LegacyInputHelpers.Tests.dll at Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Advertisements.Editor.Tests.dll at Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Advertisements.Tests.dll at Library/ScriptAssemblies/UnityEngine.Advertisements.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.Apple.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.Apple.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.AppleMacos.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.AppleMacos.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.Security.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.Security.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.WinRT.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.WinRT.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.SpatialTracking.Tests.dll at Library/ScriptAssemblies/UnityEngine.SpatialTracking.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Refreshing native plugins compatible for Editor in 27.47 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Refreshing native plugins compatible for Editor in 7.73 ms, found 2 plugins.
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  4.952 seconds
+Domain Reload Profiling: 35804ms
+	BeginReloadAssembly (347ms)
+		DisableScriptedObjects (11ms)
+		CreateAndSetChildDomain (54ms)
+	RebuildCommonClasses (76ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (21889ms)
+	LoadAllAssembliesAndSetupDomain (8513ms)
+		LoadAssemblies (7997ms)
+		AnalyzeDomain (699ms)
+			TypeCache.Refresh (457ms)
+				TypeCache.ScanAssembly (417ms)
+			BuildScriptInfoCaches (212ms)
+			ResolveRequiredComponents (25ms)
+	FinalizeReload (4953ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			BeforeProcessingInitializeOnLoad (345ms)
+			ProcessInitializeOnLoadAttributes (704ms)
+			ProcessInitializeOnLoadMethodAttributes (3534ms)
+			AfterProcessingInitializeOnLoad (16ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 8.60 ms, found 2 plugins.
+Unloading 42 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7330 unused Assets / (7.7 MB). Loaded Objects now: 8474.
+Memory consumption went from 287.5 MB to 279.9 MB.
+Total: 27.475300 ms (FindLiveObjects: 1.409100 ms CreateObjectMapping: 1.076900 ms MarkObjects: 18.705500 ms  DeleteObjects: 6.279800 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 3737216.483006 seconds.
+  path: Assets/FBX/80s-90s/site-roads/Materials
+  importAddress: Guid(857519fbb5fafa34cad9b491de59225b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/site-roads/Materials using Guid(857519fbb5fafa34cad9b491de59225b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '79dbed77578ace71cf0742df20bb2e66') in 0.1394671 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7c5684987f13537cbdbd8a81430adabf DependenciesID=9f62efc5ad00ff050bc08a57229bad61 StaticDependenciesID=2fb77f9edcf938ec43ad51da441c51ec 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/FBX/80s-90s/mall-windows-exterior
+  importAddress: Guid(d210f514e859157408c543d9c62f9dde) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-windows-exterior using Guid(d210f514e859157408c543d9c62f9dde) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4a764fbff41f8e49b2cc1740dd787003') in 0.0186866 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b06990357795383096019060264ca8e2 DependenciesID=2e18e04eedc6d50fddd74ce05d41eaca StaticDependenciesID=7ce329d0a420c7e1110d312d7978d790 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/FBX/80s-90s/anchor-wards-walls-interior/Materials
+  importAddress: Guid(673259cff8e7d964f83ae84f4db43176) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-wards-walls-interior/Materials using Guid(673259cff8e7d964f83ae84f4db43176) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '79d974d0d2e0b28d59d0f7b923c38041') in 0.0176061 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e7c62afa2189df3640bb0d921445c1c3 DependenciesID=4e951bfc6863bb1310e8c81cd2e7b7d7 StaticDependenciesID=5557fff44e9ce774595f0cae8438cd24 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/FBX/60s-70s/anchor-denver-walls-detailing-exterior/anchor-denver-walls-detailing-exterior.fbm
+  importAddress: Guid(e79e478cdea2e8c41999e97c643cdee9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-denver-walls-detailing-exterior/anchor-denver-walls-detailing-exterior.fbm using Guid(e79e478cdea2e8c41999e97c643cdee9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '41310e0158f6d9b8bd1026cd0983c5c9') in 0.0178976 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8f9e80a499598d74472fa3416ab71ad4 DependenciesID=4f6e692841a73c7b8850bd0773566ed7 StaticDependenciesID=a42e08afcd962a88c1cbfb6c4cc7b9b5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-walls-detailing-interior
+  importAddress: Guid(d608dc19d61f9ef49ac5ebef51742f04) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-walls-detailing-interior using Guid(d608dc19d61f9ef49ac5ebef51742f04) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '09eaee48bb8ff3724afe2529ef0bd46a') in 0.020429 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ac8f14a65e416fd3675b510fa98ee8c6 DependenciesID=5b6a81e3286e45f9f5ed9446bfc1ed30 StaticDependenciesID=37defc5096004d8b7147e16d6c79fab3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/anchor-joslins-walls-detailing-exterior/anchor-joslins-walls-detailing-exterior.fbm
+  importAddress: Guid(6b11fc847650568499ce2db20d36e753) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-joslins-walls-detailing-exterior/anchor-joslins-walls-detailing-exterior.fbm using Guid(6b11fc847650568499ce2db20d36e753) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7353ec0338c973af0c008dca539b8032') in 0.0234736 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=33c9d11840ba0dcf3f451647c0eb48a3 DependenciesID=d5e3c0a6b1fbe642c625f34a8b68a976 StaticDependenciesID=5d4b12af96c17281e42145944c2e39a9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/FBX/Experimental/experimental-facet-testing/experimental-facet-testing.fbm
+  importAddress: Guid(14ec706a70f60a741ac36a4b467a3b87) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/Experimental/experimental-facet-testing/experimental-facet-testing.fbm using Guid(14ec706a70f60a741ac36a4b467a3b87) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c1c0df13ea4bc5cb79ac39198b6fbd95') in 0.0179776 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7ee3cfbbb6e38bb845ef5f724bc108d3 DependenciesID=4f8c26d959b9d035d08a448055ae4690 StaticDependenciesID=578b0581d703f777bf0bfcfb91a3fea3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-roof/Textures
+  importAddress: Guid(113877d0f94e77e4b9fc3be9c441d081) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-roof/Textures using Guid(113877d0f94e77e4b9fc3be9c441d081) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4bb20f94491e99228e4625c357264bcb') in 0.0200841 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=664b0986521f9d749bca1c76a37ef5b2 DependenciesID=9f72469a83e81fc44172530423408ffc StaticDependenciesID=3e01cd328dd12730bdcbacfca812af61 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/FBX/80s-90s/proxy-blocker-npc
+  importAddress: Guid(e0481fa2cdafe22479a978fca43a9195) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/proxy-blocker-npc using Guid(e0481fa2cdafe22479a978fca43a9195) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'bee3267d2c52638a04905a69e8910d9b') in 0.021066 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6b4e7ac16c3dd718efba2e8c09146dcf DependenciesID=487906aebe0105aa62f11dbbc104f6fb StaticDependenciesID=fa1ec9697f2b99ada158a52a5539a51c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-windows-exterior/Textures
+  importAddress: Guid(42f9afb832d7ac244916462e63d08c38) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-windows-exterior/Textures using Guid(42f9afb832d7ac244916462e63d08c38) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2baa69dfaae9f4db0d21763a5900a872') in 0.0179438 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c7da7d584bb93a8cdc0a564d23671328 DependenciesID=18b42d6096455212fe8ed2fd2a474719 StaticDependenciesID=15a95d612ff9cd2c179e5b6fa0d46250 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-detailing-interior/Materials
+  importAddress: Guid(d6e105d9d03f0e040a0374b83c4cbf4d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-detailing-interior/Materials using Guid(d6e105d9d03f0e040a0374b83c4cbf4d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '448865f0ee88be3425f6a15d432b37d7') in 0.015965 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d60528d5d6dba3e9a7b08e03530924cb DependenciesID=6778062bbf4b8713a98b3458e2024665 StaticDependenciesID=210575db474cf90e3236ea49f888899b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/FBX/60s-70s/anchor-denver-structure-exposed/Materials
+  importAddress: Guid(60420502f25a1974bbbe690a6a556b56) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-denver-structure-exposed/Materials using Guid(60420502f25a1974bbbe690a6a556b56) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0915507e311ffdd468248751cb118f75') in 0.015459 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cac93342cdf74ead66bfe58d2d4f3c5f DependenciesID=15a2208ec248cf16a6af7860c7eab728 StaticDependenciesID=a10b5b156297b65da09a21317eae51ad 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/FBX/80s-90s/anchor-joslins-roof/anchor-joslins-roof.fbm
+  importAddress: Guid(5d439ca7401ebeb47b656aa25e1ca28f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-joslins-roof/anchor-joslins-roof.fbm using Guid(5d439ca7401ebeb47b656aa25e1ca28f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '418b0e0b4d1e050003cf825b8d8e60ca') in 0.0159829 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0071f6d0670b398debd300d788559e65 DependenciesID=f79a5266b146a161a4a60a7285497f2c StaticDependenciesID=cf9ee3ad0cd362fccd347e3769e42914 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/FBX/60s-70s/anchor-penneys-walls-detailing-exterior/anchor-penneys-walls-detailing-exterior.fbm
+  importAddress: Guid(60f0f9d5a3c376b46983c67bab6b2ba4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-penneys-walls-detailing-exterior/anchor-penneys-walls-detailing-exterior.fbm using Guid(60f0f9d5a3c376b46983c67bab6b2ba4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '435b491d0b82361b9bc5dfc4defad2c7') in 0.0157684 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e3b8ed1b3fe9c08ab8d21286a5f74ad7 DependenciesID=7b380d983844d73f046304e7ddc6091c StaticDependenciesID=75da8052d532160acf39cad81d33bc33 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-roof/Textures
+  importAddress: Guid(a455c4075e2b92c41a08eabeac0ee1fd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-roof/Textures using Guid(a455c4075e2b92c41a08eabeac0ee1fd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '004972785e9e465bba31218c4704f788') in 0.0159573 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=15d2bfbd9e304095c5cef71a60d94689 DependenciesID=f15f25d10d9b2dc50e4f8d3bae67b966 StaticDependenciesID=ee9e3d80aa61926166298a3a11eaef81 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/FBX/60s-70s/mall-structure-concealed
+  importAddress: Guid(8ac98ce92271734419fc2cc75a925dac) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-structure-concealed using Guid(8ac98ce92271734419fc2cc75a925dac) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '63b8d53e8bdba2d1812a09120286144a') in 0.0142499 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cbbbe1d81df3b71c46bc2302cbb600d6 DependenciesID=839f5f31cd5438be9884a1edb3b16e24 StaticDependenciesID=05748ea3bce8c3210859e40cb7aa6853 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-walls-detailing-exterior
+  importAddress: Guid(62bc067dcd3325e4581781c1afbf5a13) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-walls-detailing-exterior using Guid(62bc067dcd3325e4581781c1afbf5a13) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6cba469d8b9ff2bc358d204f4ce9bb63') in 0.0206502 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7f7c94fc48b35dde8ae3b378a5cbb5fa DependenciesID=764df2f396c9d8154fc07ee9595659c2 StaticDependenciesID=2600f6eaa24f3b07bf7dd7fce213ea94 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-floors-vert/Textures
+  importAddress: Guid(a0fe4e67da6076343bee0566f7c7de50) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-floors-vert/Textures using Guid(a0fe4e67da6076343bee0566f7c7de50) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e5f3081d2bd61ac24848d0c0fa108f5f') in 0.0152709 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=36a110042b051db62fe052179785a620 DependenciesID=995ef3b558b9faa969908ac05bf8e181 StaticDependenciesID=4e67429d6b3e9c76585de025f7e37a33 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-doors-windows-solid
+  importAddress: Guid(94d889f5ab9cda941b67a22c5d5941ad) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-doors-windows-solid using Guid(94d889f5ab9cda941b67a22c5d5941ad) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'bc2ca0c97f636e8284f20e91d6ba0c0c') in 0.0184869 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5b6b1c82648bfde1df83ba404008cbf0 DependenciesID=ff9a88dc563188f51463a29d598c4e11 StaticDependenciesID=7d7c925b545188b06f6bcd5691f050ed 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/FBX/Experimental/store-floors
+  importAddress: Guid(1e52d7400b84e1546b807627ecce7789) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/Experimental/store-floors using Guid(1e52d7400b84e1546b807627ecce7789) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '09ff4ab12801e920cbb4de54d8d28ef8') in 0.0159639 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3cf51a8d03db5f397af8c78e52c4a470 DependenciesID=448cde6d47b1bee37b275b942a095782 StaticDependenciesID=eb8e143b7960c27a9a838985a634a585 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/FBX/60s-70s/speakers/speakers.fbm
+  importAddress: Guid(d2abc79a23eabfa4baf4433cd3cfa7bf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/speakers/speakers.fbm using Guid(d2abc79a23eabfa4baf4433cd3cfa7bf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '20b22534c1cbc4fb84d464c32dce3c12') in 0.0173635 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8661ea7b34f196b8a4e133c95e97caee DependenciesID=29b93787bf028ecfdf3e33e8502ebefc StaticDependenciesID=19e7d29045fdd7569848de565a69a59f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-structure-concealed/Materials
+  importAddress: Guid(faf808bbb6acdd64dbdf972ec7e7a50f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-structure-concealed/Materials using Guid(faf808bbb6acdd64dbdf972ec7e7a50f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '275057c074a05ac9475bf572a512853f') in 0.0162771 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e631437d3d2c4bece3461c61dc7a04db DependenciesID=d72e928a717e3756fd5cc3f0f0ad8ae3 StaticDependenciesID=e210e93dea834eab4c3a1b1969335d1f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/FBX/80s-90s/anchor-wards-floors-vert/Materials
+  importAddress: Guid(1b49769397e6b80479c35ce8b2f782e8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-wards-floors-vert/Materials using Guid(1b49769397e6b80479c35ce8b2f782e8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a7e8471e8270bcc1aa8a1ef1a31f3afe') in 0.0157902 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=72a6ce0bc2382c7338f520f34181a6fb DependenciesID=78c892458672f1828d02fcdeac36df5b StaticDependenciesID=96211f2105429074f63ea3c60d8f57c9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/FBX/80s-90s/speakers/Materials
+  importAddress: Guid(c07496268b3d87a4a91f077481d8432d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/speakers/Materials using Guid(c07496268b3d87a4a91f077481d8432d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'db84b570ddfcb9904f7c88da2d032c49') in 0.0207369 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=69a7ab7cfe7cca2ad07c21d5aa3b0118 DependenciesID=e79ac3d374db58c6065f1ab386663bab StaticDependenciesID=267adc905f922f20087aeff8e204e341 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-doors-exterior/Textures
+  importAddress: Guid(f7fc9520145378c49832f1e0a0ac9c5c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-doors-exterior/Textures using Guid(f7fc9520145378c49832f1e0a0ac9c5c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '445cbdd7cd56a6dfff2a163350d3ce9c') in 0.0165941 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=657956d7db81aff8387bf43b58c446a3 DependenciesID=7bd4b8ac97692c7839a9eba51ef0b88a StaticDependenciesID=54a5c5d536fd8394885ecd9db4e0d181 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-roof/anchor-penneys-roof.fbm
+  importAddress: Guid(56e3e0551d42fe340b1400a22e63cdd5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-roof/anchor-penneys-roof.fbm using Guid(56e3e0551d42fe340b1400a22e63cdd5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0a860e25ace8444b66f5cfac6c2494d4') in 0.0165245 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9da58ecc21530963a4581cdfd05cb02c DependenciesID=ed3154928968d354804e0c7b0412d4b5 StaticDependenciesID=c6dcdfd7c4dbfcc00390db1d663416ad 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Standard Assets/CrossPlatformInput/Sprites
+  importAddress: Guid(1835e4537efbdd94b93c2dd136860f1d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Standard Assets/CrossPlatformInput/Sprites using Guid(1835e4537efbdd94b93c2dd136860f1d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '65ba4aa440646c554138acc91a528da1') in 0.0161729 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=379798aef53ac68d763df10414c6c1bb DependenciesID=56c031caa5d5c0c94318d0e8816c46be StaticDependenciesID=9bee53b909df3a7922d005040e3d9ff8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/MobileDependencyResolver/Editor/Google.VersionHandler.pdb
+  importAddress: Guid(1c9aac8d9a8a4327ab36da49fd34139a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/MobileDependencyResolver/Editor/Google.VersionHandler.pdb using Guid(1c9aac8d9a8a4327ab36da49fd34139a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4dc6d07410826b19e1c24a257f205855') in 0.0228553 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=629f0516262e917c8c1f356dc5831be5 DependenciesID=befd396c8a333ab63d2552da4f8d2802 StaticDependenciesID=9ccf9372e8fed4bcf7513fdb2451cb30 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/80s-90s/anchor-wards-signage/Textures
+  importAddress: Guid(d939e2e84791f4a4194ffb22d08b8ff5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-wards-signage/Textures using Guid(d939e2e84791f4a4194ffb22d08b8ff5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5cb380ca2aa600863dbd70be2d4c4971') in 0.0162874 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1c6cfd812f93a958d605a1c0ebc3c71c DependenciesID=d020fbdc8e185fbe9110b231c6792386 StaticDependenciesID=64d06277b5b5b5e7827377f756f21486 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/FBX/Experimental/site-curb-gutter-sidewalk-vert/Materials
+  importAddress: Guid(f4dac8d9861708145a6deff22134349d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/Experimental/site-curb-gutter-sidewalk-vert/Materials using Guid(f4dac8d9861708145a6deff22134349d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ad9207e401d8243e8e48a88329f1a82b') in 0.0229035 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=04b5539f2e16bca22a43312394d21d41 DependenciesID=1a1628f8743812bc23fed503a5320e4a StaticDependenciesID=c33593fdb0e08978543d84ef66c31035 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/FBX/Experimental/site-lights
+  importAddress: Guid(b189b6f085b3266489efe3f12f616bf9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/Experimental/site-lights using Guid(b189b6f085b3266489efe3f12f616bf9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5c5a05ee1f047aff9098a82da0c5efb9') in 0.0160034 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bf37d7dd7e07b190531a779869d5adea DependenciesID=9e6cdab28879a97dfa6f27b211edc8cc StaticDependenciesID=c24baf768bfbd66edff1093dd1fc9655 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Fonts/Resources
+  importAddress: Guid(f785539460cffbf4288f0a8e7985a2c3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Fonts/Resources using Guid(f785539460cffbf4288f0a8e7985a2c3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '772b83e58e4eb7bfe3cff826a20a1c69') in 0.0158084 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=20a6457a34d3edda7d15365e7d09635b DependenciesID=b271a55743af7b8e5cb84e71333d6f65 StaticDependenciesID=d6234bd81178ac1c1084091e0dee8c9f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/FBX/80s-90s/anchor-joslins-signage/Materials
+  importAddress: Guid(0f004796503bf734c9590445e45459b9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-joslins-signage/Materials using Guid(0f004796503bf734c9590445e45459b9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '937ee94bebfc769902a966ebe7c8e2e0') in 0.0161705 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3a352b7212d51463d36a56deaf691437 DependenciesID=62b3bc0597c5c9cef1b880d9595c1d45 StaticDependenciesID=c271298524aece15e396dc3b5244ae22 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-floors-vert
+  importAddress: Guid(9ed91cee6fd47ef4a9c48637440a5052) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-floors-vert using Guid(9ed91cee6fd47ef4a9c48637440a5052) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6978c1d2e8c90ee4e12beba20f44bda7') in 0.0156932 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=023d90fc1e9858449fed991e3ad0763e DependenciesID=3938b989b1b3410035749a8f2f884f0b StaticDependenciesID=da1e91466c381332fa14f530d8888965 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/FBX/60s-70s/proxy-trees-veg
+  importAddress: Guid(e645639b0c1804f45a859d8be56135bb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/proxy-trees-veg using Guid(e645639b0c1804f45a859d8be56135bb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b91b5a78b7ddbe70f43a86cc407fc868') in 0.0218736 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=63a597761df2b8fceb5dde916b06831a DependenciesID=6b6ead625084864a776b8da47779b6be StaticDependenciesID=3ca89a0439d9846d6b1295ba604000c4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/FBX/60s-70s/temp-fix-2
+  importAddress: Guid(abafd6e7d402b7a48acb85f307a6b67d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/temp-fix-2 using Guid(abafd6e7d402b7a48acb85f307a6b67d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '18b7707b5a03579bdae9c747961857fa') in 0.0259684 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e8c17fae71b725f8363c8e9a45f814c0 DependenciesID=b079fd9e8b316b51a9ddc1bc1e8fba2b StaticDependenciesID=df529b344adf547b876401e8ed304f79 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/FBX/60s-70s/mall-light-shrouds/mall-light-shrouds.fbm
+  importAddress: Guid(e1d91985a181c0040b0372fce0d69bee) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-light-shrouds/mall-light-shrouds.fbm using Guid(e1d91985a181c0040b0372fce0d69bee) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b8e0fb23fa1d58f18092e7d1fd519d4d') in 0.015944 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=88f3fc8c02e78b646df8bcfde3daf6a6 DependenciesID=bef151bd4d8e7dbffc68fa68db5d0670 StaticDependenciesID=3b132d92468e66397e86f08cb4e4bceb 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/site-parking-surface
+  importAddress: Guid(99436579f38ad6e40a1eeca911855bb8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/site-parking-surface using Guid(99436579f38ad6e40a1eeca911855bb8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '16ba20f2e90d81aba3d948b87bf35178') in 0.0196983 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cd704919fe630b558b0b98bdaefd3a6b DependenciesID=9be7ba6a40296af53d6080c089b7d286 StaticDependenciesID=128adbe0743b8b281eb222538badf423 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-roof/Materials
+  importAddress: Guid(b291802a5772eb4459af0ee7f78062cb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-roof/Materials using Guid(b291802a5772eb4459af0ee7f78062cb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ec957d2e1623ae9b01a80b013c5d7253') in 0.0156211 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6e583d4a25a01b22d9c1144652d26eb0 DependenciesID=ffef47504ebc9ce5fe7173a7cbbb9e92 StaticDependenciesID=db0f2775083ec9e755af375322f2c9a6 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/FBX/80s-90s/anchor-joslins-doors-windows-solid
+  importAddress: Guid(a47c8ac96e949dd468dd39f5fa4b90c4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-joslins-doors-windows-solid using Guid(a47c8ac96e949dd468dd39f5fa4b90c4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '140828a180f1c3575044b9782483d245') in 0.0205772 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=831869c36b67e1fb142e87f1247e90fd DependenciesID=524683f018adc2c8bab2c5a8b10fb59b StaticDependenciesID=c8cdc3da59762b7b7bda806cf8a27b5c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/mall-vents
+  importAddress: Guid(ba31c2a90328e1f439cc1110ad34bb4a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-vents using Guid(ba31c2a90328e1f439cc1110ad34bb4a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a5f38f012dbc47222087408a187daa71') in 0.0194599 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b14237ce88638441e8c75a687ce66b10 DependenciesID=3c59b96d15b857f6aaf85c78acdc9421 StaticDependenciesID=f0be8d22c1e03da19cd510094249dc4b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-floors-vert
+  importAddress: Guid(64661fd06fa653b4283d902ca306c2cd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-floors-vert using Guid(64661fd06fa653b4283d902ca306c2cd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '393bb79d37fb83fcc859d280e6f7866b') in 0.0259242 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ea59c586cdd7d905f05ab42537285bbb DependenciesID=290d479330368cd33e8ceba849ba17f2 StaticDependenciesID=7d72e3453080c55d4937daaf17ea721e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/FBX/80s-90s/store-ceilings/store-ceilings.fbm
+  importAddress: Guid(137d464d8aa69a442a982026c25b0e49) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/store-ceilings/store-ceilings.fbm using Guid(137d464d8aa69a442a982026c25b0e49) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '64631ba1e488303cbe7db886992b7c24') in 0.0205759 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d6737a7011916f7a3176d21522701ca9 DependenciesID=b431a4c05d9088cffff41866e8babcdb StaticDependenciesID=f3c6a8e60d93802b1523e1805b82d457 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/FBX/Experimental/speakers/Textures
+  importAddress: Guid(79d44f88864fd9e49816804c959bef03) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/Experimental/speakers/Textures using Guid(79d44f88864fd9e49816804c959bef03) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b55d65b6332bcaac72b9bc86e9bc3a42') in 0.0174357 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b97569f4b5c35a9d448ee48b97ecf8fb DependenciesID=7abbf81790fd97a0a61242b63be8fbbe StaticDependenciesID=eb6ed43428a2830359a48ce0e15e877c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/anchor-denver-walls-interior/Materials
+  importAddress: Guid(667d4a907df90ec409ebcbac43406771) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-denver-walls-interior/Materials using Guid(667d4a907df90ec409ebcbac43406771) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b1e44df0c6e1509fc1f2986a755ad33c') in 0.0199678 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e00b33dc16f5b0d5cd37b668a295465b DependenciesID=09af4339ebe7fe6e69ce19956217c571 StaticDependenciesID=a06d9880619d022327c81ceac9750ebc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-doors-windows-solid/Materials
+  importAddress: Guid(52eae71c80887394bb9847148eb2d115) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-doors-windows-solid/Materials using Guid(52eae71c80887394bb9847148eb2d115) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f4e723ac3f43a7fc24011dc46bc73f8f') in 0.0156248 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=635ce988efb55f21d86ed7abe17bfa48 DependenciesID=96910b19629246046d8fed03ac970962 StaticDependenciesID=a7fc4ffacc0d9333b5abe853bd5e8c83 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/proxy-cameras-photos
+  importAddress: Guid(dbceb9342260f0a41b67b970e0bc38ec) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/proxy-cameras-photos using Guid(dbceb9342260f0a41b67b970e0bc38ec) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'bee0e97872c5e53d74b17c56105a058f') in 0.0155451 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=feee0d22fb148a83a30ea0c5d071d2ca DependenciesID=830e4b6fa85d06bdcc817205e8b4344f StaticDependenciesID=b66b1254bc6983296d3b6211db5de9e9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/mall-roof/Textures
+  importAddress: Guid(cf053714c1706544299a87f1dc2854b1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-roof/Textures using Guid(cf053714c1706544299a87f1dc2854b1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'fe373046a6aeb3c650d3acdfbf6b38d6') in 0.0187971 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4678da87e52273ca4dd004a21a5af4fb DependenciesID=aab63871b8bcbdc62a0d02f9e4d14786 StaticDependenciesID=53d12a6c1063eb3906916bdeebbb7012 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-detailing-interior
+  importAddress: Guid(d306a6bbe30456e47a1dc3cd9aea112e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-detailing-interior using Guid(d306a6bbe30456e47a1dc3cd9aea112e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd0ca9c04e0d56f5ea7c5f78b3eb9b3c7') in 0.0246776 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e02efc945251126815e8089a02fe0256 DependenciesID=4093b7de1c21be90828516c3902cb4bc StaticDependenciesID=28470e44756bcb41ffcd83070705df96 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/Experimental/anchor-denver-walls-detailing-exterior/Textures
+  importAddress: Guid(20747ba93d7b9c346b8c31cf14df93ea) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/Experimental/anchor-denver-walls-detailing-exterior/Textures using Guid(20747ba93d7b9c346b8c31cf14df93ea) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9927f82c2828ad59b02bbadef2901b21') in 0.0183474 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=83c5d478825af5c3d496666eb6cde2fd DependenciesID=1cedfa106a5fb56e2415b857083ea0e9 StaticDependenciesID=6681719c36cb5e56ce2fc444ea9c9754 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/80s-90s/mall-doors-windows-interior/Materials
+  importAddress: Guid(def91556c04e33740915accbc40365da) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-doors-windows-interior/Materials using Guid(def91556c04e33740915accbc40365da) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c465818d5ab988f62fab498585ea3162') in 0.0182546 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ccbe36ff4e2e565e92cc8533ddf59c10 DependenciesID=3e1501ad688fc8637757af18c8f60a38 StaticDependenciesID=9b518742aff7f0733fc3c5b136189dbd 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/MobileDependencyResolver/Editor/mobile-dependency-resolver_version-1.2.185_manifest.txt
+  importAddress: Guid(5e590a4aab514d859dd0ac8982d9e78c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/MobileDependencyResolver/Editor/mobile-dependency-resolver_version-1.2.185_manifest.txt using Guid(5e590a4aab514d859dd0ac8982d9e78c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'bf78bfe1e8987f4084e8149208794843') in 0.0251901 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c3f161e6d3984ce8864fa61e359a0f29 DependenciesID=8a0f331c646907be1fcef03ce6cb4080 StaticDependenciesID=abbdb9e43f51070c18dc500e38c4f1f8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/80s-90s/mall-walls-interior/Textures
+  importAddress: Guid(ea370f6e92a0ce247a620622c44fc795) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-walls-interior/Textures using Guid(ea370f6e92a0ce247a620622c44fc795) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b33f45a7d5eb43bf69d2cdbc30c9112c') in 0.0169629 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5077da445cdfda97951fb712ea86054a DependenciesID=3de7baad84ffc8f959dc39dadc771ce5 StaticDependenciesID=ba0e1c8bd54abcf254b922a7fc701aed 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/FBX/60s-70s/mall-furniture/mall-furniture.fbm
+  importAddress: Guid(885cd3da07e2c264098562753f435dd8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-furniture/mall-furniture.fbm using Guid(885cd3da07e2c264098562753f435dd8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'edeb68aeea679ff1a0f793cfa4c458c7') in 0.0163593 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=40a182ffd51430eb06a1dfe13a20872a DependenciesID=6c6667911e48bfc56a7903640e46573a StaticDependenciesID=e5d773c3a7b997229b66f806c2fb5c14 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/FBX/80s-90s/anchor-wards-floors-vert/Textures
+  importAddress: Guid(8fe60b4105dc191459003a1e5a809d3d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-wards-floors-vert/Textures using Guid(8fe60b4105dc191459003a1e5a809d3d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '52c6e64ded9efebabae04b092dc5b1b5') in 0.0190696 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=acf1f2fba7f5c7e2f3ca85577b3ac857 DependenciesID=b9c3c71e6f985b4b1c3bda55dd361e76 StaticDependenciesID=3ced162d3f5ffa60b1648def2a0f4046 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/FBX/60s-70s/store-ceilings/store-ceilings.fbm
+  importAddress: Guid(5208fc2eb818b2c45ba500dd496496fd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/store-ceilings/store-ceilings.fbm using Guid(5208fc2eb818b2c45ba500dd496496fd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '3430e69293b979818e1742948b26d2e7') in 0.0222543 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=04fadebe49dca793071a666a685259dd DependenciesID=9eb8ecc0e2c4ecd30f8115610fecfe1f StaticDependenciesID=d4227bd23b33f9e572c070f8cfdc0c36 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/anchor-denver-ceilings
+  importAddress: Guid(520f40cde03b9b544943701e11797e89) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-denver-ceilings using Guid(520f40cde03b9b544943701e11797e89) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1c39ad5bfbc4a0c1e9faf139605851eb') in 0.022384 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d3a5fefb7dfce60822aaf67e1a710de6 DependenciesID=b6b83715de1825559b6029fe22402310 StaticDependenciesID=7254ee429b69c91c07f446b805f54f3b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/Experimental/experimental-lightbleed-testing
+  importAddress: Guid(0932d0815233e2c4aaa4f80fae0ce2b1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/Experimental/experimental-lightbleed-testing using Guid(0932d0815233e2c4aaa4f80fae0ce2b1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0e192cefb80965539162fa4e5524e4eb') in 0.0202941 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9237002564abb7774ce093e2062532be DependenciesID=7da5e54d4a1a52cc4711a2067333983e StaticDependenciesID=c41bef33c8f85a52ac6a69b106e557c7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-roof/anchor-joslins-roof.fbm
+  importAddress: Guid(c5b4071d6efd123498923e00824ef6ec) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-roof/anchor-joslins-roof.fbm using Guid(c5b4071d6efd123498923e00824ef6ec) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'bc55ef77b18b0953d8bdf8de2d1b9b7e') in 0.0222922 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3b80ccda61fc0798201d174223f16b1e DependenciesID=4e021ca3dae2a2636ee42c84eaeeeb1c StaticDependenciesID=55858c76cd9377b48f05d6f27309c7be 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/FBX/80s-90s/anchor-broadway-signage/anchor-broadway-signage.fbm
+  importAddress: Guid(de1df0701283cd74bb4383d698bb7335) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-broadway-signage/anchor-broadway-signage.fbm using Guid(de1df0701283cd74bb4383d698bb7335) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7d6f3d36552d5ac2823751bbafb4e56c') in 0.016494 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bc69e2e83ba12ce0bdac942afa658685 DependenciesID=217b70e9d353d34b370fa78bf9cb8dfa StaticDependenciesID=a0bad0f6fdecaf682d847b8967ddbbb5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/MobileDependencyResolver/Editor/README.md
+  importAddress: Guid(eda60a5e280441219d51748b60eaf0b7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/MobileDependencyResolver/Editor/README.md using Guid(eda60a5e280441219d51748b60eaf0b7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '245f125fc3cc61e107f22c66a568e648') in 0.019258 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=51dc0a84eb07af032a8e56e73517a86f DependenciesID=01970649731d3a8fab9c63c8f5040450 StaticDependenciesID=ccb71b86616210df99b7d11b093a8b1b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000100 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-signage/Textures
+  importAddress: Guid(31a09a4c67babbc418e0355582a6e9cf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-signage/Textures using Guid(31a09a4c67babbc418e0355582a6e9cf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '15fcc15542605622aca004d36c15bdb9') in 0.0164071 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=de2b0b0fa8c312cbd804f134355740ec DependenciesID=cf8d6277e70b81d3716e8615ae320619 StaticDependenciesID=22e5c7ea841e759cea40d3605eb5956c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/FBX/80s-90s/anchor-broadway-windows-exterior
+  importAddress: Guid(c5224e7de45ff214eb923e8d907ad5ab) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-broadway-windows-exterior using Guid(c5224e7de45ff214eb923e8d907ad5ab) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '76210fc7cbbf069d6d2db46938355d12') in 0.0160518 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=00f9d58919a1421bbf5932cd192f732e DependenciesID=31f08551a4a9679051ea91b83f9c6b11 StaticDependenciesID=8da1ce86b565c5e170d2f9cc808aa22d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/store-fixtures/store-fixtures.fbm
+  importAddress: Guid(55b5a64d739cd2342a174e65423594a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/store-fixtures/store-fixtures.fbm using Guid(55b5a64d739cd2342a174e65423594a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9d6068a0929c7b33d3d98c1b638b2d6c') in 0.0163705 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9e50623443b83c895e8876c8a764fdf4 DependenciesID=6be4efb7ffd5fb06e8f681a018304e18 StaticDependenciesID=b7cc72139915e5336c6998ecf46f8c02 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Resources
+  importAddress: Guid(4093e5c5bf3c1b64b9cdec958ee0f2f7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Resources using Guid(4093e5c5bf3c1b64b9cdec958ee0f2f7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9b9fd80cd1473df36b7bc04c8882d518') in 0.022592 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=03fb809969b80edc661025876b547aba DependenciesID=73136ac261a63d87ddef3cdb40a8ea03 StaticDependenciesID=811f4cb1a4aa83ef9e6887d573cdbcda 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/FBX/80s-90s/mall-furniture
+  importAddress: Guid(d2d0c1127abd7e043b720781ea050890) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-furniture using Guid(d2d0c1127abd7e043b720781ea050890) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4415dc82e4459e1fdc918025f375f05e') in 0.0217989 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a9647cc49cf4b4c12ab3201136c32753 DependenciesID=09c017cca803a984945281e5b0d577f4 StaticDependenciesID=57713ef22267f69c7a334fb69972e468 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/FBX/80s-90s/site-handrails/Textures
+  importAddress: Guid(11755366709de6f4784ea6eeca40ffab) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/site-handrails/Textures using Guid(11755366709de6f4784ea6eeca40ffab) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '210af42bd1cda72ec10ff2e6f116c8ff') in 0.018878 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3f30011c8352c5ae37480102b8b9aa93 DependenciesID=701a2d32a034214078eadf9ca41cb815 StaticDependenciesID=3e89bb4e1dd43736513e1c3e4f83ba3b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-structure-exposed/Materials
+  importAddress: Guid(7ee8c34a2a073c240b2a660ab76baf96) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-structure-exposed/Materials using Guid(7ee8c34a2a073c240b2a660ab76baf96) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'af7596eaf30815dc845902fa63d8ed09') in 0.0186998 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8e405f8792dd4b78701a6292efe95478 DependenciesID=15ec19d3c4cb15fb010a476aa91c3801 StaticDependenciesID=f1f2bfe41887bcd0123ef60e7d429a5b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/FBX/Experimental/mall-structure-concealed/mall-structure-concealed.fbm
+  importAddress: Guid(939df8a4cf8f5424c8b02ed157a02028) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/Experimental/mall-structure-concealed/mall-structure-concealed.fbm using Guid(939df8a4cf8f5424c8b02ed157a02028) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5e6c1b8e77b239954a7004386600c0a8') in 0.0191063 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9e5fa1b268334ccb51d5df51d05c7bf1 DependenciesID=c33e1f9c8f675791358e095506c5b143 StaticDependenciesID=cf740442b7e47ee73dc46016e8f4ac92 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/FBX/60s-70s/anchor-penneys-ceilings/Textures
+  importAddress: Guid(ad5c354f28107ab4fa74e27c83fe7d57) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-penneys-ceilings/Textures using Guid(ad5c354f28107ab4fa74e27c83fe7d57) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '948aa8d5afca0a0d75fd52e386e27575') in 0.016478 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=55291c6315d911acd44a5cb8fae9684b DependenciesID=08e2cee83147c00dad8e440c547ec7f1 StaticDependenciesID=8422e16048a98108109e4f9aa76e8759 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/FBX/80s-90s/anchor-wards-lights
+  importAddress: Guid(6ded929a4b6dd7740bb0c7a19d45148a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-wards-lights using Guid(6ded929a4b6dd7740bb0c7a19d45148a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '242aa37bb3d2920a74a7e5a31f19d67d') in 0.0161951 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a729f8f50b129d1a6a476b37522426cf DependenciesID=6b5b14b1f4e11ed311f767436afe93f5 StaticDependenciesID=1ab867c11df3ad9e242d503e7e711749 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-ceilings
+  importAddress: Guid(201ea8dd5b64b4c49858099afc49832c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-ceilings using Guid(201ea8dd5b64b4c49858099afc49832c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd08fc4840ce95e5cd009f6c82b84ae42') in 0.0216526 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bf8cff9d8ccbd9e55f67f427fa988f18 DependenciesID=daccc363c45d595690a5453cb8a9a24a StaticDependenciesID=c0e39b12e828074fc3bed8a23ae492b6 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-ceilings/Textures
+  importAddress: Guid(e1178de87a8686242b7473364ad53017) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-ceilings/Textures using Guid(e1178de87a8686242b7473364ad53017) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ea8c851a9a0ff701f90f59d0e9972e94') in 0.0159758 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c0955c08cd725224f7eeb2b0983fd77a DependenciesID=0aba96f96730aacebf16956c3834b489 StaticDependenciesID=600a6d051ddb49e4fd13e791aa66fb17 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/anchor-penneys-lights
+  importAddress: Guid(0564e6650f8af984c910765c43e0d440) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-penneys-lights using Guid(0564e6650f8af984c910765c43e0d440) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f6e90c1ec5ac6c06a0ac3bb30f7626e9') in 0.0170379 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=eb178cff34059277c2d481077d74718b DependenciesID=5dc0ec74ddefa251916a9db62de62657 StaticDependenciesID=c0fe4f74a698a20b21e24446a33a6fda 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-walls-detailing-interior/Materials
+  importAddress: Guid(9d816a0493e8a104f9e9fec9ebf2c8c3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-walls-detailing-interior/Materials using Guid(9d816a0493e8a104f9e9fec9ebf2c8c3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c865b24f8b49be6c817bf64b3016e5cf') in 0.0277783 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=24531865994076a7181d01036b30f22e DependenciesID=c41d184560041368c7bb232537d97c1f StaticDependenciesID=c750945bdd1e9f78b9dbc235173bd2cf 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-ceilings
+  importAddress: Guid(e9d7dc2af06a07b46aba6ec956505ecb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-ceilings using Guid(e9d7dc2af06a07b46aba6ec956505ecb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2f659c803f0d37103dad5a564101c844') in 0.0185798 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=18bc1f885846f3a73390ae280e7bbb87 DependenciesID=8c694d0aa8d6512b05adcefaf865cf24 StaticDependenciesID=db0b551023597a3443a32fd13434b401 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets
+  importAddress: Guid(00000000000000001000000000000000) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets using Guid(00000000000000001000000000000000) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'fa25af46e0659da09625551ef468d9b5') in 0.0162199 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ce43460ac67232df5dbef1323d9dac31 DependenciesID=4d08a505504976322655318394c7b2ff StaticDependenciesID=ce7271562d9a718b9eb4b9d18d9cbb33 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/FBX/Experimental/site-parking-surface/Materials
+  importAddress: Guid(dae121c9e75a3cf40abea1cfd1d9bc24) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/Experimental/site-parking-surface/Materials using Guid(dae121c9e75a3cf40abea1cfd1d9bc24) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'aa4f804772752c05593048718bbe38a8') in 0.0209098 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a8db28cb9a764563142e4e9d5ba3a24d DependenciesID=47b95110bac036f29b10663a11ef6de7 StaticDependenciesID=0d1b0e5e4f83b556a43ae03debc8f398 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/FBX/80s-90s/mall-doors-windows-interior/mall-doors-windows-interior.fbm
+  importAddress: Guid(8d04236e08746a94c99e7fdc1b6616da) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-doors-windows-interior/mall-doors-windows-interior.fbm using Guid(8d04236e08746a94c99e7fdc1b6616da) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e31bb095f289990a2389654c4cbaab19') in 0.016958 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2958eecb2c8ebd2fc6a8506595ee02a3 DependenciesID=8331cb6bb53368db30947a3498debfcb StaticDependenciesID=bb86222f045cb9eca797677b1b936bda 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-walls-detailing-exterior/anchor-joslins-walls-detailing-exterior.fbm
+  importAddress: Guid(5808d8c983facd04296d0733930eff36) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-walls-detailing-exterior/anchor-joslins-walls-detailing-exterior.fbm using Guid(5808d8c983facd04296d0733930eff36) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b59e0bc0cb7326942e90a1e32a1fdb9a') in 0.0170581 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cbfc0f5a28d113ffff5d44649be993bd DependenciesID=945c5a18b12077fe770365e701fd2b5f StaticDependenciesID=f295adc5f7342b0df028f73494fccff9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/StreamingAssets/SteamVR
+  importAddress: Guid(af96bb128bed7904c907c95d9eadc24f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/StreamingAssets/SteamVR using Guid(af96bb128bed7904c907c95d9eadc24f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '134cb03bc6d3d6a8b68e25c3963259d5') in 0.0226216 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a6adb99fbc89a334c589b1ed5d8dd8f5 DependenciesID=29db3d3d691d2b9c23f3fe5b5f88c781 StaticDependenciesID=bce0a8968796fe9f9383874ef40f93d0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/FBX/60s-70s/anchor-denver-structure-concealed
+  importAddress: Guid(cc1ed7dcaa1760d47b27dd1ca2bed3d4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-denver-structure-concealed using Guid(cc1ed7dcaa1760d47b27dd1ca2bed3d4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e0f043f762c197b6699884a3d8622b11') in 0.0191114 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a1da3ded84565f605ea996781fad3edf DependenciesID=e180dcbefd93f2fdb4ade376fefe42d9 StaticDependenciesID=fbf1e9aea4a9de77d156a594ed148b06 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/FBX/80s-90s/anchor-broadway-walls-detailing-exterior/Materials
+  importAddress: Guid(2f8559e07c980bd439f3ea748ed705b6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-broadway-walls-detailing-exterior/Materials using Guid(2f8559e07c980bd439f3ea748ed705b6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '3e5429ef8d3700daee30bcf82f5b030f') in 0.0161404 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fde55be184495da7f3240127be8a1d62 DependenciesID=6c15993e113b88e54e55384d0cb6c044 StaticDependenciesID=89912dab9ad197384fae48bd732317c1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/site-parking-surface/Textures
+  importAddress: Guid(a89a81c52248f9a47877f7a37425d445) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/site-parking-surface/Textures using Guid(a89a81c52248f9a47877f7a37425d445) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a4edb6dc61f30bdb6bc3d2a228d0507e') in 0.0157888 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f617da883ccbd11af3e38f2bf46762a0 DependenciesID=c4178b0c748ffcc6340f56d7d37c7a4c StaticDependenciesID=4e7d26344862fa098ff6bdf13773a8b3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/80s-90s/proxy-cameras-photos/Materials
+  importAddress: Guid(40eed7555f17859479148455dce17c36) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/proxy-cameras-photos/Materials using Guid(40eed7555f17859479148455dce17c36) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '553b63c8537a7eb6d0c86a3a65fc8211') in 0.0154651 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ceac149211e312c38fdb97dfcb259f35 DependenciesID=e677d91987042cb59a0e63bb292ff777 StaticDependenciesID=78a69dafd8e7a03c59a0206de61dfcd0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-signage/Textures
+  importAddress: Guid(6ad3ceabd61ec804b9205b65f9a3f3fb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-signage/Textures using Guid(6ad3ceabd61ec804b9205b65f9a3f3fb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1f9e28e35a10be88da8a21d01a968f89') in 0.0179284 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c23434207e0caba9cecdf6943ab2234c DependenciesID=215f47075c2a05b7ba067ba1eb9b0f45 StaticDependenciesID=7c8a5134ca9f0047d8e18b8a1b4d5e4b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/80s-90s/anchor-wards-walls-detailing-exterior/Materials
+  importAddress: Guid(9e11b6e049ed1d245a9b1bd194f3c177) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-wards-walls-detailing-exterior/Materials using Guid(9e11b6e049ed1d245a9b1bd194f3c177) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0a28a623cff3fef1542abc9e510eb822') in 0.0223348 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ee24508ec87be50a8a0b5ee9c275da42 DependenciesID=7731a68a011574479947e8849f4b7a80 StaticDependenciesID=06be126eb0c0f85d46d8b0906c9b2fe1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-ceilings/Textures
+  importAddress: Guid(1a737925474bfac4f81fefb466eadbe8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-ceilings/Textures using Guid(1a737925474bfac4f81fefb466eadbe8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '54f24f92d9f6272c34355fc3bceea31e') in 0.0226698 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e2bec6b7d7b68602e0aa893564bcccfb DependenciesID=b02802cf34d7f918619e163576b72b33 StaticDependenciesID=4f9d25133baaf7f655a21aa56babb8fb 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-doors-exterior/Textures
+  importAddress: Guid(655933e6ccbcb90469d88779bf874b4b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-doors-exterior/Textures using Guid(655933e6ccbcb90469d88779bf874b4b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '94470c8dbdacc7efc90168a29c6161b9') in 0.0181982 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2e5c933fd6c182465b32a3ddd58e67dd DependenciesID=1ca16d4608ec222ce690a4e1638fc60f StaticDependenciesID=d6af545c87e16b86cd8560ff829c66ee 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/FBX/60s-70s/site-structure/Textures
+  importAddress: Guid(d9046f7a283ef0b458201511a980c2b0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/site-structure/Textures using Guid(d9046f7a283ef0b458201511a980c2b0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2d6107dedf5ae43b765576d1a10807ca') in 0.0165013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=34a2c702cd0cf5dc52c6e5e9c8f6e76b DependenciesID=6123eaa2ddf6802e0640c317fc7cf7ab StaticDependenciesID=28dad24d1bf9b460ca931c9480579ef8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/FBX/Experimental/mall-detailing-interior/mall-detailing-interior.fbm
+  importAddress: Guid(f9d2217858e1bdd43a4dd59fb11e4a70) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/Experimental/mall-detailing-interior/mall-detailing-interior.fbm using Guid(f9d2217858e1bdd43a4dd59fb11e4a70) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'cf7ec6bc87a3110661786a6fd5bb587f') in 0.0168664 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=017da057a7a4a6db3f7139163947b60f DependenciesID=4397a9e5ca65466d8e50a4229e6f3f26 StaticDependenciesID=db09c781c0b60ca274bb6d424626cd3f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/FBX/60s-70s/mall-signage
+  importAddress: Guid(478a46243467ba447964d7e4f02bdfba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-signage using Guid(478a46243467ba447964d7e4f02bdfba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd992edaff55ad4f2782a069252808087') in 0.0160423 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e61cf2b257a8b0aa29a5d27474945c3c DependenciesID=d41c6df273d86c2ddb8e0844052e5506 StaticDependenciesID=13220a846b6fd9faec8badf2accd9fe1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-windows-exterior/Materials
+  importAddress: Guid(7133639533a49c24a8f8468d1209d38e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-windows-exterior/Materials using Guid(7133639533a49c24a8f8468d1209d38e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6aa916135be308087476706949bd80b7') in 0.0164135 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7c98eeff7cfa4afc5fff3f69c88f6f4c DependenciesID=62947598782747b58aafcd9c917d509e StaticDependenciesID=6dfc802cf961438ec3ef2a18d37bff00 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/mall-wayfinding/Materials
+  importAddress: Guid(3db758c388dad7f49be7840987b83ee4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-wayfinding/Materials using Guid(3db758c388dad7f49be7840987b83ee4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f7001fa9e38e71e8c27ecc29a63342e3') in 0.0191176 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9331426a2897b37b59b659168732b058 DependenciesID=5f25a47ac2af27860c57f99df4ed746d StaticDependenciesID=7bd837a2edbfc5017567a51526de953b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/FBX/80s-90s/site-handrails
+  importAddress: Guid(a8d876c53a7385a4e80da7a8cba030ca) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/site-handrails using Guid(a8d876c53a7385a4e80da7a8cba030ca) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0e5939df289893e2b2620dbe55f85eee') in 0.0165156 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=113075d4d77831670663c23dfdd6bc54 DependenciesID=35e7e4ced1bda29d78d4d6186a69574b StaticDependenciesID=ec507e10551f3ed4e772420484cdc87d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-ceilings/anchor-joslins-ceilings.fbm
+  importAddress: Guid(f6c309ac584985a4ea5e3af50745c234) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-ceilings/anchor-joslins-ceilings.fbm using Guid(f6c309ac584985a4ea5e3af50745c234) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c3f8e31ed9bb551c79705174c96ec07f') in 0.0159183 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d05f32c49a15a04918121a259ea20f5a DependenciesID=0112cd59146c18bfd24b065930ce49d9 StaticDependenciesID=ad3390581679c75a165724c42f2ef720 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-doors-windows-solid/Materials
+  importAddress: Guid(a70d606a8bbf36f429c6464e75bcffec) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-doors-windows-solid/Materials using Guid(a70d606a8bbf36f429c6464e75bcffec) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ef3c030efe2cedb7faca44b0a562518b') in 0.0163387 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ef3774a4ec501d481353023e20f637e2 DependenciesID=d205d1a9e7fc1749a7039051739f978c StaticDependenciesID=8d1706bd97bdcdae0fc7d6a4f356ffd9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/anchor-penneys-ceilings
+  importAddress: Guid(af90f275573db87439587eb95332ff40) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-penneys-ceilings using Guid(af90f275573db87439587eb95332ff40) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '11433b244ef81c32d4f4ed88a546ac8c') in 0.0162847 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2baf35388f955c432ca03130b191d036 DependenciesID=be2540273e9d2e795ea94b2a60de5820 StaticDependenciesID=70126c9f9327d28a0666c100cd6bc393 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/anchor-penneys-doors-windows-solid/anchor-penneys-doors-windows-solid.fbm
+  importAddress: Guid(85d0bcab1ed6f544bbcfcb69101b5693) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-penneys-doors-windows-solid/anchor-penneys-doors-windows-solid.fbm using Guid(85d0bcab1ed6f544bbcfcb69101b5693) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4afe9c91a5683b5e8d743fe526f78d15') in 0.0168593 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=75cce5f95f1fc4ff47ba11cf61094ab4 DependenciesID=36b541b44aa71c82e11ae05df45e9ccf StaticDependenciesID=b080069a8e40590a10d611917d6ea502 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Standard Assets/Characters/ThirdPersonCharacter/Models
+  importAddress: Guid(aef224e1951a8274684081643c7fa672) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Standard Assets/Characters/ThirdPersonCharacter/Models using Guid(aef224e1951a8274684081643c7fa672) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'fe4b16af651bab0cbeb75f29820ca903') in 0.0168365 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=519d982fcee24d3595814eafadce8ef2 DependenciesID=d35a940c0bb7572f7efb621fe16aa234 StaticDependenciesID=89499a09d6b5146f224468c36195248e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Standard Assets/Characters/RollerBall/Prefabs
+  importAddress: Guid(5d2f1a0944eff024ab396500807b91cd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Standard Assets/Characters/RollerBall/Prefabs using Guid(5d2f1a0944eff024ab396500807b91cd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'fbd5610c15ea0ad2b39686f6e85f3716') in 0.0161821 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d7d89b8d85f880ded44acc464c83f7f5 DependenciesID=b25e1d1a2224bad3bc2dcc6ce360e775 StaticDependenciesID=ec049eb5909b795ef2cc999a58654ff2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/anchor-wards-doors-exterior/Materials
+  importAddress: Guid(e290978050d05bd4c976840d8fb70f67) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-wards-doors-exterior/Materials using Guid(e290978050d05bd4c976840d8fb70f67) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b9570665e80edece4097302fc4d0c977') in 0.0172557 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6e98c60622035186238af2b34bb7c8cf DependenciesID=cf0727bd4b007871c79f210eb8c6a630 StaticDependenciesID=4ae9e6fd086fbdd48decadf8e3f619ca 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/80s-90s/mall-signage
+  importAddress: Guid(99fddeb4d2d186a4f92fc03693768880) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-signage using Guid(99fddeb4d2d186a4f92fc03693768880) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'bd47fb6dc2b6f10e0854c2755ca672b2') in 0.0221582 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=39c813dbdb93ccd99ce58d9fdf568061 DependenciesID=739156a7f40e52329e688dda9f096ea3 StaticDependenciesID=3c25652091eef68c17e47175830d6123 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/FBX/80s-90s/mall-structure-concealed/mall-structure-concealed.fbm
+  importAddress: Guid(535cc59516b40a2439a4b4e083a19a71) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-structure-concealed/mall-structure-concealed.fbm using Guid(535cc59516b40a2439a4b4e083a19a71) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4a55c63dde82b8e53aabf5492d362610') in 0.0212578 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ea5ffdd9dff8be5b70af520936b3bbee DependenciesID=b96ace770a78c696ae0390a90c2047d1 StaticDependenciesID=ea3784e40415566e374ff0d61299cbb1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/speakers/Textures
+  importAddress: Guid(0dc7950fd36a40943844bb0c50e25673) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/speakers/Textures using Guid(0dc7950fd36a40943844bb0c50e25673) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6e02fd2ea0c855fcdfdac5f3d551b706') in 0.0181598 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b69f4e198f61eed6f612cab0f40e98d2 DependenciesID=843a28ee753791eb2d87bd7d032fce0d StaticDependenciesID=00ff968c8125902ea551ec1513c40975 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/proxy-cameras-photos/proxy-cameras-photos.fbm
+  importAddress: Guid(c43719029fd915b43bbb8be3f55420c7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/proxy-cameras-photos/proxy-cameras-photos.fbm using Guid(c43719029fd915b43bbb8be3f55420c7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b8d61c1e2c370126ccab4874aabfa856') in 0.0190687 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=dd47e8bff6e8721571fc60fb431a550b DependenciesID=213638d2312c78bf4ca5951fc70c7651 StaticDependenciesID=ab37754761a390ea91bb8791855f940f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/FBX/80s-90s/anchor-broadway-floors-vert
+  importAddress: Guid(c984312c5286cff44b830a88bee118a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-broadway-floors-vert using Guid(c984312c5286cff44b830a88bee118a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '61925eb8f8825f1d1d69a6538d2869c6') in 0.0182793 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=205ce377e5ece6334810ce211a47f031 DependenciesID=7c8ad017bd7f9475e729abd5403b6910 StaticDependenciesID=75f7cc9ee4b598bce507b4d1cf688711 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/FBX/80s-90s/anchor-wards-windows-exterior
+  importAddress: Guid(5b505b0e7a98291488e6980ebfc4d8f2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-wards-windows-exterior using Guid(5b505b0e7a98291488e6980ebfc4d8f2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '53fe76e06ae5d301b1dcd68df13389a8') in 0.0202101 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b8b7543cad6df6bb429949050703345d DependenciesID=843f1541999e4731d86d9e481f24485c StaticDependenciesID=7af3beff4428918d8640389f7433f986 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/FBX/60s-70s/site-detailing/site-detailing.fbm
+  importAddress: Guid(5037aac2a8d258f429046a111928d5cf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/site-detailing/site-detailing.fbm using Guid(5037aac2a8d258f429046a111928d5cf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '444a314c2975336fa59b5f629a33ff55') in 0.0189184 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3a7977754763f9d6f69e334eb17bc6c1 DependenciesID=51bef154ed9633ab9e8b5ad34e110234 StaticDependenciesID=19614a9d1f24ffa368141a32cdc8df9f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/FBX/80s-90s/store-floors/Materials
+  importAddress: Guid(4c4e37f7f4cba5143bef2a82e685a28d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/store-floors/Materials using Guid(4c4e37f7f4cba5143bef2a82e685a28d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '3e30e2f76856c89a16f7efe1a25d8451') in 0.0173626 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fca775145125c49af2fecca175f96c3c DependenciesID=a72c805c06028d6d96f49de5ff5b42a3 StaticDependenciesID=6aaf7b4bf13282873d6b1e6485e23cd9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-doors-windows-solid
+  importAddress: Guid(0f5b96d6976c31d43a1ab60dd8046cf1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-doors-windows-solid using Guid(0f5b96d6976c31d43a1ab60dd8046cf1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '77c89b1b4cf995cb65d5678eae78e96f') in 0.0188909 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3e3cfbc170f1481fee1c199cffa6b710 DependenciesID=fb55201ae7f63d133cdea103e70478c7 StaticDependenciesID=6f8d276fee8be3f485b637f487775ee5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/mall-wayfinding
+  importAddress: Guid(3d6f06a2a32a7884792cc353f494ce19) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-wayfinding using Guid(3d6f06a2a32a7884792cc353f494ce19) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '38e336388bc81c21c6041de141df6985') in 0.0172166 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c7191da62de67c5bb6e95261b9f8af5b DependenciesID=8dea3795e2c329b11855e98e47e9db91 StaticDependenciesID=c59c44b2a3591c56b8e48b7c13c2fe5a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/80s-90s/speakers/Textures
+  importAddress: Guid(6db7941993c540a4abd4c5e26256ba0e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/speakers/Textures using Guid(6db7941993c540a4abd4c5e26256ba0e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '486980f32b70039b6ac1f3f65d432bb8') in 0.0228266 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f050c5cceda3784f57ad50297512f505 DependenciesID=676c2a3b1530191903c7767b01a23be9 StaticDependenciesID=f98907dd381116fac82c2b682fb60db8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/mall-walls-interior/mall-walls-interior.fbm
+  importAddress: Guid(1723c11573dba2c41b375252553a497e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-walls-interior/mall-walls-interior.fbm using Guid(1723c11573dba2c41b375252553a497e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0dae88f646cd6e336c79b3a841c81df0') in 0.0218122 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1971c84661303eafe43e5d7aac06d3f3 DependenciesID=3819823be59c281caf6e2f888de4adb9 StaticDependenciesID=c86208fb554d006042933111a3d994ff 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/FBX/60s-70s/anchor-penneys-floors-vert/Materials
+  importAddress: Guid(1003ed526d58653419d0a9bd0a3556a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-penneys-floors-vert/Materials using Guid(1003ed526d58653419d0a9bd0a3556a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1c27c182e6aca0659e5f9473a544ccbe') in 0.0171833 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0a0c3871fbd9cc940abab0dd36536af1 DependenciesID=156839b8e00b8e34835964a2f7e42242 StaticDependenciesID=8be7ac9182d849134b08e849fe157db5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-ceilings/anchor-penneys-ceilings.fbm
+  importAddress: Guid(e301f6be359f6d44b812c6ab690dd68d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-ceilings/anchor-penneys-ceilings.fbm using Guid(e301f6be359f6d44b812c6ab690dd68d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9698ebf2896fd5e03127440fecb9ef1d') in 0.0232452 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=489bdfb7e7694352dc71b812195580cc DependenciesID=f0ae9b2f6036cc28a373c554eb014582 StaticDependenciesID=aef288bdaa9874b638a84730797ff0dc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/FBX/80s-90s/mall-doors-windows-interior
+  importAddress: Guid(07b3a8b46108a634ab0714e696083e6b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-doors-windows-interior using Guid(07b3a8b46108a634ab0714e696083e6b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ab0cd5f065c1eae89f16f9042c5297e7') in 0.0286387 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9ed7220d46503e6d0893131370fef604 DependenciesID=14d1af6363b73c73711961f194dcb5f4 StaticDependenciesID=10c76efdeec1677bd8449d1ee2181186 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/mall-walls-detailing-exterior/Textures
+  importAddress: Guid(77d94877a535fa84a8809d6b68c6c512) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-walls-detailing-exterior/Textures using Guid(77d94877a535fa84a8809d6b68c6c512) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '298f47cafd90d92f84ac9000974d80e1') in 0.0149699 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=02efad06f445b7077a0bc7345e477faa DependenciesID=bcdcf12f45a8bc2cf401291fc73f1a7f StaticDependenciesID=c6577193cb56a23a49054b0688ea2754 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/FBX/80s-90s/proxy-cameras-photos
+  importAddress: Guid(c191d5972c5f03d4cb00faeff372dbab) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/proxy-cameras-photos using Guid(c191d5972c5f03d4cb00faeff372dbab) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a405a0c2b00f442c136fdbdb9cb63e40') in 0.0175543 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8b42656837588b24543fcc991f71615b DependenciesID=9e0ab8445c8626a019923f8622a99081 StaticDependenciesID=694a31f7661f26e0bbf13c5ca2dedbac 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/FBX/60s-70s/mall-doors-windows-interior/Materials
+  importAddress: Guid(ec30a0547df46c04fac971fdf40fb081) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-doors-windows-interior/Materials using Guid(ec30a0547df46c04fac971fdf40fb081) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'edaaf65bcc9dda23eb7c2c8799790492') in 0.0169796 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d5ef0f86dd8517aa4c5032d359856c2a DependenciesID=ac9a27dbdc29e79bc3d513520d59e53e StaticDependenciesID=dbfc5bb09d22098205eeb6080c578b8d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/FBX/80s-90s/mall-structure-exposed/Materials
+  importAddress: Guid(067c1a6d71078104b9d204f86506c056) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-structure-exposed/Materials using Guid(067c1a6d71078104b9d204f86506c056) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '02df9addbaf95d1b8fcfe180565b85fd') in 0.0185144 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=54c6e3eb8ff6354af0cea4e94b0a8060 DependenciesID=da4c5aab3a5a71d9d4c787a801933606 StaticDependenciesID=64def03ba1a4039308d1f5a24aabcd1c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Standard Assets/Characters/FirstPersonCharacter/Scripts
+  importAddress: Guid(314f49b24dc9d5d40956a7b28c67b237) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Standard Assets/Characters/FirstPersonCharacter/Scripts using Guid(314f49b24dc9d5d40956a7b28c67b237) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '038befa260ca9683a71f735daf2c27ad') in 0.0166289 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2c3711e8c3965c74631bee7b2326cb22 DependenciesID=5ce4ba648761346040c867a625c62810 StaticDependenciesID=106544f305462019a8eb6d82d48192db 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/anchor-penneys-floors-vert
+  importAddress: Guid(b2587a9e9c9f0dd46b7723333f02147b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-penneys-floors-vert using Guid(b2587a9e9c9f0dd46b7723333f02147b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2822fb303a552a1730eb08e12b8e2014') in 0.0217029 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c843879b09f60e507a8f119165166c35 DependenciesID=73d614456310b533be183a20dec0601e StaticDependenciesID=5e61a07d1bac3a72f8e9278aae9162f3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-signage/anchor-penneys-signage.fbm
+  importAddress: Guid(e1a96d9e98625914c8eb9e60eb871c20) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-signage/anchor-penneys-signage.fbm using Guid(e1a96d9e98625914c8eb9e60eb871c20) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '04d113d30a2d009c25b1fb6201785787') in 0.017097 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=227d1532ef99cebf2c199f7fce2612a0 DependenciesID=e288a71e97d974d8ce1394d2610acfb8 StaticDependenciesID=5e228889279c1fc262df9514244f0dbe 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/FBX/60s-70s/anchor-denver-doors-exterior
+  importAddress: Guid(7ddb21b3c67bc8b47a4a562536b800ff) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-denver-doors-exterior using Guid(7ddb21b3c67bc8b47a4a562536b800ff) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e5427aeab7a7f2f0acdd77ab572e1f0e') in 0.017938 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1b822654bd61aa42e19abd01297095bf DependenciesID=84a72069357b75c7063781b24b6248eb StaticDependenciesID=601e6709a5e65846ab29356e032aad95 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-lights
+  importAddress: Guid(7cd231811858f754cb0fed80569925ea) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-lights using Guid(7cd231811858f754cb0fed80569925ea) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ff710324f62426155f730e5609149ef0') in 0.0148278 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0eb5264dab31a575d58067adaaa23e71 DependenciesID=44b7e5c42b4881b9c1db66a45f48c5d6 StaticDependenciesID=4dfa42ddbd1984e5fd20c7962f0f0e71 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Images/Cubemaps
+  importAddress: Guid(b247647815587a843a671b42d32d66ee) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Images/Cubemaps using Guid(b247647815587a843a671b42d32d66ee) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0937603ff5ed42a7e8bd5cdc968010df') in 0.0156335 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4b61154de5d3d2782dc820db35b88011 DependenciesID=a33a0996b4722fdccd948068523f818a StaticDependenciesID=78e78950111f4078f46ce1ab62724f6e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/FBX/80s-90s/mall-flags/Materials
+  importAddress: Guid(b9a6b2e7c4b94964786c6202fe3be6d1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-flags/Materials using Guid(b9a6b2e7c4b94964786c6202fe3be6d1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ed9babaa15cd471c469ead4c2996c79e') in 0.0161394 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ce70a92c9b239341d0010339eb8afd10 DependenciesID=171787c39e89e9186cd8873bb0063ce1 StaticDependenciesID=c2bff5d7cc7c13b38572e987814efaba 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/FBX/80s-90s/mall-floors-vert/Materials
+  importAddress: Guid(7ee034ccbe67a764cbda52f1229383c6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-floors-vert/Materials using Guid(7ee034ccbe67a764cbda52f1229383c6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '24d7af60fdab79abf8cac37edede2b0a') in 0.0181003 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=116bdf86849c6a8c6d64ef07c818fb1a DependenciesID=7a0a5cdbf7d70dba92dc7c12f648dcdc StaticDependenciesID=3d23837ba00358dae24eebe9b6f03890 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/mall-handrails/Textures
+  importAddress: Guid(c36f8ac6bf2dd7b4c9caa64b8404f8e8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-handrails/Textures using Guid(c36f8ac6bf2dd7b4c9caa64b8404f8e8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0e96922e448a5fd722a76eda97534acc') in 0.0171957 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a7d7007d8eb2dbc3ae3b749e1efd90b2 DependenciesID=b3c66babd304eb409f9e3229ddc12e3d StaticDependenciesID=527e9d014cd0c279b987eff1846550b6 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/FBX/60s-70s/anchor-denver-walls-detailing-exterior/Textures
+  importAddress: Guid(66ff3aba3cf288646a72a97bd57491d9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-denver-walls-detailing-exterior/Textures using Guid(66ff3aba3cf288646a72a97bd57491d9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5134a9fc5dfe937081079ce119320e66') in 0.0168266 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=85006b89a24aa3e696bf3f53d70e02f2 DependenciesID=39432d71b077c9d672f45645333bc04f StaticDependenciesID=d6d77324223a26d281400d107e06e86f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/FBX/80s-90s/site-lights
+  importAddress: Guid(492ccbc352954f542a20de2d21409d3b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/site-lights using Guid(492ccbc352954f542a20de2d21409d3b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '755165de7c7a8f30b937927776236b9b') in 0.016266 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e04985715b1aea428eb85cfb64da0cc8 DependenciesID=6803135a7f1d0c4a49f58e5b4b210b22 StaticDependenciesID=a83b9f45333e04a3fc97db4bb7c023a0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/80s-90s/anchor-wards-ceilings/anchor-wards-ceilings.fbm
+  importAddress: Guid(b8233e00971c85e47a112d6121f95b92) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-wards-ceilings/anchor-wards-ceilings.fbm using Guid(b8233e00971c85e47a112d6121f95b92) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5506629b18d7fa3d508c1485e2270f15') in 0.0171089 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0c4a2c90eacd4caacb94aac66ef0d1f4 DependenciesID=7207bcfa4159093649abe7f12ef99b09 StaticDependenciesID=d452011a9f408fcdd6be54fc1057d4d5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-ceilings/anchor-cinema-neusteters-ceilings.fbm
+  importAddress: Guid(9315e25582726644d80ae435f3e43c47) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-ceilings/anchor-cinema-neusteters-ceilings.fbm using Guid(9315e25582726644d80ae435f3e43c47) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '99822bf7f95fc40bec2a2996525cb308') in 0.0209491 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9de332f7f6588a634c9c4b2323f7dd52 DependenciesID=5b9923b47dd87a3d16cefc6684d1c24b StaticDependenciesID=93d1e84cd1b951949f19725fbd8e1bd1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-structure-concealed/Materials
+  importAddress: Guid(aa84d4df1cbbecc4e9dd870f20c1a27c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-structure-concealed/Materials using Guid(aa84d4df1cbbecc4e9dd870f20c1a27c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7fa0d26834bc2c94ba1946ff6c35ae57') in 0.0228226 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4ecefd6e006216691060b1e17e7ddcf4 DependenciesID=864302cf686fb3f138b6a5f4f2356d58 StaticDependenciesID=5697a01a15f0f20736a151b5221096be 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/FBX/80s-90s/mall-handrails
+  importAddress: Guid(fea18b450bea4a0469093b47776663e7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-handrails using Guid(fea18b450bea4a0469093b47776663e7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd75be0e74ecd19b101ecfe390200513c') in 0.016504 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ee15ab23d75adbd9038533becdc96afa DependenciesID=4b06c63089cc33c6612f037d9b96baad StaticDependenciesID=6d0c50440195e53f6108b99c81f82bde 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-floors-vert/Textures
+  importAddress: Guid(ae961cebdae736844a956a0cfabf3b73) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-floors-vert/Textures using Guid(ae961cebdae736844a956a0cfabf3b73) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2f4e7fc9d56b713c628188f0d988e7dc') in 0.0162918 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1436e7e81fff0749d282c1224488ca8c DependenciesID=b926ae3c058373bc756b113a218b263f StaticDependenciesID=2da8dfe21adefb0ce0c0b4e4af6837be 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-doors-exterior
+  importAddress: Guid(95e32ed2e44a3ae45b27d4b5d209ee35) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-doors-exterior using Guid(95e32ed2e44a3ae45b27d4b5d209ee35) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '40fd4d2daf50385aa0c15e13880e385a') in 0.0170101 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0835fcdbbed31bb3f61e52322992bb09 DependenciesID=c752b10ea7879ec08a91ef4d421fff68 StaticDependenciesID=22fb49effb91ec232bf8013c8a0f49ab 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/FBX/80s-90s/speakers/speakers.fbm
+  importAddress: Guid(0570b86dd381bab46a622f5a9d224ccd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/speakers/speakers.fbm using Guid(0570b86dd381bab46a622f5a9d224ccd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4f1d675611c725a76432d2874492b02f') in 0.0160815 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=06a7120a918062461819b1be1bd42c1b DependenciesID=8e6a3905a9cb0664e3ec5df4c33e7af8 StaticDependenciesID=d7f82c0feb4a3988f43a906c924721c6 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/FBX/80s-90s/mall-signage/Materials
+  importAddress: Guid(8e0ce8825089a9a4b823f7111aea95ba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-signage/Materials using Guid(8e0ce8825089a9a4b823f7111aea95ba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ec01259b740154314518714d19baae9b') in 0.0166164 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7d7d0d9327da14506326cf6e76c54ac7 DependenciesID=172c46c43258fe27dfec270c2a60143d StaticDependenciesID=ef3688d0577a47c7c4291bc0815ced13 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/FBX/80s-90s/anchor-joslins-signage/anchor-joslins-signage.fbm
+  importAddress: Guid(fc267cb656580c74b9fed3fcc2792828) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-joslins-signage/anchor-joslins-signage.fbm using Guid(fc267cb656580c74b9fed3fcc2792828) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'eaf30115b69cbd14f1785ba968f808eb') in 0.0166988 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9abe602bd1cd1335a275f96b56e18a30 DependenciesID=5366f31083b2dda8c04e08d030695c59 StaticDependenciesID=2dbb7e795d72ebc36fe7d8e57d73c92b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/FBX/80s-90s/anchor-broadway-floors-vert/Materials
+  importAddress: Guid(dcd6a661f0a00e841acdf8ae959e1a5f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-broadway-floors-vert/Materials using Guid(dcd6a661f0a00e841acdf8ae959e1a5f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b1cc1dbc7986a3d417ce4e665b54948b') in 0.0190658 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5f2f25ad1986e9180d5ae9a26fa8390e DependenciesID=54477d730148dd5a57d4c98b14e3f418 StaticDependenciesID=3a0faf0f86f82e8a9800b43b19d8f3c8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000068 seconds.
+  path: Assets/FBX/80s-90s/mall-walls-detailing-exterior/Textures
+  importAddress: Guid(312829bbc1305db4883bdffb0fa12b8c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-walls-detailing-exterior/Textures using Guid(312829bbc1305db4883bdffb0fa12b8c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2ad2cb80e64831b86436c8e18fc82abc') in 0.0235221 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=05c34257bc9d452772ae2a360da808f7 DependenciesID=2acb029ef674ef7a6e4aeeb328dd7f64 StaticDependenciesID=04c3d31e6532abfc8e39636fede6d3f5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/FBX/80s-90s/anchor-broadway-signage
+  importAddress: Guid(4a1951fbf34089543876f90cfb13cc9b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-broadway-signage using Guid(4a1951fbf34089543876f90cfb13cc9b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6e72335caae026b9550e2419ae2c83fb') in 0.0165201 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=31c33557b0d841943ec1523b1eef084a DependenciesID=2e47126fadb59ff2fabeee4bb36e616b StaticDependenciesID=0fb71df44a599bbb504579a771fe2861 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-roof/Textures
+  importAddress: Guid(54cf9ffbd589cb7469e8d93ebcf46f87) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-roof/Textures using Guid(54cf9ffbd589cb7469e8d93ebcf46f87) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '54e03edc99751d32b4fd4eff296ce164') in 0.0167472 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3ed0b79c622e2dd418854700269d905d DependenciesID=9aaedb38bd18c6860be48c779024d813 StaticDependenciesID=645c7774d1d0b41240c78df76a39c003 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/FBX/60s-70s/mall-furniture
+  importAddress: Guid(05b000841bb48aa49a1e9d9329ef931f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-furniture using Guid(05b000841bb48aa49a1e9d9329ef931f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c7f81f16e6b26ce97c9b78076bd82eb1') in 0.016862 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=22ccad7cb21a4c8a84ea76d6601332d3 DependenciesID=80f0b2fe9fc8db532cc4f78aa8eb47e0 StaticDependenciesID=28d7e9faca168ae493651ad133edd3d8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000139 seconds.
+  path: Assets/FBX/60s-70s/mall-windows-exterior/Textures
+  importAddress: Guid(1c419de1806fea244a56b94d9434a929) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-windows-exterior/Textures using Guid(1c419de1806fea244a56b94d9434a929) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2e3738a5a416b800d3569d69a89430d9') in 0.0220753 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6be88929259602d31a9c5a87b496aeff DependenciesID=7b3a42666aa7d37287b732a4b3982353 StaticDependenciesID=46a6191d2566f46e84533da664d14bec 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/60s-70s/anchor-denver-doors-windows-solid/Textures
+  importAddress: Guid(e98380ba96c8835488e6ed00d9fd7411) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-denver-doors-windows-solid/Textures using Guid(e98380ba96c8835488e6ed00d9fd7411) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e9d664c5d33095c2be2d977f30e4bd58') in 0.0181213 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bd068ac55d81880051bdd38acee42b1f DependenciesID=e62297ee7e8540fb70e8d1636d67bb67 StaticDependenciesID=a4d65efddc70480ec19545fcada0e183 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/Standard Assets/CrossPlatformInput/Prefabs
+  importAddress: Guid(5d3fb8e05edcf4b41aef584ca1b0d06f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Standard Assets/CrossPlatformInput/Prefabs using Guid(5d3fb8e05edcf4b41aef584ca1b0d06f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e76632c49f53970c3dcb3cd058052323') in 0.0192898 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=46537a32ddf85ed82b77cf5f2dc2e3f4 DependenciesID=e73568841ba55878e596880884554fe0 StaticDependenciesID=336b566a43d415af30c6511b5939b65d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-floors-vert/Materials
+  importAddress: Guid(7837d0e2f3e75374e8c195b2775b2c84) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-floors-vert/Materials using Guid(7837d0e2f3e75374e8c195b2775b2c84) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '75ccb92039bfaf2d29971ab93b6ae83d') in 0.0183366 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=17f35356b9c079c4aba6e29401b04024 DependenciesID=d45d4459652996ed4ce5888a74d1b50e StaticDependenciesID=5b2ae49f99b36b356fbed92db745297d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/FBX/60s-70s/anchor-denver-lights/anchor-denver-lights.fbm
+  importAddress: Guid(77e8e3ddcecefb34aaf9cb3d02c1677a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-denver-lights/anchor-denver-lights.fbm using Guid(77e8e3ddcecefb34aaf9cb3d02c1677a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4a1bca8bf383445f061fa46fa0b2b77e') in 0.0181918 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=510d209f4ca092a6a0d9c9ba673115a7 DependenciesID=bfcd95fab29dee3e951d1b4537ec3a1e StaticDependenciesID=3250f3838490179a3b55b6c26cbdc5fc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Resources/UI/LoadingScreenBackgrounds
+  importAddress: Guid(c1fd36c435c823744b9ca244e905617d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Resources/UI/LoadingScreenBackgrounds using Guid(c1fd36c435c823744b9ca244e905617d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '256432d1b3c0699b114900028e69ae16') in 0.0204157 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d50c40c168eac24bef170cdc6ebb4f80 DependenciesID=14d33dbddf0470540d2967a42371eb69 StaticDependenciesID=261c0f8905617d75d39184b30e1e001c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/FBX/Experimental/experimental-simple/Materials
+  importAddress: Guid(03bfa171742b6434f8498be93a78cbee) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/Experimental/experimental-simple/Materials using Guid(03bfa171742b6434f8498be93a78cbee) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'af4aea91b1355eaa73502298fdc0ddc0') in 0.0172357 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=195aeb7a2642665a44c661ffffa208f8 DependenciesID=bdf7b6983e93f15b5ee0588c345b77cb StaticDependenciesID=09f673ecb40be4d44fc4933b0a8e9714 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/FBX/60s-70s/store-detailing
+  importAddress: Guid(460aa461aef7b894c80023884fdb2f55) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/store-detailing using Guid(460aa461aef7b894c80023884fdb2f55) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'cc112d79ff600f214012c8bc5bab610e') in 0.0185128 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5018be98ed29a4f9e7d164d0371f76c8 DependenciesID=67b052b3e6937a50dd46698441d537e0 StaticDependenciesID=6e0dd7b56693aaa14247a113c71ab7cc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/FBX/60s-70s/anchor-cinema-neusteters-structure-concealed/Textures
+  importAddress: Guid(6307146d1389ff24daa8d882cda6154d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-cinema-neusteters-structure-concealed/Textures using Guid(6307146d1389ff24daa8d882cda6154d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '37fc62b75ae97ad0be43388c514c4f86') in 0.0197089 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cf0d9c2250060d7598de38abdd8454c5 DependenciesID=9c9dc55edf119e4199a93db90bc13eb9 StaticDependenciesID=385cf33c9673030388943d08c8754995 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/FBX/80s-90s/store-floors/store-floors.fbm
+  importAddress: Guid(43f3daae54554474fadf9ec392df5b4f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/store-floors/store-floors.fbm using Guid(43f3daae54554474fadf9ec392df5b4f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '731a1531f1a38fe5ce7af8b4c1d08cc4') in 0.0175848 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=50d760d7d4784ea4b49dde7467193696 DependenciesID=5197da9c44f862bb789045eab11c895b StaticDependenciesID=29c0148d5071f2e90daeb6452e672fd3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/FBX/60s-70s/mall-windows-exterior
+  importAddress: Guid(df76857db9f96ba4293e1ec36ffacfb4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-windows-exterior using Guid(df76857db9f96ba4293e1ec36ffacfb4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8c197909f6e3c0f9683fd7fa793e5879') in 0.0164293 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5a794924de0ba5945ae350580972b9f2 DependenciesID=0ddd2de1658d66a5b84b799836b58bec StaticDependenciesID=5b7a9c71f496f5a59a19a892e80c2056 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-structure-concealed/Textures
+  importAddress: Guid(4beab9db969c6a44f9a5cf363eccd595) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-structure-concealed/Textures using Guid(4beab9db969c6a44f9a5cf363eccd595) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'dc17e433a3f96f8cdff0603142a51217') in 0.0164965 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e168279374535a7782cfcd9ce53cea5e DependenciesID=726729f0a5ab1f3ff58f48b1a62ed433 StaticDependenciesID=77654af5458bd56b7dd11e715c313180 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Resources/Audio/sfx-mall-ambient-chatter
+  importAddress: Guid(c1b917539686a2544a41fa7e3c3edad4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Resources/Audio/sfx-mall-ambient-chatter using Guid(c1b917539686a2544a41fa7e3c3edad4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9d00a45f98ad34828774c3d71c76342f') in 0.0169309 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f3e4e339d58ab88445a0f24c506576e9 DependenciesID=e74a4251c44300b8c862a23308588c8d StaticDependenciesID=fa1a033ed2f760e4252b81be35dd4f07 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/FBX/60s-70s/anchor-joslins-structure/Textures
+  importAddress: Guid(1727252854165da49aeeaca3fba1c04c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-joslins-structure/Textures using Guid(1727252854165da49aeeaca3fba1c04c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '34260bc1cf72fcb9f7a0f5585e300135') in 0.0169901 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6257db47207833908eafb61451acf91f DependenciesID=f6081afb020c0ab8eb5646799d82d6d1 StaticDependenciesID=ec1cb63fd1bd2a6e4211e58a00de1f4e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/FBX/60s-70s/site-lights/Materials
+  importAddress: Guid(4ce2470b428d95d49a282d092c357db1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/site-lights/Materials using Guid(4ce2470b428d95d49a282d092c357db1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c7a6dfc2f98e62e84eafbd4bec894017') in 0.0140392 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a48eb87dc9eb47080dcd5e5d986d45c6 DependenciesID=18831b90d118a054b06b4821686dc343 StaticDependenciesID=5dc66399bc0e7cdc954a036dc8850596 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/FBX/80s-90s/mall-detailing-interior/mall-detailing-interior.fbm
+  importAddress: Guid(b1f5cfa938e756a48818a16f070661d1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-detailing-interior/mall-detailing-interior.fbm using Guid(b1f5cfa938e756a48818a16f070661d1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9383923c38f92e9bd1d1711da9431ca9') in 0.0157481 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c788356198a5b396326988bbbfaf96b1 DependenciesID=2cc449a36351b7d0b82384f202082599 StaticDependenciesID=79ae3a324b9c7f5e2bf30a9367da2ad4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Scenes/60s70s
+  importAddress: Guid(06a45b175d2684a4c9e9adc714976f80) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s using Guid(06a45b175d2684a4c9e9adc714976f80) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '060ac5a54b8b1ad37d5fe4e57cb6474e') in 0.0155271 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a0e5b80651338e26718ee55b74fffc46 DependenciesID=a059d218e34c7d1560230df1552e60eb StaticDependenciesID=e381279ec8c469d9d89d2642d8054512 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/FBX/80s-90s/anchor-wards-walls-detailing-exterior
+  importAddress: Guid(e4f950802d2ce524d83b1191a9f7bc81) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-wards-walls-detailing-exterior using Guid(e4f950802d2ce524d83b1191a9f7bc81) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '272701e060b97c75945335712baa555d') in 0.0166344 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f738d4428a899d0266e015328cd663e3 DependenciesID=00f8dc742c222cbe4995b785794ad74c StaticDependenciesID=90bda36a6aaef8692b8304a937cd49a0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/FBX/80s-90s/anchor-wards-floors-vert/anchor-wards-floors-vert.fbm
+  importAddress: Guid(958238764f7c6ee48a22eb2bc36ec136) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-wards-floors-vert/anchor-wards-floors-vert.fbm using Guid(958238764f7c6ee48a22eb2bc36ec136) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7a349a11e8f0eccf6475f9600db60558') in 0.0171679 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9599c06217faa06b32ef64236f8f8d04 DependenciesID=26961d86442943619d12f1208683b047 StaticDependenciesID=c534d368d68935c1f45ef5a5f2e89463 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/FBX/60s-70s/anchor-denver-walls-detailing-exterior
+  importAddress: Guid(6e195c82f7c4db24ca9d7eea7b863737) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/anchor-denver-walls-detailing-exterior using Guid(6e195c82f7c4db24ca9d7eea7b863737) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '98ca5ecd8f4be585e56773b3b3a49a39') in 0.0167119 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=20527c83d05af108fee87cf39f171cc9 DependenciesID=726c9f9c3f35ada9c4b6328ee9983fe2 StaticDependenciesID=96f781cd426395d7e45c9b083b5bd3b8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/FBX/60s-70s/mall-structure-concealed/Materials
+  importAddress: Guid(7b5a3d77a5db2994c85bf7e31749235a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-structure-concealed/Materials using Guid(7b5a3d77a5db2994c85bf7e31749235a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6e7743d60013c3500dda61c883ef9a85') in 0.0195866 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d52c836c6de99620b3223739f0e485b2 DependenciesID=87732b800aeaf06d9cd2bbf8bc6f63c8 StaticDependenciesID=f410b2bed3d83f6437a8824919aab4fa 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/FBX/80s-90s/mall-furniture/Materials
+  importAddress: Guid(47d5a5f311083994890227b8eb6f70a8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/mall-furniture/Materials using Guid(47d5a5f311083994890227b8eb6f70a8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6db483c38a73a3c6c6d35f16b141ee96') in 0.0162399 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=07392cf254c611341684b7e400669615 DependenciesID=6d691a39690824f0c72fa36e671e8a72 StaticDependenciesID=9d826ea3e2fbb349f189e11802c669dd 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/FBX/60s-70s/mall-doors-exterior
+  importAddress: Guid(c225166d79d21a34ebda598ba29b63ed) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/60s-70s/mall-doors-exterior using Guid(c225166d79d21a34ebda598ba29b63ed) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6fd29a18eda173b2a5bda8ec067b04d5') in 0.0173888 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4806e6791b200217127223930a4d9e85 DependenciesID=0912a9ec319aa8e92c50affe06766c4b StaticDependenciesID=db2ddaf254366671209d2722b465d794 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/FBX/80s-90s/anchor-penneys-signage
+  importAddress: Guid(00dd2327fb553984192615ecda5a4c3a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/FBX/80s-90s/anchor-penneys-signage using Guid(00dd2327fb553984192615ecda5a4c3a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '66f5b58b672e592935a05e3465be3038') in 0.0237138 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a96dd4522b340a2b3c5b0aef4905eaab DependenciesID=e6304761412d532e39b381f4e400536d StaticDependenciesID=533fc3d89831f4481c9f763fc1f03d3e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.588818 seconds.
+  path: Assets/Scenes/60s70s.unity
+  importAddress: Guid(c1494b8d6b1430544af8c34a2af0dddb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s.unity using Guid(c1494b8d6b1430544af8c34a2af0dddb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6538318d18a44f19af06f201abfb8188') in 1.6080188 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d04e45cfabe0d28467a819573cb7670b DependenciesID=7070724a22605e6349c68370e83fbc54 StaticDependenciesID=5ac62e58ef03b09ff4200b1b8054ecf2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 62.040987 seconds.
+  path: Assets/Scenes/60s70s/Global Volume Profile.asset
+  importAddress: Guid(3e7bde132aa6e344495bc05b4df7a381) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/60s70s/Global Volume Profile.asset using Guid(3e7bde132aa6e344495bc05b4df7a381) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'e44b90387520662999524d2f830e2a3b') in 0.0531108 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bb309613cb29406aaee39bffb3968b07 DependenciesID=9000a478fa6b6a43c0ab0c5e38b24baa StaticDependenciesID=251c563b6c93fda6c87e1f44c3e4fe0a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 12
+
+========================================================================
+Received Import Request.
+  Time since last request: 4593.388353 seconds.
+  path: Assets/Scenes/60s70sSettings.lighting
+  importAddress: Guid(3a8608b0bcad9e74584ed851f505a426) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70sSettings.lighting using Guid(3a8608b0bcad9e74584ed851f505a426) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter)LightingSettings: switching bake backend from 2 to 1.
+ -> (Import Result ID: 'e42502748c24207128b668f57506f951') in 0.1335288 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=27bf69bc07b2c231d5e5cc409ab62402 DependenciesID=ffe42c411da899d2591aecf700943a34 StaticDependenciesID=3a80b3fc57ed9d1ef0842da5916fc5ca 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 110.409047 seconds.
+  path: Assets/Scenes/60s70s.unity
+  importAddress: Guid(c1494b8d6b1430544af8c34a2af0dddb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s.unity using Guid(c1494b8d6b1430544af8c34a2af0dddb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b6730a3d9130ebfe93a730140734da5f') in 0.1379256 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9d4cacdd9401ffb53130cf16d5152cea DependenciesID=9c9acf6a44692074674681ca1f82ea78 StaticDependenciesID=d7e30894436f6f34484f5089a4bccaec 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-J6YX-KHFT-CZRA-4X5Z-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: Unlimited
+[Licensing::Module] License group:
+  Id: 2473931900003-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Sprite.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Sprite.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Tilemap.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Tilemap.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Analytics.DataPrivacy.Tests.dll at Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Analytics.StandardEvents.EditorTests.dll at Library/ScriptAssemblies/Unity.Analytics.StandardEvents.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Postprocessing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Postprocessing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Postprocessing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.Postprocessing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinition.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinition.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.VisualEffectGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.VisualEffectGraph.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.VisualEffectGraph.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.XR.LegacyInputHelpers.Tests.dll at Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Advertisements.Editor.Tests.dll at Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Advertisements.Tests.dll at Library/ScriptAssemblies/UnityEngine.Advertisements.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.Apple.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.Apple.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.AppleMacos.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.AppleMacos.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.Security.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.Security.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.WinRT.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.WinRT.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.SpatialTracking.Tests.dll at Library/ScriptAssemblies/UnityEngine.SpatialTracking.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Refreshing native plugins compatible for Editor in 7.59 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.025 seconds
+Domain Reload Profiling: 4716ms
+	BeginReloadAssembly (692ms)
+		DisableScriptedObjects (27ms)
+		CreateAndSetChildDomain (219ms)
+	RebuildCommonClasses (80ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (151ms)
+	LoadAllAssembliesAndSetupDomain (1740ms)
+		LoadAssemblies (1277ms)
+		AnalyzeDomain (681ms)
+			TypeCache.Refresh (334ms)
+				TypeCache.ScanAssembly (297ms)
+			BuildScriptInfoCaches (318ms)
+			ResolveRequiredComponents (24ms)
+	FinalizeReload (2026ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			BeforeProcessingInitializeOnLoad (300ms)
+			ProcessInitializeOnLoadAttributes (599ms)
+			ProcessInitializeOnLoadMethodAttributes (593ms)
+			AfterProcessingInitializeOnLoad (16ms)
+		AwakeInstancesAfterBackupRestoration (34ms)
+Refreshing native plugins compatible for Editor in 7.90 ms, found 2 plugins.
+Unloading 37 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7328 unused Assets / (7.8 MB). Loaded Objects now: 8503.
+Memory consumption went from 303.5 MB to 295.8 MB.
+Total: 25.036000 ms (FindLiveObjects: 1.269800 ms CreateObjectMapping: 1.195800 ms MarkObjects: 17.356000 ms  DeleteObjects: 5.212400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 1097.403717 seconds.
+  path: Assets/Scenes/60s70s/Global Volume Profile.asset
+  importAddress: Guid(3e7bde132aa6e344495bc05b4df7a381) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/60s70s/Global Volume Profile.asset using Guid(3e7bde132aa6e344495bc05b4df7a381) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '5b43dee1f4c589f5b5449d099fbc4259') in 0.8139262 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bb309613cb29406aaee39bffb3968b07 DependenciesID=31576c27764147aac030475cc0252644 StaticDependenciesID=fb5087ed077b04019137abbcbdf3e0f3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 12
+
+========================================================================
+Received Import Request.
+  Time since last request: 205.152633 seconds.
+  path: Assets/3rdParty/Glasswork_Plants_Vol1/Models/Plants/Banana_V1/Banana_V1_Leaf_HDRP.mat
+  importAddress: Guid(0e9766afd4e9f2d4491bb825373a3686) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/Glasswork_Plants_Vol1/Models/Plants/Banana_V1/Banana_V1_Leaf_HDRP.mat using Guid(0e9766afd4e9f2d4491bb825373a3686) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+ -> (Import Result ID: 'a11ddd9c84d377488ab743337592c795') in 10.3664392 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=95481a73b06c692e4f323e5288139ee1 DependenciesID=f539f6268165ca2806d6a2515ad5eb87 StaticDependenciesID=8575edc73354528683b981008815bcd7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/HDRPDefaultResources/Foliage.asset
+  importAddress: Guid(e80b44c369c09c84ba85d2c0adae4cfc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HDRPDefaultResources/Foliage.asset using Guid(e80b44c369c09c84ba85d2c0adae4cfc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b046a2482821b9d8c1ee9a95206f6196') in 0.0018105 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=021fa43b46c9953b41af2075ac60eaaf DependenciesID=1a2817220e8736931a360777bbffc7a6 StaticDependenciesID=f3559741810cea626b77b836d61edf6c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/3rdParty/Glasswork_Plants_Vol1/Models/Plants/Plumeria/Plumeria_Flower_HDRP.mat
+  importAddress: Guid(e124a1cd6edd8ef45a1f3a510e3f54ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/Glasswork_Plants_Vol1/Models/Plants/Plumeria/Plumeria_Flower_HDRP.mat using Guid(e124a1cd6edd8ef45a1f3a510e3f54ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '0fd6d4c77410745d9f7fb4f0eef28c32') in 8.0841391 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c78e7f4996cdf54a9bcb02bf16039489 DependenciesID=269e6da89381eae740fa049847071be3 StaticDependenciesID=a07a0cad47c6d9ae9749e7dcf7a6cce7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000059 seconds.
+  path: Assets/3rdParty/Glasswork_Plants_Vol1/Models/Plants/Plumeria/Plumeria_Leaf_HDRP.mat
+  importAddress: Guid(3a153bee6b27db74785b3e5604bac301) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/Glasswork_Plants_Vol1/Models/Plants/Plumeria/Plumeria_Leaf_HDRP.mat using Guid(3a153bee6b27db74785b3e5604bac301) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'd7801e014e117962aa367c0cd355e876') in 8.4284879 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ba5632a9707b18eb0cff7a67c7c3fef9 DependenciesID=c6d837c2641948e863d7d8bbf8ab9cec StaticDependenciesID=da8e5ea9c0bfe8aef5a133c629cfb19f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 695.030052 seconds.
+  path: Assets/3rdParty/Snow Mountain/Source/cubemap/003_Sunrise_SkyboxVol2.hdr
+  importAddress: Guid(9e6c5f0e069df4c47a3ffeb1ef4936bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rdParty/Snow Mountain/Source/cubemap/003_Sunrise_SkyboxVol2.hdr using Guid(9e6c5f0e069df4c47a3ffeb1ef4936bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'd8c1410b678007a93f5b6af5161ce001') in 2.1621599 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e09859a5c7edfe57e43b65f9ddb81ecb DependenciesID=53ead72d520f06aee3fe71ef208fe0e2 StaticDependenciesID=a339640614ce3e438a4d0c35b73f41a7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/Scenes/Experimental/ReflectionProbe-0.exr
+  importAddress: Guid(efe9d9e07e61e03418c9fdb71780dd9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Experimental/ReflectionProbe-0.exr using Guid(efe9d9e07e61e03418c9fdb71780dd9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '173ce0c99dd1636ecd24a590359e9958') in 0.2240214 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=de4f9abd12d4982670717d02bd19d76d DependenciesID=8c336cbc1712f1080a184cd670890683 StaticDependenciesID=1624f23b6fb24ce24bf432c136b38c85 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000087 seconds.
+  path: Assets/Images/Cubemaps/cubemap-storefront-1.cubemap
+  importAddress: Guid(42032e15ab70b504aae88271301ee8e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/Cubemaps/cubemap-storefront-1.cubemap using Guid(42032e15ab70b504aae88271301ee8e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '967ee59d669949d3259c4379e621c29d') in 0.2356308 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=27f023a98488c392d9336b1d09001e2a DependenciesID=f2f27a1c931c9b3286ad5ac3ec32757b StaticDependenciesID=c8ecfc14006793b724bac560ff153031 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Scenes/80s90s/ReflectionProbe-0.exr
+  importAddress: Guid(236ca7014c09dfc49bcfb45528c8b057) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/80s90s/ReflectionProbe-0.exr using Guid(236ca7014c09dfc49bcfb45528c8b057) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'dbd4f409b1ac7e245c7c0ac234c88ed8') in 0.0979013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bcd3138902a2e2be6b7431a07d1f3a97 DependenciesID=9dbcef0c9fe685c014c9d84fe25cbb8b StaticDependenciesID=2bfdea15e2f3fea14d47d17370cf424d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

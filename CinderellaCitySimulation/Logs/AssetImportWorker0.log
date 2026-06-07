@@ -1,0 +1,432 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR" at "2026-06-03T14:55:08.1594518Z"
+Built from '6000.4/staging' branch; Version is '6000.4.0f1 (8cf496087c8f) revision 9237654'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Enterprise' Language: 'en' Physical Memory: 32689 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-06-03T14:55:08Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.4.0f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+60048
+-licensingIpc
+LicenseClient-Boulder-VR
+-force-d3d12
+-job-worker-count
+19
+-background-job-worker-count
+8
+-gc-helper-count
+1
+-name
+AssetImport
+Successfully changed project path to: C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Player connection [51112]  Target information:
+
+Player connection [51112]  * "[IP] 192.168.1.217 [Port] 0 [Flags] 2 [Guid] 2212847812 [EditorId] 2212847812 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-UC90R3D) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [51112] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [51112] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 19
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 8.80 ms, found 2 plugins.
+Initialize engine version: 6000.4.0f1 (8cf496087c8f)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Boulder-VR/Desktop/_cloud/GitHub/CinderellaCityProject_Unity6/CinderellaCitySimulation/Assets
+Forcing GfxDevice: Direct3D 12
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.1]
+    Renderer:        NVIDIA GeForce GTX 1080 (ID=0x1b80)
+    Vendor:          NVIDIA
+    VRAM:            8059 MB
+    App VRAM Budget: 1035 MB
+    Driver:          32.0.15.6636
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-Boulder-VR"
+[Licensing::IpcConnector] LicenseClient-Boulder-VR channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR-6000.4.0" at "2026-06-03T14:55:10.7229501Z"
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56868
+CodeReloadManager initialized
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.006018 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.765 seconds
+Domain Reload Profiling: 1679ms
+	BeginReloadAssembly (252ms)
+	RebuildCommonClasses (84ms)
+	RebuildNativeTypeToScriptingClass (29ms)
+	initialDomainReloadingComplete (134ms)
+	LoadAllAssembliesAndSetupDomain (411ms)
+		LoadAssemblies (243ms)
+		AnalyzeDomain (397ms)
+			TypeCache.Refresh (395ms)
+				TypeCache.ScanAssembly (369ms)
+	FinalizeReload (768ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (96ms)
+			BeforeProcessingInitializeOnLoad (155ms)
+			ProcessInitializeOnLoadAttributes (215ms)
+			ProcessInitializeOnLoadMethodAttributes (186ms)
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              39bfd3c8866143499f2bd4364c0be6dd
+  Correlation Id:          91604656144424b752f53f8170a3eee9
+  External correlation Id: 3809934621046102997
+  Machine Id:              nzoQQWsMwFXkfPkeVZc+YYGv80A=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Boulder-VR-6000.4.0" (connect: 0.01s, validation: 0.00s, handshake: 2.73s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Boulder-VR-6000.4.0-notifications" at "2026-06-03T14:55:13.4530698Z"
+[Licensing::Module] Licensing Background thread has ended after 5.29s
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-J6YX-KHFT-CZRA-4X5Z-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: Unlimited
+[Licensing::Module] License group:
+  Id: 2473931900003-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Sprite.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Sprite.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Tilemap.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Tilemap.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Analytics.DataPrivacy.Tests.dll at Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Analytics.StandardEvents.EditorTests.dll at Library/ScriptAssemblies/Unity.Analytics.StandardEvents.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Postprocessing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Postprocessing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Postprocessing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.Postprocessing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinition.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinition.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.VisualEffectGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.VisualEffectGraph.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.VisualEffectGraph.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.XR.LegacyInputHelpers.Tests.dll at Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Advertisements.Editor.Tests.dll at Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Advertisements.Tests.dll at Library/ScriptAssemblies/UnityEngine.Advertisements.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.Apple.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.Apple.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.AppleMacos.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.AppleMacos.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.Security.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.Security.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.Purchasing.WinRT.dll at Library/ScriptAssemblies/UnityEngine.Purchasing.WinRT.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.SpatialTracking.Tests.dll at Library/ScriptAssemblies/UnityEngine.SpatialTracking.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Symbol file LoadedFromMemory is not a mono symbol file
+Refreshing native plugins compatible for Editor in 9.61 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Refreshing native plugins compatible for Editor in 7.89 ms, found 2 plugins.
+Updated version to: 0.8.2.20260603
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+VersionUpdater:.cctor () (at Assets/Scripts/Editor/UpdateVersion.cs:22)
+System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+(Filename: Assets/Scripts/Editor/UpdateVersion.cs Line: 22)
+
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.684 seconds
+Domain Reload Profiling: 4945ms
+	BeginReloadAssembly (352ms)
+		DisableScriptedObjects (11ms)
+		CreateAndSetChildDomain (51ms)
+	RebuildCommonClasses (83ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (233ms)
+	LoadAllAssembliesAndSetupDomain (1565ms)
+		LoadAssemblies (1079ms)
+		AnalyzeDomain (672ms)
+			TypeCache.Refresh (438ms)
+				TypeCache.ScanAssembly (402ms)
+			BuildScriptInfoCaches (201ms)
+			ResolveRequiredComponents (28ms)
+	FinalizeReload (2685ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			BeforeProcessingInitializeOnLoad (327ms)
+			ProcessInitializeOnLoadAttributes (665ms)
+			ProcessInitializeOnLoadMethodAttributes (1339ms)
+			AfterProcessingInitializeOnLoad (13ms)
+		AwakeInstancesAfterBackupRestoration (12ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 8.08 ms, found 2 plugins.
+Unloading 42 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7330 unused Assets / (8.4 MB). Loaded Objects now: 8474.
+Memory consumption went from 282.1 MB to 273.7 MB.
+Total: 23.661900 ms (FindLiveObjects: 1.273900 ms CreateObjectMapping: 0.993600 ms MarkObjects: 15.861300 ms  DeleteObjects: 5.529400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 3947358.805252 seconds.
+  path: Assets/Scenes/60s70s/Global Volume Profile.asset
+  importAddress: Guid(3e7bde132aa6e344495bc05b4df7a381) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Global Volume Profile.asset using Guid(3e7bde132aa6e344495bc05b4df7a381) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd368ef121fb69f93af5392964571ba4a') in 0.1885497 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=be8260d8067c295157c9ad84b5bf2fb0 DependenciesID=2f1f4e693205bbaffb464d83acd393cd StaticDependenciesID=63d578517978eae6774384804ed47701 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/Scenes/60s70s.unity
+  importAddress: Guid(c1494b8d6b1430544af8c34a2af0dddb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s.unity using Guid(c1494b8d6b1430544af8c34a2af0dddb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8d69ebd4b3864316ee8f38408a357bf5') in 1.5502907 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6b47e94e7debb619618b0d086d48ef5e DependenciesID=726a2c605a4ef97140dfcfdba3c461a6 StaticDependenciesID=f6dde83d8efbf24f95fb6426718d3086 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 40208.011844 seconds.
+  path: Assets/Scenes/60s70sSettings.lighting
+  importAddress: Guid(3a8608b0bcad9e74584ed851f505a426) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70sSettings.lighting using Guid(3a8608b0bcad9e74584ed851f505a426) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter)LightingSettings: switching bake backend from 2 to 1.
+ -> (Import Result ID: '91ecd8b746a4f23acb93e6718238c62e') in 2.0082832 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6f70f1b8d980d744c637783d69f44835 DependenciesID=b3b518620358eed5356a9a3a14f6fab9 StaticDependenciesID=61598414300405dbf0bfe6a07e483de3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 176.739721 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-6_comp_light.exr
+  importAddress: Guid(848124360b27ed64fbb5837d5f39d8a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-6_comp_light.exr using Guid(848124360b27ed64fbb5837d5f39d8a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter)d3d12: upload buffer was too small for the requested resource! Size: 16777216. Requested: 134217728.
+ -> (Import Result ID: 'efda44ae393f5950066248b9aeedca4c') in 2.2882751 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b3c724908e4df57795c497895bd0a4d1 DependenciesID=3e84a28a660d8c74d412842cf4fdefcb StaticDependenciesID=3fafad4bc86c99c8ad3fa8a503c05ff0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-2_comp_light.exr
+  importAddress: Guid(161b5a1562514cc45a04b765661fc9ce) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-2_comp_light.exr using Guid(161b5a1562514cc45a04b765661fc9ce) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '60d984dd90cb100d8df00f7ff9b25a3e') in 0.6760339 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=342a9b6378e9f83c2d598521f65a80db DependenciesID=1c51aa3c3abccc6b16deb04115a1b9d9 StaticDependenciesID=2634239bb382640b0ffa650653a79a30 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-20_comp_light.exr
+  importAddress: Guid(62c9504cad963ef42bee5c1ce1fc921b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-20_comp_light.exr using Guid(62c9504cad963ef42bee5c1ce1fc921b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '82acaf3d3da0374ae5a479f51a2259a8') in 0.4279774 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5fee9d25b62048c291389ba76b2b2fb9 DependenciesID=a95c6f40faf9fc8b2e84ccc0dd448de4 StaticDependenciesID=978ea8df02ecf1bd04760864b08980a2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-29_comp_light.exr
+  importAddress: Guid(ac787f9eba1bb3e40ab57ec992d22fc1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-29_comp_light.exr using Guid(ac787f9eba1bb3e40ab57ec992d22fc1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0b719737b1a7785c4e5eea78e0fd043c') in 0.2814289 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5c1a344fc1ba364080633030b9e05735 DependenciesID=b08570e9192a4e4682b498df6f9aeb9c StaticDependenciesID=356aa57a1cd0d775eee3793e0a146f79 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-10_comp_light.exr
+  importAddress: Guid(316ce86927459fc4ebfed06dc4246ef8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-10_comp_light.exr using Guid(316ce86927459fc4ebfed06dc4246ef8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c64d4d02c83f5f19192f4cdad96d3018') in 0.6351199 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=232fb39688ac081c909cbbfbf87f521d DependenciesID=2a45daaa310b32d4431d5f29c99b9bb5 StaticDependenciesID=5b04de18109a9cde8c5b3446dde19bfe 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-4_comp_light.exr
+  importAddress: Guid(26c32f2c4a414a342a649e9d27e01660) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-4_comp_light.exr using Guid(26c32f2c4a414a342a649e9d27e01660) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '791c7393cc54d6d84f569cf65b54860f') in 0.7344413 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=93e3c0eef30f6055516c25d4fa49ba05 DependenciesID=aa48d034bf47e6ae5a4841aa38d43af6 StaticDependenciesID=f6cccd6d309da584042d8e3d1eaf4543 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-19_comp_light.exr
+  importAddress: Guid(153144858c40da74189a2ae7f1ec5877) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-19_comp_light.exr using Guid(153144858c40da74189a2ae7f1ec5877) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ae01cc06511e6711650f8e52fbcffb01') in 1.0379625 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9071c5b79ca5984f9c067a669a02448e DependenciesID=2d894524e7b9775e9fdcf21a9ac9ed1d StaticDependenciesID=855cfe03e54c82cd8aa80aa62802e763 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-32_comp_light.exr
+  importAddress: Guid(02ae31fbe5236d642ad122e0d4910164) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-32_comp_light.exr using Guid(02ae31fbe5236d642ad122e0d4910164) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a581efff14a50dcffcd027974ed7dab9') in 0.2187948 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=15d2e6048533caf45d57e49d7afc8a9e DependenciesID=2462696b8594d989a77bfc1c99b47ce8 StaticDependenciesID=1b28a81a1ea7382afa9184c80e6f57dd 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-21_comp_light.exr
+  importAddress: Guid(54ad500d4b1a0b746b1ea79c590075a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-21_comp_light.exr using Guid(54ad500d4b1a0b746b1ea79c590075a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a210bfcb849f1cce7f52e7821a5ca119') in 0.2352515 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7898a0700fbe434b356d20cf19986bef DependenciesID=3125f1da8eb30376e565ac0a682d9f10 StaticDependenciesID=ff30acef7fdd884a2d125a2fa62159de 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-13_comp_light.exr
+  importAddress: Guid(ed90f0404f1f8d04997329a0a66f53ea) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-13_comp_light.exr using Guid(ed90f0404f1f8d04997329a0a66f53ea) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2637b2b2c42f33faf593b4cc64a5f8de') in 0.7360977 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=18e89dc66a57566414f078dad205b65a DependenciesID=4b924d146abb83c6210c616cf577e213 StaticDependenciesID=aaa182c1bfbe97dce5a490ee8bb756b0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-15_comp_light.exr
+  importAddress: Guid(e85e17f880f99594a8f72bc7cd5833c5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-15_comp_light.exr using Guid(e85e17f880f99594a8f72bc7cd5833c5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4168055d021c146aac6a6ae00ba48ed7') in 0.5712593 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b61aa33774e51242a66ef7e9b08e1f7b DependenciesID=59c78190f4469c001b479b3c62010f6a StaticDependenciesID=724f683b2ed1ee36bb1ac500012b63b5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-24_comp_light.exr
+  importAddress: Guid(fb79b1accafe29047932d0f793fa2700) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-24_comp_light.exr using Guid(fb79b1accafe29047932d0f793fa2700) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd06e70f961b35d52c61fa35674962986') in 0.5497645 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5958e3399be075d699cf58ed36746cc4 DependenciesID=b7b24a0abd663aac18f794dadd767198 StaticDependenciesID=e64f9b9596d60c3360f3ea01220890f4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-1_comp_light.exr
+  importAddress: Guid(494644a4bd8d28048bb1120237dd2e3a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-1_comp_light.exr using Guid(494644a4bd8d28048bb1120237dd2e3a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1f15f28bab4501e8c51304902834dd69') in 0.657322 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=108cdb4132078b506f05ae0e31928316 DependenciesID=dedc2d562fe885d5da301abadf46cbb9 StaticDependenciesID=54fe12f37d85b3d2f63d7ea21cdec256 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-5_comp_light.exr
+  importAddress: Guid(a9efc607f05cec841b897237bb721de8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-5_comp_light.exr using Guid(a9efc607f05cec841b897237bb721de8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b1e9da1dd8fb8999bab8e965ce9b23d2') in 0.9756743 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4af991cb73dd92d244ea3a34dfbefed3 DependenciesID=690c9c24353bf8ed08b0505e3c4e4250 StaticDependenciesID=e0ef5108a6c8bdb1e9a93a32865e0da2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-12_comp_light.exr
+  importAddress: Guid(6ff51ff00e32e304b921f1caeca7b8a4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-12_comp_light.exr using Guid(6ff51ff00e32e304b921f1caeca7b8a4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '00f433498e32f46411807469551cbbb8') in 0.8762596 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=871a9c72379e4dbd234813b2f4977089 DependenciesID=d8ed860d6220075ce96c2866d3bb4b05 StaticDependenciesID=b72b424bd7b49bd672cfba27512c1bef 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-11_comp_light.exr
+  importAddress: Guid(83a7a579487fdbb41bfa95601e8f4fec) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-11_comp_light.exr using Guid(83a7a579487fdbb41bfa95601e8f4fec) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '907775fb023901a351b0018f2f96f5bd') in 0.590526 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cdda45621af7acc1c1d0d86a9e75109c DependenciesID=6891ac38e753856cde9f430ae4cb9adc StaticDependenciesID=6cdba88ee3931906f9d3a1b876009fec 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Scenes/60s70s/Lightmap-31_comp_light.exr
+  importAddress: Guid(cefc49c58e6b8374199536cf171b5a74) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/60s70s/Lightmap-31_comp_light.exr using Guid(cefc49c58e6b8374199536cf171b5a74) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0c14b80f6ac01eb8a2903003e045ef55') in 0.5145437 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e9e05fbc1989e17d28068152f2afae20 DependenciesID=d8f262565b6563fd475c03f88006d6ea StaticDependenciesID=e899c1dd48f316e342e1f1d9bf85959f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
