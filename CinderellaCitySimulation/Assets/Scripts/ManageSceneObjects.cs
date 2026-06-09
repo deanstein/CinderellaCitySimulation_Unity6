@@ -58,12 +58,25 @@ public static class ManageSceneObjects
     // gets the container object for the given scene
     public static GameObject GetSceneContainerObject(Scene sceneWithContainer)
     {
-        // get the root objects of the scene
         GameObject[] rootObjects = sceneWithContainer.GetRootGameObjects();
+        string expectedContainerName = sceneWithContainer.name + "Container";
 
-        // this assumes there's only 1 object in the scene: a container for all objects
-        GameObject sceneContainer = rootObjects[0];
-        return sceneContainer;
+        // HDRP may add extra root objects (e.g. StaticLightingSky) alongside the scene container.
+        foreach (GameObject rootObject in rootObjects)
+        {
+            if (rootObject.name == expectedContainerName)
+            {
+                return rootObject;
+            }
+        }
+
+        if (rootObjects.Length > 0)
+        {
+            Debug.LogWarning("Scene container '" + expectedContainerName + "' not found in scene '" + sceneWithContainer.name + "'. Falling back to first root object.");
+            return rootObjects[0];
+        }
+
+        return null;
     }
 
     // gets the top-level children in this scene's scene container
@@ -204,14 +217,35 @@ public static class ManageSceneObjects
         {
             //DebugUtils.DebugLog("Toggling Scene object visibility ON for: " + sceneName + "...");
 
+            Scene scene = SceneManager.GetSceneByName(sceneName);
+            if (!scene.IsValid() || !scene.isLoaded)
+            {
+                Debug.LogWarning("Cannot toggle scene objects because scene is not loaded: " + sceneName);
+                return;
+            }
+
             // find the Scene's container GameObject
-            GameObject sceneContainerObject = ManageSceneObjects.GetSceneContainerObject(SceneManager.GetSceneByName(sceneName));
+            GameObject sceneContainerObject = ManageSceneObjects.GetSceneContainerObject(scene);
+            if (sceneContainerObject == null)
+            {
+                Debug.LogWarning("Cannot toggle scene objects because no container was found for: " + sceneName);
+                return;
+            }
 
             // loop through all children of the scene's container object and make them
             // the desired state
             foreach (Transform child in sceneContainerObject.transform)
             {
                 child.gameObject.SetActive(desiredState);
+            }
+
+            // also toggle any extra root objects that aren't under the container
+            foreach (GameObject rootObject in scene.GetRootGameObjects())
+            {
+                if (rootObject != sceneContainerObject)
+                {
+                    rootObject.SetActive(desiredState);
+                }
             }
         }
 

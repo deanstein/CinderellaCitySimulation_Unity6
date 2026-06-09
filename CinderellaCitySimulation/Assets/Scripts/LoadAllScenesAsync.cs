@@ -144,7 +144,7 @@ public class LoadAllScenesAsync : MonoBehaviour {
 
         // switch to the MainMenu when all scenes are ready
         // also check for post-launch config settings
-        StartCoroutine(SetActiveSceneWhenReady(SceneManager.GetSceneByName(SceneGlobals.startingSceneName)));
+        StartCoroutine(SetActiveSceneWhenReady(SceneGlobals.GetStartingSceneName()));
     }
 	
 	void Update ()
@@ -177,22 +177,29 @@ public class LoadAllScenesAsync : MonoBehaviour {
     }
 
     // switches to the given scene when all requested scenes are loaded
-    IEnumerator SetActiveSceneWhenReady(Scene startingScene)
+    IEnumerator SetActiveSceneWhenReady(string startingSceneName)
     {
         // wait until all scenes are loaded to switch to the given starting scene
         yield return new WaitUntil(() => allLoaded == true);
 
+        Scene startingScene = SceneManager.GetSceneByName(startingSceneName);
+        if (!startingScene.IsValid() || !startingScene.isLoaded)
+        {
+            Debug.LogError("Startup scene is not loaded: " + startingSceneName);
+            yield break;
+        }
+
         // if the starting scene is one of the mall eras,
         // we need to relocate the player to a good initial spot
-        if (startingScene.name == SceneGlobals.mallEra60s70sSceneName || startingScene.name == SceneGlobals.mallEra80s90sSceneName || startingScene.name == SceneGlobals.experimentalSceneName)
+        if (startingSceneName == SceneGlobals.mallEra60s70sSceneName || startingSceneName == SceneGlobals.mallEra80s90sSceneName || startingSceneName == SceneGlobals.experimentalSceneName)
         {
-            ToggleSceneAndUI.ToggleFromSceneToSceneRelocatePlayerToCamera(SceneManager.GetActiveScene().name, startingScene.name, "Camera-Thumbnail-Blue Mall-Highlight");
+            ToggleSceneAndUI.ToggleFromSceneToSceneRelocatePlayerToCamera(SceneManager.GetActiveScene().name, startingSceneName, "Camera-Thumbnail-Blue Mall-Highlight");
         }
         // otherwise, we assume we're switching to a menu scene, like Main Menu
         else
         {
             SceneManager.SetActiveScene(startingScene);
-            ManageSceneObjects.ObjectState.ToggleAllTopLevelSceneObjectsToState(startingScene.name, true);
+            ManageSceneObjects.ObjectState.ToggleAllTopLevelSceneObjectsToState(startingSceneName, true);
             // then turn off all the Loading Screen's objects
             ManageSceneObjects.ObjectState.ToggleAllTopLevelSceneObjectsToState("LoadingScreen", false);
         }
