@@ -369,6 +369,22 @@ public class CCPMenuActions : MonoBehaviour
         }
     }
 
+    [MenuItem("Cinderella City Project/Material Adjustments/Normal Map Import Type/Update for Current Scene", false, 207)]
+    public static void SetAllMaterialNormalMapImportTypeInCurrentScene()
+    {
+        // get all the scene objects
+        GameObject[] sceneObjects = UpdateModeSelectorMenu.GetSceneObjectsByUpdateMode().ToArray();
+
+        if (sceneObjects.Length > 0)
+        {
+            // re-type normal map textures for each scene object's materials
+            foreach (GameObject sceneObject in sceneObjects)
+            {
+                AssetImportUpdate.SetAllDependentMaterialsNormalMapImportTypeByName(sceneObject);
+            }
+        }
+    }
+
 
     [MenuItem("Cinderella City Project/Material Adjustments/Emission/Update for Current Scene", false, 206)]
     public static void SetAllMaterialEmissionInCurrentScene()

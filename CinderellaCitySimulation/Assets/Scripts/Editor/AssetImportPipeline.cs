@@ -450,6 +450,45 @@ public class AssetImportUpdate : AssetPostprocessor {
         return full != null && full.Contains("HighDefinition");
     }
 
+    // HDRP recomputes shader keywords, passes, and deferred stencil tagging from a
+    // material's properties (e.g. _MaterialID) only when the material is validated.
+    // After changing material features from script we must trigger that validation,
+    // otherwise the change renders incorrectly (or not at all) in deferred mode.
+    // Called via reflection so this file has no hard compile-time dependency on the
+    // HDRP editor assembly (keeps it compiling under Built-in too).
+    private static void ValidateHDRPMaterial(Material mat)
+    {
+        if (mat == null)
+            return;
+
+        try
+        {
+            Type hdShaderUtils = null;
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                hdShaderUtils = assembly.GetType("UnityEditor.Rendering.HighDefinition.HDShaderUtils");
+                if (hdShaderUtils != null)
+                    break;
+            }
+
+            if (hdShaderUtils != null)
+            {
+                MethodInfo reset = hdShaderUtils.GetMethod("ResetMaterialKeywords", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(Material) }, null);
+                reset?.Invoke(null, new object[] { mat });
+            }
+            else
+            {
+                DebugUtils.DebugLog("<b>HDRP material validation skipped (HDShaderUtils not found): </b>" + mat);
+            }
+        }
+        catch (Exception e)
+        {
+            DebugUtils.DebugLog("<b>HDRP material validation failed: </b>" + e.Message);
+        }
+
+        EditorUtility.SetDirty(mat);
+    }
+
     // define how to set material smoothness
     public static void SetMaterialSmoothness(string materialFilePath, float smoothness)
     {
@@ -458,9 +497,27 @@ public class AssetImportUpdate : AssetPostprocessor {
         // get the material at this path
         Material mat = (Material)AssetDatabase.LoadAssetAtPath(materialFilePath, typeof(Material));
 
-        if (IsHighDefinitionRenderPipelineActive() && mat.HasProperty("_Smoothness"))
+        if (IsHighDefinitionRenderPipelineActive())
         {
-            mat.SetFloat("_Smoothness", smoothness);
+            // Lookup-table materials use the simple scalar workflow rather than the mask map.
+            // Clearing the mask map switches the HDRP/Lit Inspector from remapping sliders back
+            // to a plain Smoothness slider and makes the _Smoothness scalar authoritative.
+            // (This intentionally discards any AO/variation baked into the mask map - acceptable
+            // for the uniform materials this runs on, and required to honor the explicit slider value.)
+            if (mat.HasProperty("_MaskMap") && mat.GetTexture("_MaskMap") != null)
+                mat.SetTexture("_MaskMap", null);
+
+            if (mat.HasProperty("_Smoothness"))
+                mat.SetFloat("_Smoothness", smoothness);
+            // keep the remap range aligned with the scalar so the value is identical
+            // if a mask map is ever reintroduced
+            if (mat.HasProperty("_SmoothnessRemapMin"))
+                mat.SetFloat("_SmoothnessRemapMin", smoothness);
+            if (mat.HasProperty("_SmoothnessRemapMax"))
+                mat.SetFloat("_SmoothnessRemapMax", smoothness);
+
+            // recompute keywords so _MASKMAP turns off now that the mask is gone
+            ValidateHDRPMaterial(mat);
             return;
         }
 
@@ -492,9 +549,26 @@ public class AssetImportUpdate : AssetPostprocessor {
         // get the material at this path
         Material mat = (Material)AssetDatabase.LoadAssetAtPath(materialFilePath, typeof(Material));
 
-        if (IsHighDefinitionRenderPipelineActive() && mat.HasProperty("_Metallic"))
+        if (IsHighDefinitionRenderPipelineActive())
         {
-            mat.SetFloat("_Metallic", metallic);
+            // Lookup-table materials use the simple scalar workflow rather than the mask map.
+            // Clearing the mask map switches the HDRP/Lit Inspector from remapping sliders back
+            // to a plain Metallic slider and makes the _Metallic scalar authoritative. This also
+            // avoids the common failure where a leftover _Metallic scalar of 1 (from the upgraded
+            // mask-map material) turns a dielectric like concrete fully metallic once the mask is gone.
+            if (mat.HasProperty("_MaskMap") && mat.GetTexture("_MaskMap") != null)
+                mat.SetTexture("_MaskMap", null);
+
+            if (mat.HasProperty("_Metallic"))
+                mat.SetFloat("_Metallic", metallic);
+            if (mat.HasProperty("_MetallicRemapMin"))
+                mat.SetFloat("_MetallicRemapMin", metallic);
+            if (mat.HasProperty("_MetallicRemapMax"))
+                mat.SetFloat("_MetallicRemapMax", metallic);
+
+            // recompute keywords so _MASKMAP turns off now that the mask is gone
+            ValidateHDRPMaterial(mat);
+            DebugUtils.DebugLog("<b>Set metallic on Material: </b>" + mat);
             return;
         }
 
@@ -521,10 +595,22 @@ public class AssetImportUpdate : AssetPostprocessor {
 
         if (IsHighDefinitionRenderPipelineActive())
         {
+            // Built-in used the "Standard (Specular setup)" shader to control dielectric
+            // reflectance directly. The HDRP/Lit equivalent is the Specular Color material
+            // type (_MaterialID = 4 / MaterialId.LitSpecular), which exposes _SpecularColor.
+            // Setting the color alone is not enough: the material must be switched to that
+            // type and revalidated so keywords and deferred stencil tagging are recomputed.
             if (mat.HasProperty("_SpecularColor"))
             {
+                const float litSpecularMaterialId = 4f; // UnityEditor.Rendering.HighDefinition.MaterialId.LitSpecular
+                if (mat.HasProperty("_MaterialID"))
+                    mat.SetFloat("_MaterialID", litSpecularMaterialId);
+
                 mat.EnableKeyword("_MATERIAL_FEATURE_SPECULAR_COLOR");
                 mat.SetColor("_SpecularColor", specularLinear);
+
+                // recompute keywords/passes/stencil from the new _MaterialID
+                ValidateHDRPMaterial(mat);
             }
 
             return;
@@ -542,6 +628,53 @@ public class AssetImportUpdate : AssetPostprocessor {
         Color32 specularColor = new Color32(specularValue, specularValue, specularValue, 255);
 
         mat.SetColor("_SpecColor", specularColor);
+    }
+
+    // ensure any texture plugged into a material's normal-map slot is imported as a Normal map
+    // textures extracted from FBX come in as Default (color/sRGB) textures, which decode to
+    // garbage when sampled as tangent-space normals - scrambling surface normals and destroying
+    // reflections. The material's normal slot is the only reliable signal for "this is a normal map"
+    // (the texture filenames carry no convention), so we re-type whatever is assigned there.
+    public static void SetMaterialNormalMapImportType(string materialFilePath)
+    {
+        // get the material at this path
+        Material mat = (Material)AssetDatabase.LoadAssetAtPath(materialFilePath, typeof(Material));
+        if (mat == null)
+            return;
+
+        // HDRP/Lit uses _NormalMap; Built-in Standard uses _BumpMap. They often point at the
+        // same texture, so collect both slots and de-duplicate by asset path.
+        string[] normalSlots = new string[] { "_NormalMap", "_BumpMap" };
+        HashSet<string> handledTexturePaths = new HashSet<string>();
+
+        foreach (string slot in normalSlots)
+        {
+            if (!mat.HasProperty(slot))
+                continue;
+
+            Texture normalTexture = mat.GetTexture(slot);
+            if (normalTexture == null)
+                continue;
+
+            string texturePath = AssetDatabase.GetAssetPath(normalTexture);
+            if (string.IsNullOrEmpty(texturePath) || handledTexturePaths.Contains(texturePath))
+                continue;
+            handledTexturePaths.Add(texturePath);
+
+            TextureImporter textureImporter = AssetImporter.GetAtPath(texturePath) as TextureImporter;
+            if (textureImporter == null)
+                continue;
+
+            // already correct - skip to keep this idempotent and avoid needless reimports
+            if (textureImporter.textureType == TextureImporterType.NormalMap)
+                continue;
+
+            // NormalMap type also forces the texture to linear (sRGB off), which is required
+            textureImporter.textureType = TextureImporterType.NormalMap;
+            textureImporter.SaveAndReimport();
+
+            DebugUtils.DebugLog("<b>Set normal map import type on texture: </b>" + texturePath + " (for material " + mat.name + ")");
+        }
     }
 
     // in older versions, we'd forcefully delete the default /asset-name.fbm folder
@@ -886,6 +1019,8 @@ public class AssetImportUpdate : AssetPostprocessor {
                 float materialMetallic = ManageImportSettings.GetMaterialMetallicByName(dependencyPathString);
                 float materialSmoothness = ManageImportSettings.GetMaterialSmoothnessByName(dependencyPathString);
 
+                // materials in the lookup table use the simple scalar (no mask map) workflow.
+                // setting smoothness/metallic clears the mask map so the Inspector shows plain sliders.
                 if (materialSmoothness != -1)
                 {
                     SetMaterialSmoothness(dependencyPathString, materialSmoothness);
@@ -894,6 +1029,12 @@ public class AssetImportUpdate : AssetPostprocessor {
                 if (materialMetallic != -1)
                 {
                     SetMaterialMetallic(dependencyPathString, materialMetallic);
+                }
+                else if (materialSmoothness != -1)
+                {
+                    // smoothness was applied (and the mask map removed), so give metallic a definite
+                    // dielectric value rather than leaving the leftover mask-workflow scalar (often 1).
+                    SetMaterialMetallic(dependencyPathString, 0f);
                 }
             }
 
@@ -925,6 +1066,28 @@ public class AssetImportUpdate : AssetPostprocessor {
                 {
                     SetMaterialSpecular(dependencyPathString, (byte)materialSpecular);
                 }
+            }
+        }
+    }
+
+    // re-type the normal map textures of every dependent material in the target object
+    // so they import as Normal maps (linear) rather than Default (sRGB color)
+    public static void SetAllDependentMaterialsNormalMapImportTypeByName(GameObject targetObject)
+    {
+        // if the target object and the last-updated asset import object are the same,
+        // use the global game object dependencies that have already been calculated
+        // otherwise, get the dependencies from the provided object
+        UnityEngine.Object[] targetDependencies = (targetObject == importedAssetGameObject) ? importedAssetGameObjectDependencies : EditorUtility.CollectDependencies(new UnityEngine.Object[] { targetObject });
+
+        foreach (var dependency in targetDependencies)
+        {
+            var dependencyPath = AssetDatabase.GetAssetPath(dependency);
+            string dependencyPathString = dependencyPath.ToString();
+
+            // limit changes to materials only
+            if (dependencyPathString.Contains(".mat"))
+            {
+                SetMaterialNormalMapImportType(dependencyPathString);
             }
         }
     }
@@ -1688,6 +1851,11 @@ public class AssetImportUpdate : AssetPostprocessor {
         {
             SetAllDependentMaterialsSmoothnessMetallicByName(importedAssetGameObject);
         }
+
+        // FBX-extracted textures import as Default (sRGB) color textures; re-type the ones
+        // plugged into normal-map slots so they're treated as linear normal maps. Otherwise
+        // tangent-space normals decode to garbage and reflections/lighting break.
+        SetAllDependentMaterialsNormalMapImportTypeByName(importedAssetGameObject);
 
         // turn off specular on certain materials like concrete, asphalt, etc
         SetAllDependentMaterialsSpecularByName(importedAssetGameObject);
