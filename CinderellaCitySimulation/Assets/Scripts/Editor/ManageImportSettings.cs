@@ -548,13 +548,13 @@ public class ManageImportSettings
                 return 1.0f;
             // general cases
             case string name when name.Contains("blue mall ceiling"):
-                return 2.25f;
+                return 4f;
             case string name when name.Contains("blue mall columns"):
                 return 6f;
             case string name when name.Contains("blue mall cove"):
                 return 2.25f;
             case string name when name.Contains("blue mall fountain planter intense"):
-                return 3.25f;
+                return 4.25f;
             case string name when name.Contains("blue mall hanging planter orange"):
                 return -1.75f;
             case string name when name.Contains("blue mall illuminated ring"):
