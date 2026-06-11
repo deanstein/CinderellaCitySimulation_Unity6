@@ -303,7 +303,7 @@ public class CCPMenuActions : MonoBehaviour
     }
 
     ///// STATIC FLAGS /////
-    [MenuItem("Cinderella City Project/Static Flags/Update for Current Scene", false, 202)]
+    [MenuItem("Cinderella City Project/Static Flags/Update for Current Scene", false, 201)]
     public static void SetAllStaticFlagsInCurrentScene()
     {
         // get all the scene objects
@@ -320,7 +320,7 @@ public class CCPMenuActions : MonoBehaviour
     }
 
     ///// LIGHTMAP RESOLUTIONS /////
-    [MenuItem("Cinderella City Project/Lightmap Resolutions/Update for Current Scene", false, 203)]
+    [MenuItem("Cinderella City Project/Lightmap Resolutions/Update for Current Scene", false, 202)]
     public static void SetAllLightmapResolutionsInCurrentScene()
     {
         // get all the scene objects
@@ -337,6 +337,22 @@ public class CCPMenuActions : MonoBehaviour
     }
 
     ///// MATERIAL ADJUSTMENTS /////
+    [MenuItem("Cinderella City Project/Material Adjustments/Normal Maps/Update for Current Scene", false, 203)]
+    public static void SetAllMaterialNormalMapImportTypeInCurrentScene()
+    {
+        // get all the scene objects
+        GameObject[] sceneObjects = UpdateModeSelectorMenu.GetSceneObjectsByUpdateMode().ToArray();
+
+        if (sceneObjects.Length > 0)
+        {
+            // re-type normal map textures for each scene object's materials
+            foreach (GameObject sceneObject in sceneObjects)
+            {
+                AssetImportUpdate.SetAllDependentMaterialsNormalMapImportTypeByName(sceneObject);
+            }
+        }
+    }
+
     [MenuItem("Cinderella City Project/Material Adjustments/Specular/Update for Current Scene", false, 204)]
     public static void SetAllMaterialSpecularInCurrentScene()
     {
@@ -368,23 +384,6 @@ public class CCPMenuActions : MonoBehaviour
             }
         }
     }
-
-    [MenuItem("Cinderella City Project/Material Adjustments/Normal Map Import Type/Update for Current Scene", false, 207)]
-    public static void SetAllMaterialNormalMapImportTypeInCurrentScene()
-    {
-        // get all the scene objects
-        GameObject[] sceneObjects = UpdateModeSelectorMenu.GetSceneObjectsByUpdateMode().ToArray();
-
-        if (sceneObjects.Length > 0)
-        {
-            // re-type normal map textures for each scene object's materials
-            foreach (GameObject sceneObject in sceneObjects)
-            {
-                AssetImportUpdate.SetAllDependentMaterialsNormalMapImportTypeByName(sceneObject);
-            }
-        }
-    }
-
 
     [MenuItem("Cinderella City Project/Material Adjustments/Emission/Update for Current Scene", false, 206)]
     public static void SetAllMaterialEmissionInCurrentScene()
