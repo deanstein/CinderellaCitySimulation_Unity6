@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -112,14 +113,52 @@ public class CreateScreenSpaceUILayoutByName : MonoBehaviour
         UIVisibilityGlobals.isOverlayMenuActive = false;
     }
 
+    // ensures there's always exactly one active EventSystem, configured to dispatch
+    // UI pointer/click events through the Input System package's UI module
+    //
+    // this project uses the Input System package with "Active Input Handling" set to "Both",
+    // and per Unity's documentation a project in that configuration must use
+    // InputSystemUIInputModule (not the legacy StandaloneInputModule) for uGUI elements
+    // like Toggles and Buttons to receive clicks - otherwise the menus appear but don't respond
+    public static void EnsureEventSystem()
+    {
+        // only consider active EventSystems, matching the prior GameObject.Find("EventSystem") behavior
+        EventSystem eventSystem = UnityEngine.Object.FindFirstObjectByType<EventSystem>();
+
+        if (eventSystem == null)
+        {
+            GameObject eventSystemObject = new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
+            eventSystem = eventSystemObject.GetComponent<EventSystem>();
+        }
+
+        // make sure the active EventSystem uses the Input System UI module
+        // (this also upgrades any EventSystem that was baked into a scene with the legacy module)
+        if (eventSystem.GetComponent<InputSystemUIInputModule>() == null)
+        {
+            // a single EventSystem must not run two input modules at once,
+            // so remove the legacy module before adding the Input System one
+            StandaloneInputModule legacyModule = eventSystem.GetComponent<StandaloneInputModule>();
+            if (legacyModule != null)
+            {
+                // disable immediately so the two modules don't both run for a frame
+                // (Destroy is deferred to the end of the frame)
+                legacyModule.enabled = false;
+                UnityEngine.Object.Destroy(legacyModule);
+            }
+
+            InputSystemUIInputModule inputSystemModule = eventSystem.gameObject.AddComponent<InputSystemUIInputModule>();
+
+            // explicitly assign the default UI actions (Point, Click, Scroll, etc.)
+            // this is required when the module is added at runtime
+            inputSystemModule.AssignDefaultActions();
+        }
+    }
+
     // build UI based on the name of the current scene
     public void BuildCurrentSceneUI()
     {
-        // ensure there's always an EventSystem
-        if (GameObject.Find("EventSystem") == null)
-        {
-            var eventSystem = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
-        }
+        // ensure there's always an EventSystem that can dispatch UI events
+        EnsureEventSystem();
 
         // menu UI will be nested under the launcher object
         GameObject UILauncher = this.transform.gameObject;
@@ -444,6 +483,9 @@ public class CreateScreenSpaceUILayoutByName : MonoBehaviour
     {
         DebugUtils.DebugLog("Building the Visibility Menu...");
 
+        // ensure the active EventSystem can dispatch UI events before showing the overlay
+        EnsureEventSystem();
+
         // visibility menu canvas
         GameObject visibilityMenu = CreateScreenSpaceUIElements.CreateMenuCanvas(UILauncher, SceneGlobals.visibilityMenuSceneName);
         UIVisibilityGlobals.isOverlayMenuActive = true;
@@ -704,6 +746,9 @@ public class CreateScreenSpaceUILayoutByName : MonoBehaviour
     public static GameObject BuildAudioMenuOverlay(GameObject UILauncher)
     {
         DebugUtils.DebugLog("Building the Audio Menu...");
+
+        // ensure the active EventSystem can dispatch UI events before showing the overlay
+        EnsureEventSystem();
 
         // audio menu canvas
         GameObject audioMenu = CreateScreenSpaceUIElements.CreateMenuCanvas(UILauncher, SceneGlobals.visibilityMenuSceneName);
