@@ -42,6 +42,9 @@ public class AssetImportUpdate : AssetPostprocessor {
     // in order to maintain parent/child hierarchy in the post-processor
     static GameObject newlyInstantiatedFBXContainer;
     static bool isNewlyInstantiatedFBXContainer;
+    // Unity 6 cannot load brand-new FBX assets during OnPreprocessModel; defer instantiation to post-processor
+    static bool pendingSceneInstantiation = false;
+    static bool pendingBehaviorComponents = false;
 
     // get the current scene
     static Scene currentScene = EditorSceneManager.GetActiveScene();
@@ -181,14 +184,18 @@ public class AssetImportUpdate : AssetPostprocessor {
     }
 
     // define how to instantiate the asset (typically an FBX file) in the scene
-    void InstantiateAndPlaceAssetAsGameObject(GameObject gameObjectFromAsset, Scene scene)
+    // returns false if the asset is not loadable yet (caller should defer to post-processor)
+    static bool InstantiateAndPlaceAssetAsGameObject(GameObject gameObjectFromAsset, Scene scene)
     {
-        // if the game object is null, this is a new file... so refresh the asset database and try again
+        // if the game object is null, try loading from the asset path (Unity 6 forbids AssetDatabase.Refresh during import)
         if (!gameObjectFromAsset)
         {
-            //DebugUtils.DebugLog("Game object from asset not valid (yet): " + assetFilePath);
-            AssetDatabase.Refresh();
             gameObjectFromAsset = (GameObject)AssetDatabase.LoadAssetAtPath(importedAssetFilePath, typeof(GameObject));
+        }
+
+        if (!gameObjectFromAsset)
+        {
+            return false;
         }
 
         // skip instantiating if this asset already exists in this scene
@@ -201,7 +208,7 @@ public class AssetImportUpdate : AssetPostprocessor {
             if (sceneObject.name == gameObjectFromAsset.name)
             {
                 DebugUtils.DebugLog("This object is already present in the model.");
-                return;
+                return true;
             }
         }
 
@@ -215,18 +222,41 @@ public class AssetImportUpdate : AssetPostprocessor {
 
         // allow additional post processing hits since this model was just instantiated
         globalMaxPostProcessingHits = globalMaxPostProcessingHits + 2;
+        return true;
     }
 
     // sets an object as a child of the scene container
-    // needs to happen in post-processor
     static void SetObjectAsChildOfSceneContainer(GameObject prefabToModify)
     {
         GameObject sceneContainer = ManageSceneObjects.GetSceneContainerObject(SceneManager.GetActiveScene());
 
         if (prefabToModify)
         {
-            prefabToModify.transform.SetParent(sceneContainer.transform);
+            prefabToModify.transform.SetParent(sceneContainer.transform, true);
         }
+    }
+
+    // reparent after import finishes; synchronous SetParent during OnPostprocessAllAssets misaligns transforms in Unity 6
+    static void ScheduleReparentToSceneContainer(GameObject prefabToModify)
+    {
+        if (!prefabToModify)
+        {
+            return;
+        }
+
+        int instanceId = prefabToModify.GetInstanceID();
+        EditorApplication.delayCall += () =>
+        {
+            GameObject instanceToReparent = EditorUtility.InstanceIDToObject(instanceId) as GameObject;
+            if (!instanceToReparent)
+            {
+                return;
+            }
+
+            SetObjectAsChildOfSceneContainer(instanceToReparent);
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            DebugUtils.DebugLog("Reparented '" + instanceToReparent.name + "' under the scene container.");
+        };
     }
 
     // delete and reimport all materials and textures associated with the asset at the given path
@@ -1732,6 +1762,8 @@ public class AssetImportUpdate : AssetPostprocessor {
         //ClearConsole();
         DebugUtils.DebugLog("START Model PreProcessing...");
         postProcessingHits.Clear();
+        pendingSceneInstantiation = false;
+        pendingBehaviorComponents = false;
 
         // get the file path of the asset that just got updated
         ModelImporter modelImporter = assetImporter as ModelImporter;
@@ -1767,7 +1799,12 @@ public class AssetImportUpdate : AssetPostprocessor {
 
         if (AssetImportGlobals.ModelImportParamsByName.doInstantiateAndPlaceInCurrentScene)
         {
-            InstantiateAndPlaceAssetAsGameObject(importedAssetGameObject, currentScene);
+            if (!InstantiateAndPlaceAssetAsGameObject(importedAssetGameObject, currentScene))
+            {
+                // asset not loadable during pre-process on first import (Unity 6); finish in post-processor
+                pendingSceneInstantiation = true;
+                DebugUtils.DebugLog("Deferring scene instantiation to post-processor: " + importedAssetFilePath);
+            }
         }
 
         if (AssetImportGlobals.ModelImportParamsByName.doSetColliderActive)
@@ -1791,7 +1828,14 @@ public class AssetImportUpdate : AssetPostprocessor {
 
         if (AssetImportGlobals.ModelImportParamsByName.doAddBehaviorComponents)
         {
-            AddBehaviorComponentsByName(importedAssetFileName);
+            if (pendingSceneInstantiation)
+            {
+                pendingBehaviorComponents = true;
+            }
+            else
+            {
+                AddBehaviorComponentsByName(importedAssetFileName);
+            }
         }
 
         // since pre-processing is done, mark post-processing as required
@@ -1835,6 +1879,25 @@ public class AssetImportUpdate : AssetPostprocessor {
         importedAssetGameObject = (GameObject)AssetDatabase.LoadAssetAtPath(importedAssetFilePath, typeof(GameObject));
         importedAssetGameObjectDependencies = EditorUtility.CollectDependencies(new UnityEngine.Object[] { importedAssetGameObject });
 
+        // finish deferred instantiation at scene root (global space) before any other post-processing
+        if (pendingSceneInstantiation && AssetImportGlobals.ModelImportParamsByName.doInstantiateAndPlaceInCurrentScene)
+        {
+            if (InstantiateAndPlaceAssetAsGameObject(importedAssetGameObject, currentScene))
+            {
+                pendingSceneInstantiation = false;
+            }
+            else
+            {
+                DebugUtils.DebugLog("ERROR: Could not instantiate asset after import: " + importedAssetFilePath);
+            }
+        }
+
+        if (pendingBehaviorComponents && AssetImportGlobals.ModelImportParamsByName.doAddBehaviorComponents)
+        {
+            AddBehaviorComponentsByName(importedAssetFileName);
+            pendingBehaviorComponents = false;
+        }
+
         // delete any legacy /Textures folder for this asset if applicable
         DeleteLegacyTexturesFolderForAsset(importedAssetFilePath);
 
@@ -1876,6 +1939,24 @@ public class AssetImportUpdate : AssetPostprocessor {
             ManageSceneObjects.ProxyObjects.ToggleProxyHostMeshesToState(importedAssetGameObject, false, false);
         }
 
+        if (AssetImportGlobals.ModelImportParamsByName.doUpdateReflectionProbes)
+        {
+            // operate on the scene instance (not the asset) that was just placed in the scene
+            GameObject reflectionProbeProxyObject = GameObject.Find(importedAssetFileName);
+
+            // the reflection probe logic lives in CCPMenuActions to keep the hard HDRP dependency
+            // isolated to that file (this post-processor stays render-pipeline-agnostic)
+            int probesCreated = CCPMenuActions.CreateReflectionProbesForProxyObject(reflectionProbeProxyObject);
+
+            // hide the proxy cuboid meshes the same way other proxies (people, cameras) are hidden;
+            // this deactivates the mesh GameObjects, but the rendererless probe objects are siblings,
+            // so they stay active and keep functioning
+            if (probesCreated > 0)
+            {
+                ManageSceneObjects.ProxyObjects.ToggleProxyHostMeshesToState(reflectionProbeProxyObject, false, false);
+            }
+        }
+
         // these never worked reliably, so they've been deprecated (now invoked manually via CCP menu)
         // but keeping them around if they can be used again in the future
         if (AssetImportGlobals.ModelImportParamsByName.doRebuildNavMesh)
@@ -1893,11 +1974,12 @@ public class AssetImportUpdate : AssetPostprocessor {
             SetStaticFlagsByName(importedAssetGameObject);
         }
 
-        // newly-instantiated objects need to be set as a child of the scene container
-        // NOTE: this assumes each scene only has 1 top-level object: a "Container" that holds all Scene objects
+        // newly-instantiated objects need to be set as a child of the scene container once Unity has
+        // finished settling the instance; doing this synchronously in the post-processor misaligns transforms
         if (isNewlyInstantiatedFBXContainer)
         {
-            SetObjectAsChildOfSceneContainer(newlyInstantiatedFBXContainer);
+            ScheduleReparentToSceneContainer(newlyInstantiatedFBXContainer);
+            isNewlyInstantiatedFBXContainer = false;
         }
 
         DebugUtils.DebugLog("END PostProcessing");
