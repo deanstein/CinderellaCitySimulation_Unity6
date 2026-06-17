@@ -21,6 +21,8 @@ public class ModelImportParams
     public bool doInstantiateProxyReplacements = false;
     public bool doHideInitially = false;
     public bool doHideProxyObjects = false;
+    // creates HDRP reflection probes from proxy cuboid meshes, then hides the proxy cuboid meshes
+    public bool doUpdateReflectionProbes = false;
 
     // these import params are deprecated, for now,
     // because these operations don't fire reliably in the post-processor
@@ -292,6 +294,24 @@ public class ManageImportSettings
                 ImportParams.doHideProxyObjects = true;
                 return ImportParams;
 
+            case string assetOrModelName when assetOrModelName.Contains("proxy-reflection-probes"):
+                // pre-processor option flags
+                ImportParams.doSetGlobalScale = true; // always true
+                ImportParams.doInstantiateAndPlaceInCurrentScene = true;
+                ImportParams.doSetColliderActive = false;
+                ImportParams.doSetUVActiveAndConfigure = false;
+                ImportParams.doDeleteReimportMaterialsTextures = false;
+                ImportParams.doAddBehaviorComponents = false;
+                // post-processor option flags
+                ImportParams.doSetMaterialEmission = false;
+                ImportParams.doSetMaterialSmoothnessMetallic = false;
+                ImportParams.doInstantiateProxyReplacements = false;
+                // doUpdateReflectionProbes both creates the probes and hides the proxy cuboid meshes
+                // (reusing the standard proxy-hide path), so the separate doHideProxyObjects pass is not needed
+                ImportParams.doHideProxyObjects = false;
+                ImportParams.doUpdateReflectionProbes = true;
+                return ImportParams;
+
             case string assetOrModelName when assetOrModelName.Contains("proxy-blocker-npc"):
                 // pre-processor option flags
                 ImportParams.doSetGlobalScale = true; // always true
@@ -482,7 +502,7 @@ public class ManageImportSettings
             || name.Contains("store-lights"):
                 return 2f;
             case string name when name.Contains("site-parking-surface"):
-                return 0.2f;
+                return 1f;
             case string name when name.Contains("roof")
             || name.Contains("site-context-buildings")
             || name.Contains("site-roads"):
@@ -548,9 +568,9 @@ public class ManageImportSettings
                 return 1.0f;
             // general cases
             case string name when name.Contains("blue mall ceiling"):
-                return 4f;
+                return 2.5f;
             case string name when name.Contains("blue mall columns"):
-                return 6f;
+                return 8f;
             case string name when name.Contains("blue mall cove"):
                 return 2.25f;
             case string name when name.Contains("blue mall fountain planter intense"):
@@ -602,7 +622,7 @@ public class ManageImportSettings
             case string name when name.Contains("mid-mod exterior fixture"):
                 return 0f;
             case string name when name.Contains("very high intensity sodium"):
-                return 3.5f;
+                return 6f;
             case string name when name.Contains("very low intensity white"):
                 return -1.0f;
             // stores
@@ -690,37 +710,38 @@ public class ManageImportSettings
             || name.Contains("mirror"):
                 return 1.0f;
             case string name when name.Contains("glossy"):
-                return 0.8f;
+                return 0.9f;
             case string name when name.Contains("metal"):
-                return 0.5f;
+                return 0.6f;
             // specific materials
             case string name when name.Contains("bronzed glass"):
-                return 0.2f;
+                return 0.8f;
             case string name when name.Contains("food court tile"):
                 return 0.2f;
             case string name when name.Contains("generic floor concrete"):
-                return 0.3f;
+                return 0.7f;
             case string name when name.Contains("mall - food court ceiling"):
-                return 0.6f;
+                return 0.85f;
             case string name when name.Contains("mall - parquet floor"):
-                return 0.5f;
-            case string name when name.Contains("mall - polished concrete"):
-                return 0.45f;
+                return 0.85f;
             case string name when name.Contains("mall - polished concrete cinder alley")
                 || name.Contains("mall - cinder alley scored concrete"):
-                return 0.27f;
+                return 0.86f;
             case string name when name.Contains("mall - polished concrete"):
-                return 0.45f;
+                return 0.86f;
             case string name when name.Contains("mall - shamrock floor brick")
                 || name.Contains("mall - food court central ring brick")
                 || name.Contains("mall - food court herringbone brick"):
-                return 0.35f;
+                return 0.7f;
             case string name when name.Contains("mall - shamrock planter brick"):
                 return 0.075f;
             case string name when name.Contains("mall - stair terrazzo"):
-                return 0.2f;
+                return 0.7f;
+            // special variant must come first - "mall - terra cotta tile" also matches it
             case string name when name.Contains("mall - terra cotta tile special"):
-                return 0.2f;
+                return 0.85f;
+            case string name when name.Contains("mall - terra cotta tile"):
+                return 0.86f;
             // if not specified, return -1 to indicate to calling functions that
             // this material is not intended to have a custom smoothness value
             default:
