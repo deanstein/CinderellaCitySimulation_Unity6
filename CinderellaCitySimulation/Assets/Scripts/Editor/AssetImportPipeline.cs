@@ -1445,14 +1445,14 @@ public class AssetImportUpdate : AssetPostprocessor {
                         );
                         secondarySystemColorOverLifetime.color = new ParticleSystem.MinMaxGradient(secondaryGradient);
                         var secondarySystemSizeOverLifetime = secondaryParticleSystem.sizeOverLifetime;
-                        // hand-tuned S-curve: flat start, steep (~2.5 slope) growth through the mid key (0.74, 0.70), easing to the ceiling at the base
-                        // multiplier 2.5 sets the ceiling, so base sparkles reach ~2.5x to fill the bottom
+                        // hand-tuned curve: flat start, smooth accelerating growth through the mid key (0.75, 0.68) with ~1.5 slope handles, easing to the ceiling at the base
+                        // multiplier 3.0 sets the ceiling, so base sparkles reach ~3.0x to fill the bottom
                         AnimationCurve secondaryCurve = new AnimationCurve(
                             new Keyframe(0.0f, 0.0f, 0f, 0f),
-                            new Keyframe(0.74f, 0.70f, 2.5f, 2.5f),
+                            new Keyframe(0.75f, 0.61f, 1.5f, 1.5f),
                             new Keyframe(1.0f, 1.0f, 1.0f, 0f)
                         );
-                        secondarySystemSizeOverLifetime.size = new ParticleSystem.MinMaxCurve(2.5f, secondaryCurve);
+                        secondarySystemSizeOverLifetime.size = new ParticleSystem.MinMaxCurve(3.0f, secondaryCurve);
 
                     }
                     else if (child.name.Contains("fountain-secondary"))
