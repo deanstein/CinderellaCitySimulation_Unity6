@@ -1396,12 +1396,7 @@ public class AssetImportUpdate : AssetPostprocessor {
                         shape.angle = 0.64f;
                         shape.radius = 0f;
                         var mainSystemEmitter = mainParticleSystem.emission;
-                        mainSystemEmitter.rateOverTime = 45;
-                        //var mainSystemSizeOverLifetime = mainParticleSystem.sizeOverLifetime;
-                        //AnimationCurve mainCurve = new AnimationCurve();
-                        //mainCurve.AddKey(0.0f, 2.0f);
-                        //mainCurve.AddKey(1.0f, 2.0f);
-                        //mainSystemSizeOverLifetime.size = new ParticleSystem.MinMaxCurve(1.0f, mainCurve);
+                        mainSystemEmitter.rateOverTime = 100;
 
                         // secondary
                         ParticleSystem secondaryParticleSystem = instancedPrefab.transform.GetChild(0).GetComponent<ParticleSystem>();
@@ -1411,12 +1406,20 @@ public class AssetImportUpdate : AssetPostprocessor {
                         secondarySystem.startSizeY = 1f;
                         secondarySystem.startSizeZ = 1f;
                         secondarySystem.startColor = new Color(0.725f, 0.9098f, 1.0f, 0.588f);
-                        secondarySystem.startLifetime = 2.25f;
+                        secondarySystem.startLifetime = 2.6f;
                         secondarySystem.maxParticles = 1000;
+                        // pin the falling spray's motion to its own (Fountain08 prefab) values so it can't drift with the prefab/engine
+                        // gravityModifier must stay near full (1.0) so particles arc over and fall, not float up; startSpeed is the apex-height lever
+                        secondarySystem.startSpeed = 12f;
+                        secondarySystem.gravityModifierMultiplier = 1.0f;
+                        secondarySystem.simulationSpeed = 1.0f;
+                        secondarySystem.simulationSpace = ParticleSystemSimulationSpace.Local;
                         var secondaryShape = secondaryParticleSystem.shape;
                         secondaryShape.position = new Vector3(0, 0, 1.1f);
                         secondaryShape.rotation = new Vector3(-0.2f, 0, 0);
-                        secondaryShape.angle = 50f;
+                        // narrow cone for a tall, vertical spray (prefab authored this at ~14; 50 fanned out too wide)
+                        secondaryShape.angle = 13f;
+                        secondaryShape.arcSpread = 1f;
                         var secondarySystemEmitter = secondaryParticleSystem.emission;
                         secondarySystemEmitter.rateOverTime = 300;
                         var secondarySystemColorOverLifetime = secondaryParticleSystem.colorOverLifetime;
@@ -1424,7 +1427,7 @@ public class AssetImportUpdate : AssetPostprocessor {
                         var secondarySystemSizeOverLifetime = secondaryParticleSystem.sizeOverLifetime;
                         AnimationCurve secondaryCurve = new AnimationCurve();
                         secondaryCurve.AddKey(0.0f, 0.0f);
-                        secondaryCurve.AddKey(1.0f, 2.4f);
+                        secondaryCurve.AddKey(1.0f, 3.0f);
                         secondaryCurve.SmoothTangents(0, 1.0f);
                         secondaryCurve.SmoothTangents(1, 1.0f);
                         secondarySystemSizeOverLifetime.size = new ParticleSystem.MinMaxCurve(1.0f, secondaryCurve);
