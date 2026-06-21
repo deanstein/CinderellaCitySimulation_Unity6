@@ -150,7 +150,12 @@ public class FollowGuidedTour : MonoBehaviour
         {
             // if no instance exists for this scene, add this one to the dictionary
             Instances.Add(thisSceneName, this);
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad only works on root GameObjects; on a child it just logs a
+            // warning and does nothing, so only call it when this object is at the root
+            if (transform.parent == null)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
         }
 
         thisAgent = GetComponent<NavMeshAgent>();

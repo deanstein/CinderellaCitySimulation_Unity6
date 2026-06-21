@@ -48,7 +48,9 @@ public class CreateScreenSpaceUILayoutByName : MonoBehaviour
 
         // create an updated time traveling label
         string upcomingSceneName = ManageScenes.GetUpcomingPeriodSceneName(gameObject.scene.name, "next");
-        if (upcomingSceneName != "null")
+        // only build the label if there's a HUD to parent it to; during OnEnable on first load
+        // activeHUD isn't ready yet, and CreateHUDTimeTravelingLabel would dereference a null parent
+        if (upcomingSceneName != "null" && UIVisibilityGlobals.activeHUD != null)
         {
             string nextTimePeriodLabelText = SceneGlobals.TimePeriods.GetTimePeriodLabelBySceneName(upcomingSceneName);
             // create the time traveling label and set it off initially
