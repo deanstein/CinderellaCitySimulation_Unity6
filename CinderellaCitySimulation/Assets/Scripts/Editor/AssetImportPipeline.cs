@@ -1385,9 +1385,9 @@ public class AssetImportUpdate : AssetPostprocessor {
                         mainSystem.startLifetime = 0.5f;
                         mainSystem.startSize3D = true;
                         mainSystem.startSizeX = 0.5f;
-                        mainSystem.startSizeY = 4.25f;
+                        mainSystem.startSizeY = 3.0f;
                         mainSystem.startSizeZ = 1f;
-                        mainSystem.startColor = new Color(0.7498f, 0.7498f, 0.7498f, 0.2f);
+                        mainSystem.startColor = new Color(0.7498f, 0.7498f, 0.7498f, 0.4f);
                         mainSystem.gravityModifierMultiplier = 0.09f;
                         mainSystem.simulationSpeed = 0.3f;
                         var shape = mainParticleSystem.shape;
@@ -1396,7 +1396,17 @@ public class AssetImportUpdate : AssetPostprocessor {
                         shape.angle = 0.64f;
                         shape.radius = 0f;
                         var mainSystemEmitter = mainParticleSystem.emission;
-                        mainSystemEmitter.rateOverTime = 100;
+                        mainSystemEmitter.rateOverTime = 150;
+                        // gently thin the orange jet toward the top so it hands off to the sparkles, but keep a cohesive bright body
+                        // (this multiplies startColor's alpha; trajectory/cone shape is unchanged, only opacity near the top)
+                        var mainSystemColorOverLifetime = mainParticleSystem.colorOverLifetime;
+                        mainSystemColorOverLifetime.enabled = true;
+                        Gradient mainGradient = new Gradient();
+                        mainGradient.SetKeys(
+                            new GradientColorKey[] { new GradientColorKey(Color.white, 0.0f), new GradientColorKey(Color.white, 1.0f) },
+                            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(1.0f, 0.6f), new GradientAlphaKey(0.3f, 1.0f) }
+                        );
+                        mainSystemColorOverLifetime.color = new ParticleSystem.MinMaxGradient(mainGradient);
 
                         // secondary
                         ParticleSystem secondaryParticleSystem = instancedPrefab.transform.GetChild(0).GetComponent<ParticleSystem>();
@@ -1405,32 +1415,44 @@ public class AssetImportUpdate : AssetPostprocessor {
                         secondarySystem.startSizeX = 0.86f;
                         secondarySystem.startSizeY = 1f;
                         secondarySystem.startSizeZ = 1f;
-                        secondarySystem.startColor = new Color(0.725f, 0.9098f, 1.0f, 0.588f);
+                        secondarySystem.startColor = new Color(0.725f, 0.9098f, 1.0f, 0.78f);
+                        // shorter lifetime so the lower-apex sparkles don't keep falling past where the base sat before (keeps the bottom anchored while the top comes down)
                         secondarySystem.startLifetime = 2.6f;
                         secondarySystem.maxParticles = 1000;
                         // pin the falling spray's motion to its own (Fountain08 prefab) values so it can't drift with the prefab/engine
-                        // gravityModifier must stay near full (1.0) so particles arc over and fall, not float up; startSpeed is the apex-height lever
-                        secondarySystem.startSpeed = 12f;
+                        // gravityModifier must stay near full (1.0) so particles arc over and fall, not float up
+                        // narrow speed range disperses the apex slightly so the top isn't a hard "ball"
+                        // apex height scales with speed^2, so ~0.894x speed gives ~80% height
+                        secondarySystem.startSpeed = new ParticleSystem.MinMaxCurve(11.6f, 12.5f);
                         secondarySystem.gravityModifierMultiplier = 1.0f;
                         secondarySystem.simulationSpeed = 1.0f;
                         secondarySystem.simulationSpace = ParticleSystemSimulationSpace.Local;
                         var secondaryShape = secondaryParticleSystem.shape;
                         secondaryShape.position = new Vector3(0, 0, 1.1f);
                         secondaryShape.rotation = new Vector3(-0.2f, 0, 0);
-                        // narrow cone for a tall, vertical spray (prefab authored this at ~14; 50 fanned out too wide)
-                        secondaryShape.angle = 13f;
-                        secondaryShape.arcSpread = 1f;
+                        // tight near-vertical cone
+                        secondaryShape.angle = 1f;
+                        secondaryShape.arcSpread = 0f;
                         var secondarySystemEmitter = secondaryParticleSystem.emission;
-                        secondarySystemEmitter.rateOverTime = 300;
+                        secondarySystemEmitter.rateOverTime = 400;
                         var secondarySystemColorOverLifetime = secondaryParticleSystem.colorOverLifetime;
-                        secondarySystemColorOverLifetime.enabled = false;
+                        // fade sparkles out near end of life so they dissolve (no mid-air pop at max size, no hard tail below the pool)
+                        secondarySystemColorOverLifetime.enabled = true;
+                        Gradient secondaryGradient = new Gradient();
+                        secondaryGradient.SetKeys(
+                            new GradientColorKey[] { new GradientColorKey(Color.white, 0.0f), new GradientColorKey(Color.white, 1.0f) },
+                            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(1.0f, 0.96f), new GradientAlphaKey(0.0f, 1.0f) }
+                        );
+                        secondarySystemColorOverLifetime.color = new ParticleSystem.MinMaxGradient(secondaryGradient);
                         var secondarySystemSizeOverLifetime = secondaryParticleSystem.sizeOverLifetime;
-                        AnimationCurve secondaryCurve = new AnimationCurve();
-                        secondaryCurve.AddKey(0.0f, 0.0f);
-                        secondaryCurve.AddKey(1.0f, 3.0f);
-                        secondaryCurve.SmoothTangents(0, 1.0f);
-                        secondaryCurve.SmoothTangents(1, 1.0f);
-                        secondarySystemSizeOverLifetime.size = new ParticleSystem.MinMaxCurve(1.0f, secondaryCurve);
+                        // hand-tuned S-curve: flat start, steep (~2.5 slope) growth through the mid key (0.74, 0.70), easing to the ceiling at the base
+                        // multiplier 2.5 sets the ceiling, so base sparkles reach ~2.5x to fill the bottom
+                        AnimationCurve secondaryCurve = new AnimationCurve(
+                            new Keyframe(0.0f, 0.0f, 0f, 0f),
+                            new Keyframe(0.74f, 0.70f, 2.5f, 2.5f),
+                            new Keyframe(1.0f, 1.0f, 1.0f, 0f)
+                        );
+                        secondarySystemSizeOverLifetime.size = new ParticleSystem.MinMaxCurve(2.5f, secondaryCurve);
 
                     }
                     else if (child.name.Contains("fountain-secondary"))
