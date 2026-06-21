@@ -18,7 +18,13 @@ public class ToggleCameraActionsByInputEvent : MonoBehaviour {
     private void Awake()
     {
         // add this volume priority to the global priority value
-        ManageCameraActions.CameraActionGlobals.highestKnownCameraEffectPriority += this.GetComponent<PostProcessVolume>().priority;
+        // PostProcessing Stack v2 volumes don't exist under HDRP, so guard against a missing component
+        // TODO: Switch to HDRP PostProcessing and eliminate PPv2 guard
+        PostProcessVolume postProcessVolume = this.GetComponent<PostProcessVolume>();
+        if (postProcessVolume != null)
+        {
+            ManageCameraActions.CameraActionGlobals.highestKnownCameraEffectPriority += postProcessVolume.priority;
+        }
     }
 
     private void Start()
