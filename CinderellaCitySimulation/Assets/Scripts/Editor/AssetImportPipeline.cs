@@ -58,6 +58,8 @@ public class AssetImportUpdate : AssetPostprocessor {
 
     // post-processing should only happen after pre-processing
     static bool postProcessingRequired = false;
+    // model post-processing is tied to a specific FBX pre-process; other imports must not re-run it
+    static string pendingModelPostProcessPath;
 
     // proxy replacements as required
     static bool proxyReplacementProcessingRequired = false;
@@ -1682,14 +1684,20 @@ public class AssetImportUpdate : AssetPostprocessor {
             return;
         }
 
+        TextureImporter textureImporter = assetImporter as TextureImporter;
+        String assetFilePath = textureImporter.assetPath.ToLower();
+
+        // baked reflection probe cubemaps are written by HDRP, not managed by this pipeline
+        if (assetFilePath.EndsWith(".exr"))
+        {
+            return;
+        }
+
         //ClearConsole();
         DebugUtils.DebugLog("START Texture PreProcessing...");
 
         postProcessingHits.Clear();
 
-        // get the file path of the asset that just got updated
-        TextureImporter textureImporter = assetImporter as TextureImporter;
-        String assetFilePath = textureImporter.assetPath.ToLower();
         DebugUtils.DebugLog("Modified file: " + assetFilePath);
 
         // make the asset path available globally
@@ -1838,7 +1846,8 @@ public class AssetImportUpdate : AssetPostprocessor {
             }
         }
 
-        // since pre-processing is done, mark post-processing as required
+        // since pre-processing is done, mark post-processing as required for this FBX only
+        pendingModelPostProcessPath = assetFilePath;
         postProcessingRequired = true;
         proxyReplacementProcessingRequired = AssetImportGlobals.ModelImportParamsByName.doInstantiateProxyReplacements;
 
@@ -1861,11 +1870,25 @@ public class AssetImportUpdate : AssetPostprocessor {
             return;
         }
 
+        // baked reflection probe cubemaps (.exr) are not part of the FBX import pipeline, but their import
+        // still triggers OnPostprocessAllAssets. skip them so stale FBX flags (e.g. doUpdateReflectionProbes)
+        // are not re-run mid-bake.
+        foreach (string importedAsset in importedAssets)
+        {
+            if (importedAsset.EndsWith(".exr", StringComparison.OrdinalIgnoreCase))
+            {
+                DebugUtils.DebugLog("Skipping PostProcessing (reflection probe or cubemap .exr import: " + importedAsset + ")");
+                return;
+            }
+        }
+
         // it seems that a few post processing hits are needed to fully post-process everything
         // any further is probably not necessary
         if (!postProcessingRequired || postProcessingHits.Count >= globalMaxPostProcessingHits)
         {
             DebugUtils.DebugLog("Skipping PostProcessing attempt " + postProcessingHits.Count + " (max allowed: " + globalMaxPostProcessingHits + ")");
+            postProcessingRequired = false;
+            pendingModelPostProcessPath = null;
             return;
         }
 
@@ -1873,6 +1896,16 @@ public class AssetImportUpdate : AssetPostprocessor {
 
         // add to the list of post processing hits, so we know how many times we've been here
         postProcessingHits.Add(true);
+
+        // texture/audio pre-processors may have overwritten importedAssetFilePath since the model pre-process ran
+        if (!string.IsNullOrEmpty(pendingModelPostProcessPath))
+        {
+            importedAssetFilePath = pendingModelPostProcessPath;
+            importedAssetFileNameAndExtension = Path.GetFileName(importedAssetFilePath);
+            importedAssetFileName = importedAssetFileNameAndExtension.Substring(0, importedAssetFileNameAndExtension.Length - 4);
+            importedAssetFileDirectory = importedAssetFilePath.Substring(0, importedAssetFilePath.Length - importedAssetFileNameAndExtension.Length);
+            AssetImportGlobals.ModelImportParamsByName = ManageImportSettings.GetModelImportParamsByName(importedAssetFilePath);
+        }
 
         // get the game object and its dependencies
         // for some reason this needs to happen in the post-processor
@@ -1939,7 +1972,7 @@ public class AssetImportUpdate : AssetPostprocessor {
             ManageSceneObjects.ProxyObjects.ToggleProxyHostMeshesToState(importedAssetGameObject, false, false);
         }
 
-        if (AssetImportGlobals.ModelImportParamsByName.doUpdateReflectionProbes)
+        if (AssetImportGlobals.ModelImportParamsByName.doUpdateReflectionProbes && !CCPMenuActions.IsBakingReflectionProbes)
         {
             // operate on the scene instance (not the asset) that was just placed in the scene
             GameObject reflectionProbeProxyObject = GameObject.Find(importedAssetFileName);
