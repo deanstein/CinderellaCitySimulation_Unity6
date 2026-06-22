@@ -1465,6 +1465,16 @@ public class AssetImportUpdate : AssetPostprocessor {
                             new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(1.0f, 0.6f), new GradientAlphaKey(0.3f, 1.0f) }
                         );
                         mainSystemColorOverLifetime.color = new ParticleSystem.MinMaxGradient(mainGradient);
+                        var mainSystemSizeOverLifetime = mainParticleSystem.sizeOverLifetime;
+                        // hand-tuned: hold a flat plateau (normalized 0.2) until the vertex at (0.5, 0.2), then accelerate
+                        // up to the top (1.0); multiplier 2.0 sets the ceiling, so the curve displays 0.4 -> 2.0
+                        mainSystemSizeOverLifetime.enabled = true;
+                        AnimationCurve mainCurve = new AnimationCurve(
+                            new Keyframe(0.0f, 0.2f, 0f, 0f),
+                            new Keyframe(0.5f, 0.2f, 0f, 0f),
+                            new Keyframe(1.0f, 1.0f, 3.0f, 0f)
+                        );
+                        mainSystemSizeOverLifetime.size = new ParticleSystem.MinMaxCurve(2.0f, mainCurve);
 
                         // secondary
                         ParticleSystem secondaryParticleSystem = instancedPrefab.transform.GetChild(0).GetComponent<ParticleSystem>();
