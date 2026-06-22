@@ -1257,6 +1257,64 @@ public class AssetImportUpdate : AssetPostprocessor {
         }
     }
 
+    // instantiate a billboarded splash effect as a sibling of a fountain jet,
+    // anchored at the jet's base (where the proxy geometry places the jet)
+    // intended only for the main jets coming from the FBX
+    public static GameObject InstantiateFountainJetSplash(GameObject jet, Transform splashParent, string deleteTag)
+    {
+        // splash prefab to use at the jet base
+        string splashPrefabPath = ProxyGlobals.thirdPartyPrefabPathNeatwolf + "/Splashes08.prefab";
+        GameObject splashPrefabAsset = (GameObject)AssetDatabase.LoadAssetAtPath(splashPrefabPath, typeof(GameObject));
+        if (!splashPrefabAsset)
+        {
+            DebugUtils.DebugLog("Couldn't load the fountain splash prefab at: " + splashPrefabPath);
+            return null;
+        }
+
+        // instance it as a sibling of the jet (same parent), anchored at the jet's base position
+        GameObject splashInstance = PrefabUtility.InstantiatePrefab(splashPrefabAsset) as GameObject;
+        if (!splashInstance)
+        {
+            DebugUtils.DebugLog("Failed to instantiate the fountain splash prefab at: " + splashPrefabPath);
+            return null;
+        }
+        // parent under the same proxy the jet gets nested into later in the pipeline,
+        // so each splash ends up as a sibling right next to its respective Fountain jet
+        splashInstance.transform.parent = splashParent;
+        // sink the splash down toward the water so the flattened dome tucks in at the base (tune to taste)
+        float splashYOffset = 0.7f;
+        splashInstance.transform.position = jet.transform.position + Vector3.up * splashYOffset;
+        splashInstance.transform.rotation = Quaternion.identity;
+
+        // squash the splash vertically: keep its horizontal spread but flatten it into a low dome so the bottom reads flatter
+        float splashHorizontalScale = 1.2f;
+        float splashVerticalScale = 0.5f;
+        Vector3 splashScale = splashInstance.transform.localScale;
+        splashInstance.transform.localScale = new Vector3(
+            splashScale.x * splashHorizontalScale,
+            splashScale.y * splashVerticalScale,
+            splashScale.z * splashHorizontalScale);
+
+        // Splashes08 defaults to "Shape" scaling mode, where transform scale only affects the emission shape (not the
+        // simulation), so the non-uniform squash above has no visible effect; switch to "Hierarchy" so the scale drives it
+        foreach (ParticleSystem splashSystem in splashInstance.GetComponentsInChildren<ParticleSystem>(true))
+        {
+            var splashMain = splashSystem.main;
+            splashMain.scalingMode = ParticleSystemScalingMode.Hierarchy;
+        }
+
+        // billboard every particle renderer so the splash always faces the camera
+        foreach (ParticleSystemRenderer splashRenderer in splashInstance.GetComponentsInChildren<ParticleSystemRenderer>(true))
+        {
+            splashRenderer.renderMode = ParticleSystemRenderMode.Billboard;
+        }
+
+        // tag for cleanup on the next reimport so splashes don't accumulate
+        splashInstance.tag = deleteTag;
+
+        return splashInstance;
+    }
+
     // define how to instantiate proxy replacement objects
     public static void InstantiateProxyReplacements(string assetName)
     {
@@ -1453,6 +1511,11 @@ public class AssetImportUpdate : AssetPostprocessor {
                             new Keyframe(1.0f, 1.0f, 1.0f, 0f)
                         );
                         secondarySystemSizeOverLifetime.size = new ParticleSystem.MinMaxCurve(3.0f, secondaryCurve);
+
+                        // add a billboarded splash where the jet meets the pool, anchored at the jet's base
+                        // parent it under this proxy (child) so it lands next to the jet once the jet is nested below
+                        // only the main jets (this block) get one; secondary jets and fillers do not
+                        InstantiateFountainJetSplash(instancedPrefab, child, proxyReplacementDeleteTag);
 
                     }
                     else if (child.name.Contains("fountain-secondary"))
