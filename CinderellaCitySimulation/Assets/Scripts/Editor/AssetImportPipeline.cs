@@ -1352,6 +1352,22 @@ public class AssetImportUpdate : AssetPostprocessor {
         // get all the children from the gameObject
         Transform[] allChildren = gameObjectByAsset.GetComponentsInChildren<Transform>(true); // true to include inactive children;
 
+        // pre-pass: find the horizontal centroid of the main fountain proxies so each spray can lean toward the center
+        Vector3 fountainMainCentroid = Vector3.zero;
+        int fountainMainCount = 0;
+        foreach (Transform fountainCandidate in allChildren)
+        {
+            if (fountainCandidate.name.Contains("REPLACE") && fountainCandidate.name.Contains("fountain-main"))
+            {
+                fountainMainCentroid += fountainCandidate.position;
+                fountainMainCount++;
+            }
+        }
+        if (fountainMainCount > 0)
+        {
+            fountainMainCentroid /= fountainMainCount;
+        }
+
         // do something with each of the object's children
         foreach (Transform child in allChildren)
         {
@@ -1430,8 +1446,21 @@ public class AssetImportUpdate : AssetPostprocessor {
                     }
                     else if (child.name.Contains("fountain-main"))
                     {
-                        // ensure the main fountain is oriented vertically
+                        // ensure the main fountain is oriented vertically (leave the transform alone — rotating it breaks the systems)
                         instancedPrefab.transform.localRotation = new Quaternion(0, 0, 0, 0);
+
+                        // very slight inward tilt of each spray's EMISSION DIRECTION (not the transform) so the 4 jets
+                        // pinch toward a point at the top; applied to the shape rotation below
+                        Vector3 towardCenter = fountainMainCentroid - instancedPrefab.transform.position;
+                        towardCenter.y = 0f; // horizontal only
+                        float fountainLeanAngle = 2.8f; // degrees; tiny tilt toward center (tune)
+                        Quaternion fountainLeanRotation = Quaternion.identity;
+                        if (towardCenter.sqrMagnitude > 0.0001f)
+                        {
+                            // tilt the straight-up emission axis slightly toward the center
+                            Vector3 tiltedAxis = Vector3.RotateTowards(Vector3.up, towardCenter.normalized, fountainLeanAngle * Mathf.Deg2Rad, 0f);
+                            fountainLeanRotation = Quaternion.FromToRotation(Vector3.up, tiltedAxis);
+                        }
 
                         // set the particle system settings
 
@@ -1449,7 +1478,7 @@ public class AssetImportUpdate : AssetPostprocessor {
                         mainSystem.gravityModifierMultiplier = 0.09f;
                         mainSystem.simulationSpeed = 0.3f;
                         var shape = mainParticleSystem.shape;
-                        shape.rotation = new Vector3(-0.2f, 0, 0);
+                        shape.rotation = (fountainLeanRotation * Quaternion.Euler(-0.2f, 0f, 0f)).eulerAngles;
                         shape.enabled = true;
                         shape.angle = 0.64f;
                         shape.radius = 0f;
@@ -1485,19 +1514,19 @@ public class AssetImportUpdate : AssetPostprocessor {
                         secondarySystem.startSizeZ = 1f;
                         secondarySystem.startColor = new Color(0.725f, 0.9098f, 1.0f, 0.78f);
                         // shorter lifetime so the lower-apex sparkles don't keep falling past where the base sat before (keeps the bottom anchored while the top comes down)
-                        secondarySystem.startLifetime = 2.6f;
+                        secondarySystem.startLifetime = 2.8f;
                         secondarySystem.maxParticles = 1000;
                         // pin the falling spray's motion to its own (Fountain08 prefab) values so it can't drift with the prefab/engine
                         // gravityModifier must stay near full (1.0) so particles arc over and fall, not float up
                         // narrow speed range disperses the apex slightly so the top isn't a hard "ball"
                         // apex height scales with speed^2, so ~0.894x speed gives ~80% height
-                        secondarySystem.startSpeed = new ParticleSystem.MinMaxCurve(11.6f, 12.5f);
+                        secondarySystem.startSpeed = new ParticleSystem.MinMaxCurve(11.89f, 12.81f);
                         secondarySystem.gravityModifierMultiplier = 1.0f;
                         secondarySystem.simulationSpeed = 1.0f;
                         secondarySystem.simulationSpace = ParticleSystemSimulationSpace.Local;
                         var secondaryShape = secondaryParticleSystem.shape;
                         secondaryShape.position = new Vector3(0, 0, 1.1f);
-                        secondaryShape.rotation = new Vector3(-0.2f, 0, 0);
+                        secondaryShape.rotation = (fountainLeanRotation * Quaternion.Euler(-0.2f, 0f, 0f)).eulerAngles;
                         // tight near-vertical cone
                         secondaryShape.angle = 1f;
                         secondaryShape.arcSpread = 0f;
@@ -1521,6 +1550,26 @@ public class AssetImportUpdate : AssetPostprocessor {
                             new Keyframe(1.0f, 1.0f, 1.0f, 0f)
                         );
                         secondarySystemSizeOverLifetime.size = new ParticleSystem.MinMaxCurve(3.0f, secondaryCurve);
+
+                        // clip the falling sparkles at the pool floor so they can't pass through into the parking garage below
+                        // build a fresh, explicitly world-aligned plane (don't derive it from the jet transform) so the normal is clean
+                        float sparkleFloorClipHeightAboveBase = 0f; // world Y relative to the jet base; lower (negative) to let them fall further, raise to cut higher
+                        GameObject sparkleClipPlane = new GameObject("SparkleClipPlane");
+                        sparkleClipPlane.transform.parent = instancedPrefab.transform; // tagged jet => cleaned up on reimport
+                        sparkleClipPlane.transform.rotation = Quaternion.identity; // up-normal: particles crossing below get killed
+                        sparkleClipPlane.transform.position = new Vector3(
+                            instancedPrefab.transform.position.x,
+                            instancedPrefab.transform.position.y + sparkleFloorClipHeightAboveBase,
+                            instancedPrefab.transform.position.z);
+                        var secondaryCollision = secondaryParticleSystem.collision;
+                        secondaryCollision.enabled = true;
+                        secondaryCollision.type = ParticleSystemCollisionType.Planes;
+                        secondaryCollision.mode = ParticleSystemCollisionMode.Collision3D;
+                        secondaryCollision.SetPlane(0, sparkleClipPlane.transform);
+                        // stop dead and expire on contact so the tail is cut cleanly at the floor
+                        secondaryCollision.dampen = 1f;
+                        secondaryCollision.bounce = 0f;
+                        secondaryCollision.lifetimeLoss = 1f;
 
                         // add a billboarded splash where the jet meets the pool, anchored at the jet's base
                         // parent it under this proxy (child) so it lands next to the jet once the jet is nested below
