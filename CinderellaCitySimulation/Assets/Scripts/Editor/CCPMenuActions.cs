@@ -132,76 +132,138 @@ public class CCPMenuActions : MonoBehaviour
         HoistSceneObjectsEditor.HoistSceneContainersDown(timePeriodSceneContainers);
     }
 
-    /* ---------- SCENE VIEW TOOLS SECTION ---------- */
+    /* ---------- SCENE NAVIGATION SECTION ---------- */
 
-    [MenuItem("Cinderella City Project/Scene View Tools/Relocalize Zoom Pivot %#f", false, 114)]
+    [MenuItem("Cinderella City Project/Scene Navigation/Relocalize Zoom Pivot %#f", false, 114)]
     public static void RelocalizeSceneViewZoomPivot()
     {
         NavigationTools.RequestRelocalizeZoomPivot(SceneView.lastActiveSceneView);
     }
 
-    [MenuItem("Cinderella City Project/Scene View Tools/Zoom to Fit At Cursor %f", false, 115)]
+    [MenuItem("Cinderella City Project/Scene Navigation/Zoom to Fit At Cursor %f", false, 115)]
     public static void ZoomSceneViewToFitAtCursor()
     {
         NavigationTools.RequestZoomToFitAtCursor(SceneView.lastActiveSceneView);
     }
 
-    [MenuItem("Cinderella City Project/Scene View Tools/Toggle Boosted Scroll Zoom", false, 116)]
+    [MenuItem("Cinderella City Project/Scene Navigation/Toggle Boosted Scroll Zoom", false, 116)]
     public static void ToggleSceneViewBoostedScrollZoom()
     {
         NavigationTools.ToggleBoostedScrollZoom();
     }
 
-    [MenuItem("Cinderella City Project/Scene View Tools/Toggle Boosted Scroll Zoom", true)]
+    [MenuItem("Cinderella City Project/Scene Navigation/Toggle Boosted Scroll Zoom", true)]
     public static bool ToggleSceneViewBoostedScrollZoomValidate()
     {
-        Menu.SetChecked("Cinderella City Project/Scene View Tools/Toggle Boosted Scroll Zoom", NavigationTools.BoostEnabled);
+        Menu.SetChecked("Cinderella City Project/Scene Navigation/Toggle Boosted Scroll Zoom", NavigationTools.BoostEnabled);
         return true;
     }
 
-    [MenuItem("Cinderella City Project/Scene View Tools/Set Zoom Multiplier/Higher (6x)", false, 117)]
+    [MenuItem("Cinderella City Project/Scene Navigation/Set Zoom Multiplier/Higher (6x)", false, 117)]
     public static void SetSceneViewZoomMultiplier6()
     {
         NavigationTools.SetZoomPreset(6f);
     }
 
-    [MenuItem("Cinderella City Project/Scene View Tools/Set Zoom Multiplier/High (4x)", false, 118)]
+    [MenuItem("Cinderella City Project/Scene Navigation/Set Zoom Multiplier/High (4x)", false, 118)]
     public static void SetSceneViewZoomMultiplier4()
     {
         NavigationTools.SetZoomPreset(4f);
     }
 
-    [MenuItem("Cinderella City Project/Scene View Tools/Set Zoom Multiplier/Moderate (2x)", false, 119)]
+    [MenuItem("Cinderella City Project/Scene Navigation/Set Zoom Multiplier/Moderate (2x)", false, 119)]
     public static void SetSceneViewZoomMultiplier2()
     {
         NavigationTools.SetZoomPreset(2f);
     }
 
-    [MenuItem("Cinderella City Project/Scene View Tools/Set Zoom Multiplier/Unity Default (1x)", false, 120)]
+    [MenuItem("Cinderella City Project/Scene Navigation/Set Zoom Multiplier/Unity Default (1x)", false, 120)]
     public static void SetSceneViewZoomMultiplier1()
     {
         NavigationTools.ResetZoomToUnityDefault();
     }
 
-    [MenuItem("Cinderella City Project/Scene View Tools/Log Camera Navigation State", false, 121)]
+    [MenuItem("Cinderella City Project/Scene Navigation/Log Camera Navigation State", false, 121)]
     public static void LogSceneViewNavigationState()
     {
         NavigationTools.LogNavigationState();
     }
 
-    [MenuItem("Cinderella City Project/Scene View Tools/", false, 122)]
-    public static void SceneViewToolsSelectionSeparator() { }
+    /* ---------- SCENE HIERARCHY SECTION ---------- */
 
-    [MenuItem("Cinderella City Project/Scene View Tools/", true, 122)]
-    public static bool SceneViewToolsSelectionSeparatorValidate()
+    [MenuItem("Cinderella City Project/Scene Hierarchy/Clear Selection", false, 123)]
+    public static void ClearEditorSelection()
+    {
+        SelectionTools.ClearSelection();
+    }
+
+    [MenuItem("Cinderella City Project/Scene Hierarchy/", false, 124)]
+    public static void SceneViewSelectionSeparator() { }
+
+    [MenuItem("Cinderella City Project/Scene Hierarchy/", true, 124)]
+    public static bool SceneViewSelectionSeparatorValidate()
     {
         return false;
     }
 
-    [MenuItem("Cinderella City Project/Scene View Tools/Clear Selection", false, 123)]
-    public static void ClearEditorSelection()
+    [MenuItem("Cinderella City Project/Scene Hierarchy/Set Parent...", true, 125)]
+    public static bool ValidateSetParentMenu()
     {
-        SelectionTools.ClearSelection();
+        return HierarchyTools.CanSetParent();
+    }
+
+    [MenuItem("Cinderella City Project/Scene Hierarchy/Set Parent...", false, 125)]
+    public static void ShowSetParentMenu()
+    {
+        HierarchyTools.ShowSetParentMenu();
+    }
+
+    [MenuItem("Cinderella City Project/Scene Hierarchy/Move Up", true, 126)]
+    public static bool ValidateMoveUpMenu()
+    {
+        return HierarchyTools.CanMoveUp();
+    }
+
+    [MenuItem("Cinderella City Project/Scene Hierarchy/Move Up", false, 126)]
+    public static void MoveUpMenu()
+    {
+        HierarchyTools.MoveUp();
+    }
+
+    [MenuItem("Cinderella City Project/Scene Hierarchy/Move Down", true, 127)]
+    public static bool ValidateMoveDownMenu()
+    {
+        return HierarchyTools.CanMoveDown();
+    }
+
+    [MenuItem("Cinderella City Project/Scene Hierarchy/Move Down", false, 127)]
+    public static void MoveDownMenu()
+    {
+        HierarchyTools.MoveDown();
+    }
+
+    [MenuItem("Cinderella City Project/Scene Hierarchy/Set as First Sibling", true, 128)]
+    public static bool ValidateSetAsFirstSiblingMenu()
+    {
+        return HierarchyTools.CanReorderActiveSibling();
+    }
+
+    [MenuItem("Cinderella City Project/Scene Hierarchy/Set as First Sibling", false, 128)]
+    public static void SetAsFirstSiblingMenu()
+    {
+        HierarchyTools.SetAsFirstSibling();
+    }
+
+    [MenuItem("Cinderella City Project/Scene Hierarchy/Set as Last Sibling", true, 129)]
+    public static bool ValidateSetAsLastSiblingMenu()
+    {
+        return HierarchyTools.CanReorderActiveSibling();
+    }
+
+    [MenuItem("Cinderella City Project/Scene Hierarchy/Set as Last Sibling", false, 129)]
+    public static void SetAsLastSiblingMenu()
+    {
+        HierarchyTools.SetAsLastSibling();
     }
 
     ///// MARK SCENE DIRTY /////
