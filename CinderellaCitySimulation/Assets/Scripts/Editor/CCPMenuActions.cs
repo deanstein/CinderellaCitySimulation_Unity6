@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
+using UnityEditor.Rendering.HighDefinition;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
@@ -415,6 +416,17 @@ public class CCPMenuActions : MonoBehaviour
     private const string reflectionProbeProxyObjectName = "proxy-reflection-probes";
     // the suffix appended to each generated reflection probe object (named after its source cuboid)
     private const string reflectionProbeObjectSuffix = "-reflection-probe";
+    // real-world geometry is authored in feet, but Unity world units are meters (1 unit = 1 meter ~= 3.2808 feet)
+    private const float unityUnitsPerFoot = 0.3048f;
+    // pull each probe's bottom up by this much (feet) off the cuboid's floor face so floor reflections are left to the planar probe
+    private const float reflectionProbeBottomInsetFeet = 1f;
+    // pull each probe's top down by this much (feet) off the cuboid's ceiling face so the box only drives vertical-face reflections
+    private const float reflectionProbeTopInsetFeet = 1f;
+    // capture the cubemap snapshot this high (feet) above the bottom of the (inset) probe box, rather than at the box center
+    private const float reflectionProbeCaptureHeightAboveBottomFeet = 5f;
+    // importance for these special probes; higher than the scene-wide custom fallback probe (importance 1) so they win inside their influence volumes
+    private const int reflectionProbeImportance = 2;
+    public static bool IsBakingReflectionProbes { get; private set; }
 
     [MenuItem("Cinderella City Project/Reflection Probes/Update for Current Scene", false, 203)]
     public static void UpdateReflectionProbesInCurrentScene()
@@ -432,11 +444,142 @@ public class CCPMenuActions : MonoBehaviour
         // create the probes, but leave the proxy meshes visible so they can be reviewed in the editor
         // (the import pipeline hides them automatically, reusing the standard proxy-hide path)
         int probesCreated = CreateReflectionProbesForProxyObject(matchingProxyObjects[0]);
+        if (probesCreated <= 0)
+        {
+            return;
+        }
 
-        if (probesCreated > 0)
+        if (!activeScene.IsValid() || string.IsNullOrEmpty(activeScene.path))
+        {
+            Debug.LogError("Reflection probes were created, but the scene must be saved before they can be baked.");
+            MarkCurrentSceneDirty();
+            return;
+        }
+
+        int probesBaked = BakeReflectionProbesForProxyObject(matchingProxyObjects[0], activeScene);
+        MarkCurrentSceneDirty();
+
+        if (probesBaked > 0)
+        {
+            AssetDatabase.SaveAssets();
+        }
+    }
+
+    [MenuItem("Cinderella City Project/Reflection Probes/Bake Current Scene", false, 204)]
+    public static void BakeReflectionProbesInCurrentScene()
+    {
+        if (!AssetImportUpdate.IsHighDefinitionRenderPipelineActive())
+        {
+            Debug.LogError("Reflection probe baking requires the High Definition Render Pipeline to be active.");
+            return;
+        }
+
+        Scene activeScene = EditorSceneManager.GetActiveScene();
+        if (!activeScene.IsValid() || string.IsNullOrEmpty(activeScene.path))
+        {
+            Debug.LogError("Save the current scene before baking reflection probes.");
+            return;
+        }
+
+        GameObject[] matchingProxyObjects = ManageSceneObjects.GetTopLevelSceneContainerGameObjectsByName(reflectionProbeProxyObjectName, true);
+        if (matchingProxyObjects == null || matchingProxyObjects.Length == 0)
+        {
+            Debug.LogError("Could not find an object named '" + reflectionProbeProxyObjectName + "' in the scene container for scene: " + activeScene.name);
+            return;
+        }
+
+        int probesBaked = BakeReflectionProbesForProxyObject(matchingProxyObjects[0], activeScene);
+        if (probesBaked > 0)
         {
             MarkCurrentSceneDirty();
+            AssetDatabase.SaveAssets();
         }
+    }
+
+    // bakes every reflection probe nested under the given proxy object
+    // returns the number of probes successfully baked
+    public static int BakeReflectionProbesForProxyObject(GameObject reflectionProbeProxyObject, Scene scene)
+    {
+        if (reflectionProbeProxyObject == null)
+        {
+            Debug.LogError("No reflection probe proxy object ('" + reflectionProbeProxyObjectName + "') was provided.");
+            return 0;
+        }
+
+        HDAdditionalReflectionData[] reflectionProbes = reflectionProbeProxyObject.GetComponentsInChildren<HDAdditionalReflectionData>(true);
+        if (reflectionProbes.Length == 0)
+        {
+            Debug.LogError("No reflection probes found under '" + reflectionProbeProxyObject.name + "'. Run 'Update for Current Scene' first.");
+            return 0;
+        }
+
+        LightmappingHDRP.BakeProbeOptions bakeOptions = LightmappingHDRP.BakeProbeOptions.NewDefault();
+        int probesBaked = 0;
+
+        // NOTE: do NOT wrap this loop in AssetDatabase.StartAssetEditing/StopAssetEditing.
+        // LightmappingHDRP.BakeProbe writes each .exr and then needs the AssetDatabase to import it
+        // (to assign probe.bakedTexture). Pausing imports via StartAssetEditing deadlocks/hangs that step.
+        // Re-entrancy is already prevented by the IsBakingReflectionProbes guard plus the .exr skip in
+        // AssetImportPipeline.OnPostprocessAllAssets.
+        IsBakingReflectionProbes = true;
+        try
+        {
+            foreach (HDAdditionalReflectionData reflectionProbe in reflectionProbes)
+            {
+                if (reflectionProbe == null)
+                {
+                    continue;
+                }
+
+                string bakedTexturePath = GetReflectionProbeBakePath(reflectionProbe, scene);
+                string bakedTextureDirectory = Path.GetDirectoryName(bakedTexturePath);
+                if (!string.IsNullOrEmpty(bakedTextureDirectory) && !Directory.Exists(bakedTextureDirectory))
+                {
+                    Directory.CreateDirectory(bakedTextureDirectory);
+                }
+
+                System.Exception bakeError = LightmappingHDRP.BakeProbe(reflectionProbe, bakedTexturePath, bakeOptions);
+                if (bakeError != null)
+                {
+                    Debug.LogError("Failed to bake reflection probe '" + reflectionProbe.gameObject.name + "': " + bakeError.Message);
+                    continue;
+                }
+
+                probesBaked++;
+            }
+        }
+        finally
+        {
+            IsBakingReflectionProbes = false;
+        }
+
+        if (probesBaked > 0)
+        {
+            DebugUtils.DebugLog("Baked " + probesBaked + " reflection probe(s) under '" + reflectionProbeProxyObject.name + "' in scene '" + scene.name + "'.");
+        }
+        else
+        {
+            Debug.LogError("Found " + reflectionProbes.Length + " reflection probe(s) under '" + reflectionProbeProxyObject.name + "', but none were baked successfully.");
+        }
+
+        return probesBaked;
+    }
+
+    // reuses an existing baked-texture asset path when available; otherwise writes beside the scene file
+    private static string GetReflectionProbeBakePath(HDAdditionalReflectionData reflectionProbe, Scene scene)
+    {
+        Texture existingBakedTexture = reflectionProbe.bakedTexture;
+        if (existingBakedTexture != null)
+        {
+            string existingPath = AssetDatabase.GetAssetPath(existingBakedTexture);
+            if (!string.IsNullOrEmpty(existingPath))
+            {
+                return existingPath;
+            }
+        }
+
+        string sceneFolder = Path.GetDirectoryName(scene.path).Replace('\\', '/');
+        return sceneFolder + "/" + reflectionProbe.gameObject.name + ".exr";
     }
 
     // creates (or updates) a reflection probe for every cuboid mesh nested under the given proxy object
@@ -445,6 +588,11 @@ public class CCPMenuActions : MonoBehaviour
     // it lives here (rather than in AssetImportPipeline) to keep the hard HDRP dependency isolated to this file
     public static int CreateReflectionProbesForProxyObject(GameObject reflectionProbeProxyObject)
     {
+        if (IsBakingReflectionProbes)
+        {
+            return 0;
+        }
+
         // HDRP-only feature: the oriented influence volumes below rely on the HD reflection data,
         // so bail out clearly rather than silently producing world-axis-aligned probes elsewhere
         if (!AssetImportUpdate.IsHighDefinitionRenderPipelineActive())
@@ -489,8 +637,8 @@ public class CCPMenuActions : MonoBehaviour
                 continue;
             }
 
-            CreateReflectionProbeForCuboidMesh(reflectionProbeProxyObject, cuboidObject, meshFilter);
-            probesCreated++;
+            int cuboidProbesCreated = CreateReflectionProbesForCuboidMesh(reflectionProbeProxyObject, cuboidObject, meshFilter);
+            probesCreated += cuboidProbesCreated;
         }
 
         if (probesCreated > 0)
@@ -505,55 +653,100 @@ public class CCPMenuActions : MonoBehaviour
         return probesCreated;
     }
 
-    // creates a single reflection probe that matches the size, position, and orientation of the given cuboid mesh.
-    // the probe is parented directly under the proxy object - a SIBLING of the cuboids, NOT a child of the mesh -
-    // so that hiding the cuboid meshes (which deactivates their GameObjects) does not also deactivate the probe
-    private static void CreateReflectionProbeForCuboidMesh(GameObject reflectionProbeProxyObject, GameObject cuboidObject, MeshFilter cuboidMeshFilter)
+    // creates a single reflection probe spanning a cuboid mesh's full footprint, oriented to the cuboid
+    // the probe is inset vertically: its bottom is raised up off the cuboid's floor face (so the glossy floor is left to the
+    // planar probe) and its top is lowered down off the cuboid's ceiling face, so the box only drives vertical-face reflections.
+    //
+    // IMPORTANT: imported FBX cuboids can be rotated (axis conversion, per-object orientation from the modeling app), so the
+    // vertical axis is NOT necessarily local Y. we detect whichever local axis points most along world up and apply the
+    // vertical inset to that axis, keeping the box oriented to the cuboid.
+    private static int CreateReflectionProbesForCuboidMesh(
+        GameObject reflectionProbeProxyObject,
+        GameObject cuboidObject,
+        MeshFilter cuboidMeshFilter)
     {
         Transform meshTransform = cuboidMeshFilter.transform;
-
-        // the mesh's local-space bounds describe the cuboid before any transform rotation is applied,
-        // so they give us the true (un-rotated) dimensions and centroid of the box
         Bounds localBounds = cuboidMeshFilter.sharedMesh.bounds;
 
-        GameObject probeObject = new GameObject(cuboidObject.name + reflectionProbeObjectSuffix);
-        probeObject.transform.SetParent(reflectionProbeProxyObject.transform, false);
-
-        // match the cuboid in world space; HDRP influence volumes are oriented with the transform,
-        // so a Y-rotated cuboid is matched exactly
-        probeObject.transform.position = meshTransform.TransformPoint(localBounds.center);
-        probeObject.transform.rotation = meshTransform.rotation;
-        probeObject.transform.localScale = Vector3.one;
-
-        // convert the cuboid's local dimensions into true world dimensions along each (rotated) axis;
-        // TransformVector applies rotation and scale but not translation, so each edge length is preserved
-        Vector3 worldSize = new Vector3(
+        // world-space lengths of each local axis (accounts for the cuboid's rotation and scale)
+        Vector3 worldAxisSizes = new Vector3(
             meshTransform.TransformVector(new Vector3(localBounds.size.x, 0f, 0f)).magnitude,
             meshTransform.TransformVector(new Vector3(0f, localBounds.size.y, 0f)).magnitude,
             meshTransform.TransformVector(new Vector3(0f, 0f, localBounds.size.z)).magnitude);
 
-        // the influence box is interpreted in the probe's local space (scaled by its lossyScale),
-        // so divide out any scale the probe inherits from the proxy object to land on the true world size
+        // find which local axis points most along world up; the vertical inset is applied to that axis
+        Vector3[] localAxisWorldDirs = new Vector3[]
+        {
+            meshTransform.TransformDirection(Vector3.right),
+            meshTransform.TransformDirection(Vector3.up),
+            meshTransform.TransformDirection(Vector3.forward),
+        };
+        int verticalAxis = 0;
+        float bestVerticalDot = Mathf.Abs(Vector3.Dot(localAxisWorldDirs[0].normalized, Vector3.up));
+        for (int axis = 1; axis < 3; axis++)
+        {
+            float verticalDot = Mathf.Abs(Vector3.Dot(localAxisWorldDirs[axis].normalized, Vector3.up));
+            if (verticalDot > bestVerticalDot)
+            {
+                bestVerticalDot = verticalDot;
+                verticalAxis = axis;
+            }
+        }
+
+        // vertical insets (world units): raise the bottom up off the floor and lower the top down off the ceiling.
+        // insetting both ends shrinks the height by their sum; the center shifts up by half their difference (zero when equal).
+        float bottomInsetUnits = reflectionProbeBottomInsetFeet * unityUnitsPerFoot;
+        float topInsetUnits = reflectionProbeTopInsetFeet * unityUnitsPerFoot;
+        float verticalCenterShiftUnits = (bottomInsetUnits - topInsetUnits) * 0.5f;
+
+        // box size: full footprint on both horizontal axes, inset on the vertical axis
+        Vector3 worldBoxSize = worldAxisSizes;
+        worldBoxSize[verticalAxis] = Mathf.Max(0f, worldAxisSizes[verticalAxis] - bottomInsetUnits - topInsetUnits);
+
+        GameObject probeObject = new GameObject(cuboidObject.name + reflectionProbeObjectSuffix);
+        probeObject.transform.SetParent(reflectionProbeProxyObject.transform, false);
+
+        // center on the cuboid, nudged up so the box sits off the floor and off the ceiling
+        probeObject.transform.position = meshTransform.TransformPoint(localBounds.center) + (Vector3.up * verticalCenterShiftUnits);
+        probeObject.transform.rotation = meshTransform.rotation;
+        probeObject.transform.localScale = Vector3.one;
+
+        // convert the world-space box size into the probe's local box size (divide out any inherited scale)
         Vector3 probeScale = probeObject.transform.lossyScale;
         Vector3 boxSize = new Vector3(
-            probeScale.x != 0f ? worldSize.x / probeScale.x : worldSize.x,
-            probeScale.y != 0f ? worldSize.y / probeScale.y : worldSize.y,
-            probeScale.z != 0f ? worldSize.z / probeScale.z : worldSize.z);
+            probeScale.x != 0f ? worldBoxSize.x / probeScale.x : worldBoxSize.x,
+            probeScale.y != 0f ? worldBoxSize.y / probeScale.y : worldBoxSize.y,
+            probeScale.z != 0f ? worldBoxSize.z / probeScale.z : worldBoxSize.z);
 
-        // adding HDAdditionalReflectionData also adds the legacy ReflectionProbe via its RequireComponent
         ReflectionProbe reflectionProbe = probeObject.AddComponent<ReflectionProbe>();
         HDAdditionalReflectionData hdReflectionData = probeObject.AddComponent<HDAdditionalReflectionData>();
 
         reflectionProbe.center = Vector3.zero;
         reflectionProbe.size = boxSize;
+        reflectionProbe.blendDistance = 0f;
 
         hdReflectionData.influenceVolume.shape = InfluenceShape.Box;
         hdReflectionData.influenceVolume.boxSize = boxSize;
+        hdReflectionData.influenceVolume.boxBlendDistancePositive = Vector3.zero;
+        hdReflectionData.influenceVolume.boxBlendDistanceNegative = Vector3.zero;
 
-        // push the updated influence volume into the culling system
+        // HDRP sorts overlapping probes by importance (higher wins); set above the scene-wide custom fallback so these override it locally
+        hdReflectionData.importance = reflectionProbeImportance;
+
+        // capture the cubemap snapshot a fixed height above the box bottom instead of at the box center.
+        // capturePositionProxySpace is relative to the probe (its influence volume is the proxy), and HDRP computes the
+        // world capture position as transform.position + transform.rotation * capturePositionProxySpace, so we express the
+        // desired world-up offset (capture height minus half the box height) back in the probe's local space.
+        float captureHeightUnits = reflectionProbeCaptureHeightAboveBottomFeet * unityUnitsPerFoot;
+        float captureUpOffsetUnits = captureHeightUnits - (worldBoxSize[verticalAxis] * 0.5f);
+        hdReflectionData.settingsRaw.proxySettings.capturePositionProxySpace =
+            Quaternion.Inverse(probeObject.transform.rotation) * (Vector3.up * captureUpOffsetUnits);
+
         hdReflectionData.PrepareCulling();
 
         EditorUtility.SetDirty(probeObject);
+
+        return 1;
     }
 
     ///// MATERIAL ADJUSTMENTS /////
