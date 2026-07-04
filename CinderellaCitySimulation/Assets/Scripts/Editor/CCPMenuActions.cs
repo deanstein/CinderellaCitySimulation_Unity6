@@ -131,8 +131,80 @@ public class CCPMenuActions : MonoBehaviour
         HoistSceneObjectsEditor.HoistSceneContainersDown(timePeriodSceneContainers);
     }
 
+    /* ---------- SCENE VIEW TOOLS SECTION ---------- */
+
+    [MenuItem("Cinderella City Project/Scene View Tools/Relocalize Zoom Pivot %#f", false, 114)]
+    public static void RelocalizeSceneViewZoomPivot()
+    {
+        NavigationTools.RequestRelocalizeZoomPivot(SceneView.lastActiveSceneView);
+    }
+
+    [MenuItem("Cinderella City Project/Scene View Tools/Zoom to Fit At Cursor %f", false, 115)]
+    public static void ZoomSceneViewToFitAtCursor()
+    {
+        NavigationTools.RequestZoomToFitAtCursor(SceneView.lastActiveSceneView);
+    }
+
+    [MenuItem("Cinderella City Project/Scene View Tools/Toggle Boosted Scroll Zoom", false, 116)]
+    public static void ToggleSceneViewBoostedScrollZoom()
+    {
+        NavigationTools.ToggleBoostedScrollZoom();
+    }
+
+    [MenuItem("Cinderella City Project/Scene View Tools/Toggle Boosted Scroll Zoom", true)]
+    public static bool ToggleSceneViewBoostedScrollZoomValidate()
+    {
+        Menu.SetChecked("Cinderella City Project/Scene View Tools/Toggle Boosted Scroll Zoom", NavigationTools.BoostEnabled);
+        return true;
+    }
+
+    [MenuItem("Cinderella City Project/Scene View Tools/Set Zoom Multiplier/Higher (6x)", false, 117)]
+    public static void SetSceneViewZoomMultiplier6()
+    {
+        NavigationTools.SetZoomPreset(6f);
+    }
+
+    [MenuItem("Cinderella City Project/Scene View Tools/Set Zoom Multiplier/High (4x)", false, 118)]
+    public static void SetSceneViewZoomMultiplier4()
+    {
+        NavigationTools.SetZoomPreset(4f);
+    }
+
+    [MenuItem("Cinderella City Project/Scene View Tools/Set Zoom Multiplier/Moderate (2x)", false, 119)]
+    public static void SetSceneViewZoomMultiplier2()
+    {
+        NavigationTools.SetZoomPreset(2f);
+    }
+
+    [MenuItem("Cinderella City Project/Scene View Tools/Set Zoom Multiplier/Unity Default (1x)", false, 120)]
+    public static void SetSceneViewZoomMultiplier1()
+    {
+        NavigationTools.ResetZoomToUnityDefault();
+    }
+
+    [MenuItem("Cinderella City Project/Scene View Tools/Log Camera Navigation State", false, 121)]
+    public static void LogSceneViewNavigationState()
+    {
+        NavigationTools.LogNavigationState();
+    }
+
+    [MenuItem("Cinderella City Project/Scene View Tools/", false, 122)]
+    public static void SceneViewToolsSelectionSeparator() { }
+
+    [MenuItem("Cinderella City Project/Scene View Tools/", true, 122)]
+    public static bool SceneViewToolsSelectionSeparatorValidate()
+    {
+        return false;
+    }
+
+    [MenuItem("Cinderella City Project/Scene View Tools/Clear Selection", false, 123)]
+    public static void ClearEditorSelection()
+    {
+        SelectionTools.ClearSelection();
+    }
+
     ///// MARK SCENE DIRTY /////
-    [MenuItem("Cinderella City Project/Mark Current Scene Dirty", false, 120)]
+    [MenuItem("Cinderella City Project/Mark Current Scene Dirty", false, 130)]
     public static void MarkCurrentSceneDirty()
     {
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
