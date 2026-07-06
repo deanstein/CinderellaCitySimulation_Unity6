@@ -472,12 +472,14 @@ public class CCPMenuActions : MonoBehaviour
         }
     }
 
-    ///// REFLECTION PROBES /////
+    ///// LIGHT + REFLECTION PROBES /////
     // the name of the proxy object (a top-level child of the scene container) that holds the
-    // cuboid meshes describing where reflection probes should be placed and how big they should be
+    // cuboid meshes describing where reflection probes and light probes should be placed
     private const string reflectionProbeProxyObjectName = "proxy-reflection-probes";
     // the suffix appended to each generated reflection probe object (named after its source cuboid)
     private const string reflectionProbeObjectSuffix = "-reflection-probe";
+    // the suffix appended to each generated light probe group object (named after its source cuboid)
+    private const string lightProbeObjectSuffix = "-light-probes";
     // real-world geometry is authored in feet, but Unity world units are meters (1 unit = 1 meter ~= 3.2808 feet)
     private const float unityUnitsPerFoot = 0.3048f;
     // pull each probe's bottom up by this much (feet) off the cuboid's floor face so floor reflections are left to the planar probe
@@ -486,12 +488,32 @@ public class CCPMenuActions : MonoBehaviour
     private const float reflectionProbeTopInsetFeet = 1f;
     // capture the cubemap snapshot this high (feet) above the bottom of the (inset) probe box, rather than at the box center
     private const float reflectionProbeCaptureHeightAboveBottomFeet = 5f;
+    // horizontal spacing between light probe sample points inside each cuboid (feet).
+    // default is one sample every three 32' mall bays (96'); keep this coarse for now to avoid huge GI bakes.
+    private const float lightProbeGridSpacingFeet = 96f;
+    // light probe sample height above the cuboid floor (feet), roughly standing height
+    private const float lightProbeHeightAboveFloorFeet = 6f;
     // importance for these special probes; higher than the scene-wide custom fallback probe (importance 1) so they win inside their influence volumes
     private const int reflectionProbeImportance = 2;
     public static bool IsBakingReflectionProbes { get; private set; }
 
-    [MenuItem("Cinderella City Project/Reflection Probes/Update for Current Scene", false, 203)]
-    public static void UpdateReflectionProbesInCurrentScene()
+    public struct ProbeCreationResult
+    {
+        public int ReflectionProbesCreated;
+        public int LightProbeGroupsCreated;
+        public int LightProbePointsCreated;
+    }
+
+    private struct CuboidBoundsInfo
+    {
+        public Transform MeshTransform;
+        public Bounds LocalBounds;
+        public Vector3 WorldAxisSizes;
+        public int VerticalAxis;
+    }
+
+    [MenuItem("Cinderella City Project/Light + Reflection Probes/Update for Current Scene", false, 203)]
+    public static void UpdateProbesInCurrentScene()
     {
         Scene activeScene = EditorSceneManager.GetActiveScene();
 
@@ -503,31 +525,18 @@ public class CCPMenuActions : MonoBehaviour
             return;
         }
 
-        // create the probes, but leave the proxy meshes visible so they can be reviewed in the editor
+        // create reflection probes and light probe groups, but leave the proxy meshes visible so they can be reviewed in the editor
         // (the import pipeline hides them automatically, reusing the standard proxy-hide path)
-        int probesCreated = CreateReflectionProbesForProxyObject(matchingProxyObjects[0]);
-        if (probesCreated <= 0)
+        ProbeCreationResult creationResult = CreateProbesForProxyObject(matchingProxyObjects[0]);
+        if (creationResult.ReflectionProbesCreated <= 0 && creationResult.LightProbeGroupsCreated <= 0)
         {
             return;
         }
 
-        if (!activeScene.IsValid() || string.IsNullOrEmpty(activeScene.path))
-        {
-            Debug.LogError("Reflection probes were created, but the scene must be saved before they can be baked.");
-            MarkCurrentSceneDirty();
-            return;
-        }
-
-        int probesBaked = BakeReflectionProbesForProxyObject(matchingProxyObjects[0], activeScene);
         MarkCurrentSceneDirty();
-
-        if (probesBaked > 0)
-        {
-            AssetDatabase.SaveAssets();
-        }
     }
 
-    [MenuItem("Cinderella City Project/Reflection Probes/Bake Current Scene", false, 204)]
+    [MenuItem("Cinderella City Project/Light + Reflection Probes/Bake Reflection Probes", false, 204)]
     public static void BakeReflectionProbesInCurrentScene()
     {
         if (!AssetImportUpdate.IsHighDefinitionRenderPipelineActive())
@@ -644,36 +653,37 @@ public class CCPMenuActions : MonoBehaviour
         return sceneFolder + "/" + reflectionProbe.gameObject.name + ".exr";
     }
 
-    // creates (or updates) a reflection probe for every cuboid mesh nested under the given proxy object
-    // returns the number of probes created/updated
+    // creates (or updates) reflection probes and light probe groups for every cuboid mesh nested under the given proxy object
     // NOTE: this is the shared entry point used by both the CCP menu and the AssetImportPipeline post-processor.
     // it lives here (rather than in AssetImportPipeline) to keep the hard HDRP dependency isolated to this file
-    public static int CreateReflectionProbesForProxyObject(GameObject reflectionProbeProxyObject)
+    public static ProbeCreationResult CreateProbesForProxyObject(GameObject reflectionProbeProxyObject)
     {
+        ProbeCreationResult creationResult = new ProbeCreationResult();
+
         if (IsBakingReflectionProbes)
         {
-            return 0;
+            return creationResult;
         }
 
-        // HDRP-only feature: the oriented influence volumes below rely on the HD reflection data,
-        // so bail out clearly rather than silently producing world-axis-aligned probes elsewhere
+        // reflection probe placement relies on the HD reflection data, so bail out clearly rather than silently
+        // producing world-axis-aligned probes elsewhere
         if (!AssetImportUpdate.IsHighDefinitionRenderPipelineActive())
         {
-            Debug.LogError("Reflection Probes update requires the High Definition Render Pipeline to be active.");
-            return 0;
+            Debug.LogError("Light + Reflection Probes update requires the High Definition Render Pipeline to be active.");
+            return creationResult;
         }
 
         if (reflectionProbeProxyObject == null)
         {
-            Debug.LogError("No reflection probe proxy object ('" + reflectionProbeProxyObjectName + "') was provided.");
-            return 0;
+            Debug.LogError("No probe proxy object ('" + reflectionProbeProxyObjectName + "') was provided.");
+            return creationResult;
         }
 
         // remove any probes generated by a previous run so this stays idempotent
         // (generated probes live directly under the proxy object as siblings of the cuboids - see below)
         foreach (GameObject existingChild in ManageSceneObjects.GetAllTopLevelChildrenInObject(reflectionProbeProxyObject))
         {
-            if (existingChild.GetComponent<ReflectionProbe>() != null)
+            if (existingChild.GetComponent<ReflectionProbe>() != null || existingChild.GetComponent<LightProbeGroup>() != null)
             {
                 Object.DestroyImmediate(existingChild);
             }
@@ -683,11 +693,9 @@ public class CCPMenuActions : MonoBehaviour
         GameObject[] cuboidObjects = ManageSceneObjects.GetAllTopLevelChildrenInObject(reflectionProbeProxyObject);
         if (cuboidObjects.Length == 0)
         {
-            Debug.LogError("'" + reflectionProbeProxyObject.name + "' has no child objects to place reflection probes for.");
-            return 0;
+            Debug.LogError("'" + reflectionProbeProxyObject.name + "' has no child objects to place probes for.");
+            return creationResult;
         }
-
-        int probesCreated = 0;
 
         foreach (GameObject cuboidObject in cuboidObjects)
         {
@@ -695,38 +703,62 @@ public class CCPMenuActions : MonoBehaviour
             MeshFilter meshFilter = cuboidObject.GetComponentInChildren<MeshFilter>(true);
             if (meshFilter == null || meshFilter.sharedMesh == null)
             {
-                Debug.LogWarning("No mesh found under '" + cuboidObject.name + "' - skipping reflection probe for this object.");
+                Debug.LogWarning("No mesh found under '" + cuboidObject.name + "' - skipping probes for this object.");
                 continue;
             }
 
-            int cuboidProbesCreated = CreateReflectionProbesForCuboidMesh(reflectionProbeProxyObject, cuboidObject, meshFilter);
-            probesCreated += cuboidProbesCreated;
+            if (!TryGetCuboidBoundsInfo(meshFilter, out CuboidBoundsInfo cuboidBounds))
+            {
+                Debug.LogWarning("Could not read bounds for '" + cuboidObject.name + "' - skipping probes for this object.");
+                continue;
+            }
+
+            creationResult.ReflectionProbesCreated += CreateReflectionProbeForCuboidMesh(
+                reflectionProbeProxyObject,
+                cuboidObject.name,
+                cuboidBounds);
+            int lightProbePointsCreated = CreateLightProbeGroupForCuboidMesh(
+                reflectionProbeProxyObject,
+                cuboidObject.name,
+                cuboidBounds,
+                out bool lightProbeGroupCreated);
+            if (lightProbeGroupCreated)
+            {
+                creationResult.LightProbeGroupsCreated++;
+            }
+
+            creationResult.LightProbePointsCreated += lightProbePointsCreated;
         }
 
-        if (probesCreated > 0)
+        if (creationResult.ReflectionProbesCreated > 0 || creationResult.LightProbeGroupsCreated > 0)
         {
-            DebugUtils.DebugLog("Created " + probesCreated + " reflection probe(s) under '" + reflectionProbeProxyObject.name + "'.");
+            DebugUtils.DebugLog(
+                "Created " + creationResult.ReflectionProbesCreated + " reflection probe(s), "
+                + creationResult.LightProbeGroupsCreated + " light probe group(s), and "
+                + creationResult.LightProbePointsCreated + " light probe point(s) under '" + reflectionProbeProxyObject.name + "'.");
         }
         else
         {
-            Debug.LogError("Found '" + reflectionProbeProxyObject.name + "' but none of its children contained a mesh, so no reflection probes were created.");
+            Debug.LogError("Found '" + reflectionProbeProxyObject.name + "' but none of its children contained a mesh, so no probes were created.");
         }
 
-        return probesCreated;
+        return creationResult;
     }
 
-    // creates a single reflection probe spanning a cuboid mesh's full footprint, oriented to the cuboid
-    // the probe is inset vertically: its bottom is raised up off the cuboid's floor face (so the glossy floor is left to the
-    // planar probe) and its top is lowered down off the cuboid's ceiling face, so the box only drives vertical-face reflections.
-    //
-    // IMPORTANT: imported FBX cuboids can be rotated (axis conversion, per-object orientation from the modeling app), so the
-    // vertical axis is NOT necessarily local Y. we detect whichever local axis points most along world up and apply the
-    // vertical inset to that axis, keeping the box oriented to the cuboid.
-    private static int CreateReflectionProbesForCuboidMesh(
-        GameObject reflectionProbeProxyObject,
-        GameObject cuboidObject,
-        MeshFilter cuboidMeshFilter)
+    public static int CreateReflectionProbesForProxyObject(GameObject reflectionProbeProxyObject)
     {
+        return CreateProbesForProxyObject(reflectionProbeProxyObject).ReflectionProbesCreated;
+    }
+
+    private static bool TryGetCuboidBoundsInfo(MeshFilter cuboidMeshFilter, out CuboidBoundsInfo cuboidBounds)
+    {
+        cuboidBounds = default;
+
+        if (cuboidMeshFilter == null || cuboidMeshFilter.sharedMesh == null)
+        {
+            return false;
+        }
+
         Transform meshTransform = cuboidMeshFilter.transform;
         Bounds localBounds = cuboidMeshFilter.sharedMesh.bounds;
 
@@ -736,7 +768,7 @@ public class CCPMenuActions : MonoBehaviour
             meshTransform.TransformVector(new Vector3(0f, localBounds.size.y, 0f)).magnitude,
             meshTransform.TransformVector(new Vector3(0f, 0f, localBounds.size.z)).magnitude);
 
-        // find which local axis points most along world up; the vertical inset is applied to that axis
+        // find which local axis points most along world up
         Vector3[] localAxisWorldDirs = new Vector3[]
         {
             meshTransform.TransformDirection(Vector3.right),
@@ -755,8 +787,154 @@ public class CCPMenuActions : MonoBehaviour
             }
         }
 
-        // vertical insets (world units): raise the bottom up off the floor and lower the top down off the ceiling.
-        // insetting both ends shrinks the height by their sum; the center shifts up by half their difference (zero when equal).
+        cuboidBounds = new CuboidBoundsInfo
+        {
+            MeshTransform = meshTransform,
+            LocalBounds = localBounds,
+            WorldAxisSizes = worldAxisSizes,
+            VerticalAxis = verticalAxis,
+        };
+        return true;
+    }
+
+    private static List<Vector3> GenerateLightProbeGridWorldPositions(CuboidBoundsInfo cuboidBounds)
+    {
+        List<Vector3> worldPositions = new List<Vector3>();
+        Vector3 localMin = cuboidBounds.LocalBounds.min;
+        Vector3 localMax = cuboidBounds.LocalBounds.max;
+        float spacingUnits = lightProbeGridSpacingFeet * unityUnitsPerFoot;
+        if (spacingUnits <= 0f)
+        {
+            spacingUnits = unityUnitsPerFoot;
+        }
+
+        int horizontalAxis0 = (cuboidBounds.VerticalAxis + 1) % 3;
+        int horizontalAxis1 = (cuboidBounds.VerticalAxis + 2) % 3;
+
+        float floorLocal = localMin[cuboidBounds.VerticalAxis];
+        float ceilingLocal = localMax[cuboidBounds.VerticalAxis];
+        float probeHeightLocal = floorLocal + (lightProbeHeightAboveFloorFeet * unityUnitsPerFoot);
+        if (probeHeightLocal > ceilingLocal)
+        {
+            probeHeightLocal = (floorLocal + ceilingLocal) * 0.5f;
+        }
+
+        AppendLightProbeGridAxisSamples(
+            worldPositions,
+            cuboidBounds,
+            horizontalAxis0,
+            horizontalAxis1,
+            probeHeightLocal,
+            localMin,
+            localMax,
+            spacingUnits);
+        if (worldPositions.Count == 0)
+        {
+            Vector3 fallbackLocal = cuboidBounds.LocalBounds.center;
+            fallbackLocal[cuboidBounds.VerticalAxis] = probeHeightLocal;
+            worldPositions.Add(cuboidBounds.MeshTransform.TransformPoint(fallbackLocal));
+        }
+
+        return worldPositions;
+    }
+
+    private static void AppendLightProbeGridAxisSamples(
+        List<Vector3> worldPositions,
+        CuboidBoundsInfo cuboidBounds,
+        int horizontalAxis0,
+        int horizontalAxis1,
+        float probeHeightLocal,
+        Vector3 localMin,
+        Vector3 localMax,
+        float spacingUnits)
+    {
+        float axis0Min = localMin[horizontalAxis0];
+        float axis0Max = localMax[horizontalAxis0];
+        float axis1Min = localMin[horizontalAxis1];
+        float axis1Max = localMax[horizontalAxis1];
+
+        IEnumerable<float> axis0Samples = GenerateLightProbeAxisSamples(axis0Min, axis0Max, spacingUnits);
+        IEnumerable<float> axis1Samples = GenerateLightProbeAxisSamples(axis1Min, axis1Max, spacingUnits);
+
+        foreach (float axis0Sample in axis0Samples)
+        {
+            foreach (float axis1Sample in axis1Samples)
+            {
+                Vector3 localProbePosition = Vector3.zero;
+                localProbePosition[cuboidBounds.VerticalAxis] = probeHeightLocal;
+                localProbePosition[horizontalAxis0] = axis0Sample;
+                localProbePosition[horizontalAxis1] = axis1Sample;
+                worldPositions.Add(cuboidBounds.MeshTransform.TransformPoint(localProbePosition));
+            }
+        }
+    }
+
+    private static IEnumerable<float> GenerateLightProbeAxisSamples(float axisMin, float axisMax, float spacingUnits)
+    {
+        float axisLength = axisMax - axisMin;
+        if (axisLength <= 0f)
+        {
+            yield return axisMin;
+            yield break;
+        }
+
+        if (axisLength <= spacingUnits)
+        {
+            yield return (axisMin + axisMax) * 0.5f;
+            yield break;
+        }
+
+        float sampleStart = axisMin + (spacingUnits * 0.5f);
+        for (float sample = sampleStart; sample <= axisMax + (spacingUnits * 0.01f); sample += spacingUnits)
+        {
+            yield return Mathf.Min(sample, axisMax);
+        }
+    }
+
+    private static int CreateLightProbeGroupForCuboidMesh(
+        GameObject reflectionProbeProxyObject,
+        string cuboidObjectName,
+        CuboidBoundsInfo cuboidBounds,
+        out bool lightProbeGroupCreated)
+    {
+        lightProbeGroupCreated = false;
+        List<Vector3> worldProbePositions = GenerateLightProbeGridWorldPositions(cuboidBounds);
+        if (worldProbePositions.Count == 0)
+        {
+            return 0;
+        }
+
+        GameObject lightProbeObject = new GameObject(cuboidObjectName + lightProbeObjectSuffix);
+        lightProbeObject.transform.SetParent(reflectionProbeProxyObject.transform, false);
+        lightProbeObject.transform.localPosition = Vector3.zero;
+        lightProbeObject.transform.localRotation = Quaternion.identity;
+        lightProbeObject.transform.localScale = Vector3.one;
+
+        Vector3[] localProbePositions = new Vector3[worldProbePositions.Count];
+        for (int i = 0; i < worldProbePositions.Count; i++)
+        {
+            localProbePositions[i] = lightProbeObject.transform.InverseTransformPoint(worldProbePositions[i]);
+        }
+
+        LightProbeGroup lightProbeGroup = lightProbeObject.AddComponent<LightProbeGroup>();
+        lightProbeGroup.probePositions = localProbePositions;
+
+        EditorUtility.SetDirty(lightProbeObject);
+        lightProbeGroupCreated = true;
+        return localProbePositions.Length;
+    }
+
+    // creates a single reflection probe spanning a cuboid mesh's full footprint, oriented to the cuboid.
+    // the probe is inset vertically so floor reflections stay with the planar probe and the box drives wall reflections.
+    private static int CreateReflectionProbeForCuboidMesh(
+        GameObject reflectionProbeProxyObject,
+        string cuboidObjectName,
+        CuboidBoundsInfo cuboidBounds)
+    {
+        Transform meshTransform = cuboidBounds.MeshTransform;
+        Bounds localBounds = cuboidBounds.LocalBounds;
+        Vector3 worldAxisSizes = cuboidBounds.WorldAxisSizes;
+        int verticalAxis = cuboidBounds.VerticalAxis;
         float bottomInsetUnits = reflectionProbeBottomInsetFeet * unityUnitsPerFoot;
         float topInsetUnits = reflectionProbeTopInsetFeet * unityUnitsPerFoot;
         float verticalCenterShiftUnits = (bottomInsetUnits - topInsetUnits) * 0.5f;
@@ -765,7 +943,7 @@ public class CCPMenuActions : MonoBehaviour
         Vector3 worldBoxSize = worldAxisSizes;
         worldBoxSize[verticalAxis] = Mathf.Max(0f, worldAxisSizes[verticalAxis] - bottomInsetUnits - topInsetUnits);
 
-        GameObject probeObject = new GameObject(cuboidObject.name + reflectionProbeObjectSuffix);
+        GameObject probeObject = new GameObject(cuboidObjectName + reflectionProbeObjectSuffix);
         probeObject.transform.SetParent(reflectionProbeProxyObject.transform, false);
 
         // center on the cuboid, nudged up so the box sits off the floor and off the ceiling
