@@ -636,7 +636,8 @@ public class CCPMenuActions : MonoBehaviour
         return probesBaked;
     }
 
-    // reuses an existing baked-texture asset path when available; otherwise writes beside the scene file
+    // reuses an existing baked-texture asset path when available; otherwise writes into the scene's baked-data
+    // subfolder (e.g. Assets/Scenes/60s70s/), matching Unity lightmaps and default ReflectionProbe-N.exr layout
     private static string GetReflectionProbeBakePath(HDAdditionalReflectionData reflectionProbe, Scene scene)
     {
         Texture existingBakedTexture = reflectionProbe.bakedTexture;
@@ -649,8 +650,9 @@ public class CCPMenuActions : MonoBehaviour
             }
         }
 
-        string sceneFolder = Path.GetDirectoryName(scene.path).Replace('\\', '/');
-        return sceneFolder + "/" + reflectionProbe.gameObject.name + ".exr";
+        string sceneDirectory = Path.GetDirectoryName(scene.path).Replace('\\', '/');
+        string sceneName = Path.GetFileNameWithoutExtension(scene.path);
+        return sceneDirectory + "/" + sceneName + "/" + reflectionProbe.gameObject.name + ".exr";
     }
 
     // creates (or updates) reflection probes and light probe groups for every cuboid mesh nested under the given proxy object
