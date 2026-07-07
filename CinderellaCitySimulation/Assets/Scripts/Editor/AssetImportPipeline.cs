@@ -1315,34 +1315,6 @@ public class AssetImportUpdate : AssetPostprocessor {
         return splashInstance;
     }
 
-    // tilt SubFountain08_sprinkles shape emission toward the centroid of all fountain-main jets (main spray untouched)
-    static void ApplyFountainSparkleLean(GameObject jetInstance, Vector3 fountainJetCentroid)
-    {
-        const float sparkleLeanAngle = 3f; // degrees (tune)
-        Quaternion baselineShape = Quaternion.Euler(-0.2f, 0f, 0f);
-
-        Transform sprinkles = jetInstance.transform.GetChild(0);
-        sprinkles.localRotation = Quaternion.identity;
-
-        Vector3 towardCentroid = fountainJetCentroid - jetInstance.transform.position;
-        towardCentroid.y = 0f;
-
-        Quaternion shapeRotation = baselineShape;
-        if (towardCentroid.sqrMagnitude > 0.0001f)
-        {
-            Vector3 currentWorldEmit = sprinkles.rotation * (baselineShape * Vector3.forward);
-            Vector3 targetWorldEmit = Vector3.RotateTowards(Vector3.up, towardCentroid.normalized, sparkleLeanAngle * Mathf.Deg2Rad, 0f);
-            Vector3 correctionAxis = Vector3.Cross(currentWorldEmit, targetWorldEmit);
-            if (correctionAxis.sqrMagnitude > 0.0001f)
-            {
-                Quaternion worldCorrection = Quaternion.AngleAxis(Vector3.Angle(currentWorldEmit, targetWorldEmit), correctionAxis.normalized);
-                shapeRotation = Quaternion.Inverse(sprinkles.rotation) * worldCorrection * sprinkles.rotation * baselineShape;
-            }
-        }
-
-        sprinkles.GetComponent<ParticleSystem>().shape.rotation = shapeRotation.eulerAngles;
-    }
-
     // define how to instantiate proxy replacement objects
     public static void InstantiateProxyReplacements(string assetName)
     {
@@ -1379,22 +1351,6 @@ public class AssetImportUpdate : AssetPostprocessor {
 
         // get all the children from the gameObject
         Transform[] allChildren = gameObjectByAsset.GetComponentsInChildren<Transform>(true); // true to include inactive children;
-
-        // pre-pass: centroid of fountain-main jet proxies (sparkle lean target)
-        Vector3 fountainJetCentroid = Vector3.zero;
-        int fountainMainCount = 0;
-        foreach (Transform fountainCandidate in allChildren)
-        {
-            if (fountainCandidate.name.Contains("REPLACE") && fountainCandidate.name.Contains("fountain-main"))
-            {
-                fountainJetCentroid += fountainCandidate.position;
-                fountainMainCount++;
-            }
-        }
-        if (fountainMainCount > 0)
-        {
-            fountainJetCentroid /= fountainMainCount;
-        }
 
         // do something with each of the object's children
         foreach (Transform child in allChildren)
@@ -1476,8 +1432,6 @@ public class AssetImportUpdate : AssetPostprocessor {
                     {
                         // ensure the main fountain is oriented vertically (leave the transform alone — rotating it breaks the systems)
                         instancedPrefab.transform.localRotation = Quaternion.identity;
-
-                        // sparkle lean applied after reparent (ApplyFountainSparkleLean)
 
                         // set the particle system settings
 
@@ -1745,11 +1699,6 @@ public class AssetImportUpdate : AssetPostprocessor {
                     if (instancedPrefab)
                     {
                         instancedPrefab.transform.parent = child.transform;
-
-                        if (child.name.Contains("fountain-main"))
-                        {
-                            ApplyFountainSparkleLean(instancedPrefab, fountainJetCentroid);
-                        }
                     }
                 }
 
