@@ -715,11 +715,11 @@ public class ManageImportSettings
                 return 0.6f;
             // specific materials
             case string name when name.Contains("bronzed glass"):
-                return 0.8f;
+                return 0.9f;
             case string name when name.Contains("food court tile"):
                 return 0.2f;
             case string name when name.Contains("generic floor concrete"):
-                return 0.7f;
+                return 0.83f;
             case string name when name.Contains("mall - food court ceiling"):
                 return 0.85f;
             case string name when name.Contains("mall - parquet floor"):
@@ -727,16 +727,17 @@ public class ManageImportSettings
             case string name when name.Contains("mall - polished concrete cinder alley")
                 || name.Contains("mall - cinder alley scored concrete"):
                 return 0.86f;
-            case string name when name.Contains("mall - polished concrete"):
+            case string name when name.Contains("mall - polished concrete")
+                || name.Contains("generic floor concrete"):
                 return 0.86f;
             case string name when name.Contains("mall - shamrock floor brick")
                 || name.Contains("mall - food court central ring brick")
                 || name.Contains("mall - food court herringbone brick"):
                 return 0.7f;
             case string name when name.Contains("mall - shamrock planter brick"):
-                return 0.075f;
+                return 0.082f;
             case string name when name.Contains("mall - stair terrazzo"):
-                return 0.7f;
+                return 0.82f;
             // special variant must come first - "mall - terra cotta tile" also matches it
             case string name when name.Contains("mall - terra cotta tile special"):
                 return 0.85f;
