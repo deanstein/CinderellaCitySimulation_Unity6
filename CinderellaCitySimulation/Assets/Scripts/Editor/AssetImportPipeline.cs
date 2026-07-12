@@ -61,6 +61,14 @@ public class AssetImportUpdate : AssetPostprocessor {
     // model post-processing is tied to a specific FBX pre-process; other imports must not re-run it
     static string pendingModelPostProcessPath;
 
+    // a genuine FBX change regenerates materials/textures via raw file ops during import; those
+    // changes need an AssetDatabase.Refresh afterward to finish material processing.
+    // this used to require the user to switch editor focus away and back (Unity Auto Refresh); we
+    // now schedule that refresh automatically. safe because the source-stamp gate makes the
+    // resulting reimport take the non-destructive path (no material regeneration, no pink).
+    static bool refreshPending;
+    static bool refreshScheduled;
+
     // proxy replacements as required
     static bool proxyReplacementProcessingRequired = false;
 
@@ -427,6 +435,10 @@ public class AssetImportUpdate : AssetPostprocessor {
 
         // record the source stamp so subsequent (unchanged) reimports take the no-op path above
         importer.userData = currentStamp;
+
+        // the raw file regeneration above needs a follow-up AssetDatabase.Refresh to
+        // finish material processing; the post-processor schedules it once this import completes
+        refreshPending = true;
     }
 
     // define how to enable emission on a material and set its color and texture to emissive
@@ -2247,6 +2259,21 @@ public class AssetImportUpdate : AssetPostprocessor {
         {
             ScheduleReparentToSceneContainer(newlyInstantiatedFBXContainer);
             isNewlyInstantiatedFBXContainer = false;
+        }
+
+        // if a genuine FBX change regenerated materials/textures this import, refresh them
+        // automatically instead of waiting for the user to switch editor focus (Auto Refresh).
+        // delayCall runs once the editor is idle (after this import batch), so Refresh is safe.
+        if (refreshPending && !refreshScheduled)
+        {
+            refreshPending = false;
+            refreshScheduled = true;
+            EditorApplication.delayCall += () =>
+            {
+                refreshScheduled = false;
+                DebugUtils.DebugLog("Auto-refreshing regenerated materials/textures (AssetDatabase.Refresh)...");
+                AssetDatabase.Refresh();
+            };
         }
 
         DebugUtils.DebugLog("END PostProcessing");
