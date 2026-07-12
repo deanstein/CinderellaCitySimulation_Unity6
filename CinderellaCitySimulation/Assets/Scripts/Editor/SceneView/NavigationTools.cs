@@ -15,11 +15,14 @@ public static class NavigationTools
     const string ZoomMultiplierPrefKey = "CCP.SceneViewZoomMultiplier";
     const string BoostEnabledPrefKey = "CCP.SceneViewZoomBoostEnabled";
     const string MinWorldStepPrefKey = "CCP.SceneViewZoomMinWorldStep";
+    const string ZoomThroughDepthPrefKey = "CCP.SceneViewZoomThroughDepth";
 
     const float DefaultZoomMultiplier = 4f;
     const float DefaultMinWorldStep = 0.35f;
+    const float DefaultZoomThroughDepth = 6f;
     const float FramePaddingFactor = 0.25f;
     const float MinFrameExtent = 0.5f;
+    const float MinZoomThroughMeters = 3f;
     const float UnityZoomFactor = 0.015f;
     const float UnityMinZoomDelta = 0.0001f;
     const float MaxSceneViewSize = 2.5E+7f;
@@ -84,6 +87,17 @@ public static class NavigationTools
         set => EditorPrefs.SetFloat(MinWorldStepPrefKey, Mathf.Max(0.01f, value));
     }
 
+    /// <summary>
+    /// After Zoom to Fit At Cursor frames a face, the pivot is pushed this many times the
+    /// framing distance beyond the surface so the camera can scroll-zoom straight through it
+    /// (e.g. through glass). A value of 1 keeps the pivot on the surface (Unity default behavior).
+    /// </summary>
+    public static float ZoomThroughDepth
+    {
+        get => EditorPrefs.GetFloat(ZoomThroughDepthPrefKey, DefaultZoomThroughDepth);
+        set => EditorPrefs.SetFloat(ZoomThroughDepthPrefKey, Mathf.Clamp(value, 1f, 100f));
+    }
+
     public static void ToggleBoostedScrollZoom()
     {
         BoostEnabled = !BoostEnabled;
@@ -104,6 +118,15 @@ public static class NavigationTools
         Debug.Log("CCP Scene view scroll zoom reset to Unity default.");
     }
 
+    public static void SetZoomThroughDepth(float depthMultiplier)
+    {
+        ZoomThroughDepth = depthMultiplier;
+        if (depthMultiplier <= 1f)
+            Debug.Log("CCP Zoom to Fit: zoom-through OFF (pivot stays on the framed surface).");
+        else
+            Debug.Log($"CCP Zoom to Fit: zoom-through pivot depth set to {ZoomThroughDepth:0.#}x the framing distance (scroll straight through glass after Space/F).");
+    }
+
     public static void LogNavigationState()
     {
         SceneView view = SceneView.lastActiveSceneView;
@@ -118,7 +141,7 @@ public static class NavigationTools
         Debug.Log(
             $"Scene view: size={view.size:0.###}, pivotDistance={pivotDistance:0.###}, " +
             $"cameraDistance={view.cameraDistance:0.###}, orthographic={view.orthographic}, " +
-            $"boost={(BoostEnabled ? "ON" : "OFF")} x{ZoomMultiplier:0.#}");
+            $"boost={(BoostEnabled ? "ON" : "OFF")} x{ZoomMultiplier:0.#}, zoomThrough={ZoomThroughDepth:0.#}x");
     }
 
     /// <summary>
@@ -268,28 +291,34 @@ public static class NavigationTools
             return;
         }
 
-        Vector3 camPos = view.camera.transform.position;
-        Vector3 forward = view.camera.transform.forward;
-        Vector2 guiPoint = GetGuiPointForSceneView(view);
+        // Derive the camera pose from pure Scene view state instead of view.camera, which can force
+        // a render during the OnGUI Layout pass (recursive OnGUI / device.IsInsideFrame errors).
+        Vector3 forward = view.rotation * Vector3.forward;
+        Vector3 camPos = view.pivot - forward * view.cameraDistance;
 
-        Vector3 newPivot;
-        if (TryPickSceneGeometry(guiPoint, out SceneGeometryPick pick))
+        // Compute the pick ray now (GUIPointToWorldRay is pure math, safe during Layout), but defer
+        // the scene raycast + camera mutation outside OnGUI so nothing renders while OnGUI is active.
+        Ray worldRay = HandleUtility.GUIPointToWorldRay(GetGuiPointForSceneView(view));
+        float sizeFallback = view.size;
+
+        EditorApplication.delayCall += () =>
         {
-            newPivot = pick.hitPoint;
-        }
-        else
-        {
-            newPivot = camPos + forward * Mathf.Max(view.size, 5f);
-        }
+            if (view == null)
+                return;
 
-        float distance = Vector3.Distance(camPos, newPivot);
-        if (distance < 0.05f)
-            newPivot = camPos + forward * 5f;
+            Vector3 newPivot = TryPickSceneGeometryFromRay(worldRay, out SceneGeometryPick pick)
+                ? pick.hitPoint
+                : camPos + forward * Mathf.Max(sizeFallback, 5f);
 
-        distance = Vector3.Distance(camPos, newPivot);
-        view.LookAt(newPivot, view.rotation, distance);
-        view.Repaint();
-        Debug.Log($"CCP Relocalize Zoom Pivot: pivot reset at {newPivot} (distance {distance:0.##}).");
+            float distance = Vector3.Distance(camPos, newPivot);
+            if (distance < 0.05f)
+                newPivot = camPos + forward * 5f;
+
+            distance = Vector3.Distance(camPos, newPivot);
+            view.LookAt(newPivot, view.rotation, distance);
+            view.Repaint();
+            Debug.Log($"CCP Relocalize Zoom Pivot: pivot reset at {newPivot} (distance {distance:0.##}).");
+        };
     }
 
     static void ZoomToFitAtCursor(SceneView view)
@@ -303,15 +332,53 @@ public static class NavigationTools
             return;
         }
 
-        Vector2 guiPoint = GetGuiPointForSceneView(view);
-        if (!TryGetFrameBounds(guiPoint, out Bounds frameBounds))
-        {
-            Ray mouseRay = HandleUtility.GUIPointToWorldRay(guiPoint);
-            Vector3 fallbackCenter = mouseRay.origin + mouseRay.direction * Mathf.Max(view.size * 0.5f, 5f);
-            frameBounds = new Bounds(fallbackCenter, Vector3.one * 2f);
-        }
+        // Compute the pick ray now (GUIPointToWorldRay is pure math, safe during Layout), but defer
+        // the scene raycast + camera mutation to the next editor tick. Doing either inside the OnGUI
+        // pass renders while OnGUI is active -> "recursive OnGUI" / device.IsInsideFrame errors.
+        Ray worldRay = HandleUtility.GUIPointToWorldRay(GetGuiPointForSceneView(view));
+        float sizeFallback = view.size;
 
-        ApplyPaddedFrame(view, frameBounds);
+        EditorApplication.delayCall += () =>
+        {
+            if (view == null)
+                return;
+
+            if (!TryGetFrameBounds(worldRay, out Bounds frameBounds))
+            {
+                Vector3 fallbackCenter = worldRay.origin + worldRay.direction * Mathf.Max(sizeFallback * 0.5f, 5f);
+                frameBounds = new Bounds(fallbackCenter, Vector3.one * 2f);
+            }
+
+            ApplyPaddedFrame(view, frameBounds);
+        };
+    }
+
+    /// <summary>
+    /// Keeps the camera exactly where framing left it but moves the pivot deeper along the view
+    /// axis, so subsequent scroll-zoom can travel through the framed surface instead of stopping
+    /// on it. The camera can never cross its own pivot, so the pivot must sit beyond the surface.
+    /// Reads only pure Scene view state (rotation/size/pivot) — never <c>view.camera</c>, which can
+    /// force a render during the OnGUI Layout pass.
+    /// </summary>
+    static void PushPivotThroughSurface(SceneView view)
+    {
+        float depthMultiplier = ZoomThroughDepth;
+        if (depthMultiplier <= 1f || view.orthographic || view.in2DMode)
+            return;
+
+        float cameraDistance = view.cameraDistance;
+        if (Mathf.Abs(cameraDistance) < 0.0001f)
+            return;
+
+        Vector3 forward = view.rotation * Vector3.forward;
+        Vector3 camPos = view.pivot - forward * cameraDistance;
+
+        float newDepth = Mathf.Max(cameraDistance * depthMultiplier, cameraDistance + MinZoomThroughMeters);
+
+        // Re-center the pivot on the view axis at the deeper depth, then scale size so the derived
+        // camera distance grows by the same ratio — leaving the camera transform unchanged.
+        view.pivot = camPos + forward * newDepth;
+        view.size *= newDepth / cameraDistance;
     }
 
     static void ApplyPaddedFrame(SceneView view, Bounds bounds)
@@ -323,17 +390,24 @@ public static class NavigationTools
         padding.z = Mathf.Max(padding.z, minPadding);
         bounds.Expand(padding);
 
-        if (!view.Frame(bounds, instant: false))
+        // When zoom-through is enabled, frame instantly so pivot/size are final and stable before
+        // the pivot is pushed. An animated Frame would overwrite the push on later update ticks.
+        bool pushPivot = ZoomThroughDepth > 1f && !view.orthographic && !view.in2DMode;
+
+        if (!view.Frame(bounds, instant: pushPivot))
             view.LookAt(bounds.center, view.rotation, bounds.extents.magnitude * 2f);
+
+        if (pushPivot)
+            PushPivotThroughSurface(view);
 
         view.Repaint();
     }
 
-    static bool TryGetFrameBounds(Vector2 guiPoint, out Bounds bounds)
+    static bool TryGetFrameBounds(Ray worldRay, out Bounds bounds)
     {
         bounds = default;
 
-        if (!TryPickSceneGeometry(guiPoint, out SceneGeometryPick pick))
+        if (!TryPickSceneGeometryFromRay(worldRay, out SceneGeometryPick pick))
             return false;
 
         if (pick.hasMeshHit && TryGetTriangleBounds(pick.meshFilter, pick.meshHit, out bounds))
@@ -416,16 +490,22 @@ public static class NavigationTools
 
     static bool TryPickSceneGeometry(Vector2 guiPoint, out SceneGeometryPick pick)
     {
+        return TryPickSceneGeometryFromRay(HandleUtility.GUIPointToWorldRay(guiPoint), out pick);
+    }
+
+    /// <summary>
+    /// CPU raycasts scene geometry along a world-space ray without any rendering, so it is safe to
+    /// call outside a Scene view OnGUI pass. Deliberately avoids <c>HandleUtility.PickGameObject</c>,
+    /// which renders a picking buffer and triggers recursive-OnGUI / device.IsInsideFrame errors.
+    /// A cheap renderer-bounds broad phase keeps the full-scene scan fast enough for on-demand use.
+    /// </summary>
+    static bool TryPickSceneGeometryFromRay(Ray worldRay, out SceneGeometryPick pick)
+    {
         pick = default;
-
-        GameObject picked = HandleUtility.PickGameObject(guiPoint, false);
-        if (picked == null)
-            return false;
-
-        pick.gameObject = picked;
-        Ray mouseRay = HandleUtility.GUIPointToWorldRay(guiPoint);
-        MeshFilter[] meshFilters = picked.GetComponentsInChildren<MeshFilter>();
         float minDistance = float.PositiveInfinity;
+
+        MeshFilter[] meshFilters = UnityEngine.Object.FindObjectsByType<MeshFilter>(
+            FindObjectsInactive.Exclude, FindObjectsSortMode.None);
 
         foreach (MeshFilter meshFilter in meshFilters)
         {
@@ -433,14 +513,24 @@ public static class NavigationTools
             if (mesh == null || mesh.vertexCount == 0)
                 continue;
 
+            Renderer renderer = meshFilter.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                if (!renderer.enabled)
+                    continue;
+                if (!renderer.bounds.IntersectRay(worldRay))
+                    continue;
+            }
+
             if (IntersectRayMesh(
-                    mouseRay,
+                    worldRay,
                     mesh,
                     meshFilter.transform.localToWorldMatrix,
                     out RaycastHit localHit)
                 && localHit.distance < minDistance)
             {
                 pick.hitPoint = localHit.point;
+                pick.gameObject = meshFilter.gameObject;
                 pick.meshFilter = meshFilter;
                 pick.meshHit = localHit;
                 pick.hasMeshHit = true;
@@ -451,22 +541,15 @@ public static class NavigationTools
         if (pick.hasMeshHit)
             return true;
 
-        Collider[] colliders = picked.GetComponentsInChildren<Collider>();
-        foreach (Collider collider in colliders)
+        // Fallback: physics colliders (if any are present in the scene).
+        if (Physics.Raycast(worldRay, out RaycastHit colliderHit, float.PositiveInfinity))
         {
-            if (collider.Raycast(mouseRay, out RaycastHit colliderHit, float.PositiveInfinity)
-                && colliderHit.distance < minDistance)
-            {
-                pick.hitPoint = colliderHit.point;
-                minDistance = colliderHit.distance;
-            }
+            pick.hitPoint = colliderHit.point;
+            pick.gameObject = colliderHit.collider.gameObject;
+            return true;
         }
 
-        if (minDistance < float.PositiveInfinity)
-            return true;
-
-        pick.hitPoint = Vector3.Project(picked.transform.position - mouseRay.origin, mouseRay.direction) + mouseRay.origin;
-        return true;
+        return false;
     }
 
     static Vector2 GetGuiPointForSceneView(SceneView view)

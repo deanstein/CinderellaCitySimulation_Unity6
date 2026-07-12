@@ -183,7 +183,31 @@ public class CCPMenuActions : MonoBehaviour
         NavigationTools.ResetZoomToUnityDefault();
     }
 
-    [MenuItem("Cinderella City Project/Scene Navigation/Log Camera Navigation State", false, 121)]
+    [MenuItem("Cinderella City Project/Scene Navigation/Zoom-Through Depth/Deep (10x)", false, 122)]
+    public static void SetSceneViewZoomThroughDepth10()
+    {
+        NavigationTools.SetZoomThroughDepth(10f);
+    }
+
+    [MenuItem("Cinderella City Project/Scene Navigation/Zoom-Through Depth/Standard (6x)", false, 123)]
+    public static void SetSceneViewZoomThroughDepth6()
+    {
+        NavigationTools.SetZoomThroughDepth(6f);
+    }
+
+    [MenuItem("Cinderella City Project/Scene Navigation/Zoom-Through Depth/Shallow (3x)", false, 124)]
+    public static void SetSceneViewZoomThroughDepth3()
+    {
+        NavigationTools.SetZoomThroughDepth(3f);
+    }
+
+    [MenuItem("Cinderella City Project/Scene Navigation/Zoom-Through Depth/Off (pivot on surface)", false, 125)]
+    public static void SetSceneViewZoomThroughDepthOff()
+    {
+        NavigationTools.SetZoomThroughDepth(1f);
+    }
+
+    [MenuItem("Cinderella City Project/Scene Navigation/Log Camera Navigation State", false, 136)]
     public static void LogSceneViewNavigationState()
     {
         NavigationTools.LogNavigationState();
