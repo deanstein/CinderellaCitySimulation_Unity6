@@ -261,63 +261,172 @@ public class AssetImportUpdate : AssetPostprocessor {
         };
     }
 
+    static readonly string[] ExtractedTextureExtensions =
+    {
+        "jpg", "jpeg", "png", "tga", "tif", "tiff", "bmp", "psd", "exr", "hdr"
+    };
+
+    // Unity's dependency graph is often incomplete during OnPreprocessModel, so scan the
+    // known per-FBX folders instead of AssetDatabase.GetDependencies.
+    static void CollectExtractedMaterialPaths(string modelAssetPath, List<string> pathsToDelete)
+    {
+        string assetDirectory = Path.GetDirectoryName(modelAssetPath).Replace('\\', '/');
+        string materialsDir = assetDirectory + "/Materials";
+
+        if (!Directory.Exists(materialsDir))
+        {
+            return;
+        }
+
+        foreach (string matPath in FileDirUtils.GetAllFilesInDirOfTypes(materialsDir, new[] { "mat" }))
+        {
+            pathsToDelete.Add(matPath.Replace('\\', '/'));
+        }
+    }
+
+    static List<string> GetExtractedMaterialAndTexturePaths(string modelAssetPath)
+    {
+        var pathsToDelete = new List<string>();
+
+        CollectExtractedMaterialPaths(modelAssetPath, pathsToDelete);
+
+        string assetDirectory = Path.GetDirectoryName(modelAssetPath).Replace('\\', '/');
+        string fileName = Path.GetFileNameWithoutExtension(modelAssetPath);
+
+        string fbmDir = assetDirectory + "/" + fileName + ".fbm";
+        if (Directory.Exists(fbmDir))
+        {
+            foreach (string texturePath in FileDirUtils.GetAllFilesInDirOfTypes(fbmDir, ExtractedTextureExtensions))
+            {
+                pathsToDelete.Add(texturePath.Replace('\\', '/'));
+            }
+        }
+
+        string texturesDir = assetDirectory + "/Textures";
+        if (Directory.Exists(texturesDir))
+        {
+            foreach (string texturePath in FileDirUtils.GetAllFilesInDirOfTypes(texturesDir, ExtractedTextureExtensions))
+            {
+                pathsToDelete.Add(texturePath.Replace('\\', '/'));
+            }
+        }
+
+        return pathsToDelete;
+    }
+
+    static void DeleteAssetFilesOnDisk(IEnumerable<string> filePaths)
+    {
+        foreach (string filePath in filePaths)
+        {
+            UnityEngine.Windows.File.Delete(filePath);
+
+            string metaPath = filePath + ".meta";
+            if (File.Exists(metaPath))
+            {
+                UnityEngine.Windows.File.Delete(metaPath);
+            }
+
+            DebugUtils.DebugLog("<b>Deleting files and meta files:</b> " + filePath);
+        }
+    }
+
+    // Clear the FBX's external-material remaps. Each remap ties a material NAME to a specific
+    // external .mat asset by GUID (see the FBX .meta 'externalObjects' block). If we delete the
+    // .mat files but leave these remaps in place, the importer resolves them to now-missing GUIDs
+    // and leaves the model's material slots EMPTY - which renders pink with no material assigned.
+    // Removing the remaps makes the importer treat these materials as not-yet-extracted, so it
+    // regenerates them fresh (with new GUIDs and new remaps) during this same import.
+    static void ClearExternalMaterialRemaps(ModelImporter importer)
+    {
+        var externalMap = importer.GetExternalObjectMap();
+
+        // copy the material identifiers first; we can't remove while enumerating the map
+        var materialIdentifiers = new List<AssetImporter.SourceAssetIdentifier>();
+        foreach (var entry in externalMap)
+        {
+            if (entry.Key.type == typeof(Material))
+            {
+                materialIdentifiers.Add(entry.Key);
+            }
+        }
+
+        foreach (var identifier in materialIdentifiers)
+        {
+            importer.RemoveRemap(identifier);
+            DebugUtils.DebugLog("Cleared external material remap: " + identifier.name);
+        }
+    }
+
+    // stamp (source FBX last-write ticks) of the last import that regenerated materials/textures,
+    // stored in the importer's userData. Used to run the destructive regeneration only when the
+    // source FBX actually changed - not on every spurious reimport (e.g. Unity's Auto Refresh on
+    // editor focus), which is what caused materials to repeatedly drop to null (pink).
+    const string MaterialRegenStampPrefix = "matRegen:";
+
+    static string GetSourceChangeStamp(string modelAssetPath)
+    {
+        try
+        {
+            // Unity runs with the project root as the working directory, so the asset-relative
+            // path resolves correctly for the filesystem call
+            return File.GetLastWriteTimeUtc(modelAssetPath).Ticks.ToString();
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    }
+
     // delete and reimport all materials and textures associated with the asset at the given path
     public void DeleteReimportMaterialsTextures(string assetFilePath)
     {
         // initialize ModelImporter
         ModelImporter importer = assetImporter as ModelImporter;
+        string modelAssetPath = importer.assetPath;
+        string assetDirectory = Path.GetDirectoryName(modelAssetPath).Replace('\\', '/');
+        string fileName = Path.GetFileNameWithoutExtension(modelAssetPath);
 
-        // set reimport required initially to false
-        bool reimportRequired = false;
-
-        // get the material and texture dependencies and delete them
-        //var prefab = AssetDatabase.LoadMainAssetAtPath(assetFilePath);
-        //foreach (var dependency in EditorUtility.CollectDependencies(new[] { prefab }))
-        foreach (var dependencyPath in AssetDatabase.GetDependencies(importedAssetFilePath, false))
-        {
-            //var dependencyPath = AssetDatabase.GetAssetPath(dependency);
-            var dependencyPathString = dependencyPath.ToString();
-            //DebugUtils.DebugLog("Dependency path: " + dependencyPathString);
-
-            // if there are materials or textures detected in the path, delete them
-            // note that we also check that the path includes the file name to avoid other assets from being affected
-            if ((dependencyPathString.Contains(".mat") || dependencyPathString.Contains(".jpg") || dependencyPathString.Contains(".jpeg") || dependencyPathString.Contains(".png")) && dependencyPathString.Contains(importedAssetFileName))
-            {
-                UnityEngine.Windows.File.Delete(dependencyPathString);
-                UnityEngine.Windows.File.Delete(dependencyPathString + ".meta");
-                DebugUtils.DebugLog("<b>Deleting files and meta files:</b> " + dependencyPathString);
-                reimportRequired = true;
-                prevTime = Time.time;
-            }
-
-            if (string.IsNullOrEmpty(dependencyPath)) continue;
-        }
-
-        // if materials or textures were deleted, force reimport the model
-        if (reimportRequired)
-        {
-            DebugUtils.DebugLog("Reimport model triggered. Forcing asset update...");
-            AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
-        }
-
-        DebugUtils.DebugLog("Re-importing materials...");
-
-        // import materials (replaces obsolete importMaterials bool)
+        // always keep external-material settings applied (no-op when already set, so it does not
+        // dirty the importer or trigger further reimports)
         importer.materialImportMode = ModelImporterMaterialImportMode.ImportStandard;
-
-        // make sure materials are being stored externally
-        // and name them based on incoming names
         importer.materialLocation = ModelImporterMaterialLocation.External;
         importer.materialName = ModelImporterMaterialName.BasedOnMaterialName;
         importer.materialSearch = ModelImporterMaterialSearch.Local;
+        importedAssetTexturesDirectory = assetDirectory + "/" + fileName + ".fbm";
 
-        // Materials are stored in /Materials
-        // Textures are stored in /fbx-asset-name.fbm
-        importedAssetTexturesDirectory = importedAssetFileDirectory + importedAssetFileName + ".fbm";
+        // only regenerate materials/textures when the source FBX actually changed. spurious
+        // reimports (Auto Refresh on focus, dependency touches) must NOT delete + clear remaps,
+        // otherwise they leave the model's material slots empty (pink) until the next full import.
+        string currentStamp = MaterialRegenStampPrefix + GetSourceChangeStamp(modelAssetPath);
+        bool sourceChanged = importer.userData != currentStamp;
 
-        // re-extract textures
-        DebugUtils.DebugLog("Re-importing textures...");
+        if (!sourceChanged)
+        {
+            DebugUtils.DebugLog("FBX source unchanged; keeping existing materials/textures (no regeneration).");
+            return;
+        }
+
+        DebugUtils.DebugLog("FBX source changed; regenerating materials and textures...");
+
+        // clear stale remaps BEFORE deleting files so Unity regenerates materials this import
+        // (deleting .mat files while their remaps survive is what leaves empty/pink material slots)
+        ClearExternalMaterialRemaps(importer);
+
+        // delete extracted materials and textures on disk so the FBX's CURRENT materials/textures
+        // are regenerated; Unity reuses existing external assets by name otherwise, hiding changes
+        List<string> pathsToDelete = GetExtractedMaterialAndTexturePaths(modelAssetPath);
+        if (pathsToDelete.Count > 0)
+        {
+            DebugUtils.DebugLog("Deleting stale extracted materials/textures before re-extracting from FBX...");
+            DeleteAssetFilesOnDisk(pathsToDelete);
+        }
+
+        // re-extract textures to /fbx-asset-name.fbm
+        DebugUtils.DebugLog("Re-extracting textures...");
         importer.ExtractTextures(importedAssetTexturesDirectory);
+
+        // record the source stamp so subsequent (unchanged) reimports take the no-op path above
+        importer.userData = currentStamp;
     }
 
     // define how to enable emission on a material and set its color and texture to emissive
@@ -359,6 +468,9 @@ public class AssetImportUpdate : AssetPostprocessor {
         }
 
         DebugUtils.DebugLog("<b>Set standard emission on Material: </b>" + mat);
+
+        ValidateHDRPMaterial(mat);
+        EditorUtility.SetDirty(mat);
     }
 
     // define how to enable custom emission color and intensity on a material
@@ -453,7 +565,9 @@ public class AssetImportUpdate : AssetPostprocessor {
             }
 
             // write the texture to the file system
-            UnityEngine.Windows.File.WriteAllBytes(filePath, (byte[])newTexture.EncodeToPNG());
+            string normalizedFilePath = filePath.Replace('\\', '/');
+            UnityEngine.Windows.File.WriteAllBytes(normalizedFilePath, newTexture.EncodeToPNG());
+            AssetDatabase.ImportAsset(normalizedFilePath);
 
             newTexture.Apply();
         }
@@ -1893,7 +2007,8 @@ public class AssetImportUpdate : AssetPostprocessor {
 
         // get the file path of the asset that just got updated
         ModelImporter modelImporter = assetImporter as ModelImporter;
-        String assetFilePath = modelImporter.assetPath.ToLower();
+        string modelAssetPath = modelImporter.assetPath;
+        String assetFilePath = modelAssetPath.ToLower();
         DebugUtils.DebugLog("Modified file: " + assetFilePath);
         // make the asset path available globally
         importedAssetFilePath = assetFilePath;
@@ -1965,7 +2080,7 @@ public class AssetImportUpdate : AssetPostprocessor {
         }
 
         // since pre-processing is done, mark post-processing as required for this FBX only
-        pendingModelPostProcessPath = assetFilePath;
+        pendingModelPostProcessPath = modelAssetPath;
         postProcessingRequired = true;
         proxyReplacementProcessingRequired = AssetImportGlobals.ModelImportParamsByName.doInstantiateProxyReplacements;
 
