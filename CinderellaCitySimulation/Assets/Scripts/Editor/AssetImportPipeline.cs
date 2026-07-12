@@ -365,10 +365,13 @@ public class AssetImportUpdate : AssetPostprocessor {
         }
     }
 
-    // stamp (source FBX last-write ticks) of the last import that regenerated materials/textures,
+    // stamp (content hash of the source FBX) of the last import that regenerated materials/textures,
     // stored in the importer's userData. Used to run the destructive regeneration only when the
     // source FBX actually changed - not on every spurious reimport (e.g. Unity's Auto Refresh on
     // editor focus), which is what caused materials to repeatedly drop to null (pink).
+    // A content hash (not a timestamp) is used because timestamps are unreliable on this project's
+    // cloud-synced folder: sync/copy/restore often preserves the original mtime, so a genuinely
+    // changed FBX can keep its old timestamp and its new textures/materials would be skipped.
     const string MaterialRegenStampPrefix = "matRegen:";
 
     static string GetSourceChangeStamp(string modelAssetPath)
@@ -377,7 +380,12 @@ public class AssetImportUpdate : AssetPostprocessor {
         {
             // Unity runs with the project root as the working directory, so the asset-relative
             // path resolves correctly for the filesystem call
-            return File.GetLastWriteTimeUtc(modelAssetPath).Ticks.ToString();
+            using (var md5 = System.Security.Cryptography.MD5.Create())
+            using (var stream = File.OpenRead(modelAssetPath))
+            {
+                byte[] hash = md5.ComputeHash(stream);
+                return System.BitConverter.ToString(hash).Replace("-", "");
+            }
         }
         catch
         {
@@ -405,8 +413,11 @@ public class AssetImportUpdate : AssetPostprocessor {
         // only regenerate materials/textures when the source FBX actually changed. spurious
         // reimports (Auto Refresh on focus, dependency touches) must NOT delete + clear remaps,
         // otherwise they leave the model's material slots empty (pink) until the next full import.
-        string currentStamp = MaterialRegenStampPrefix + GetSourceChangeStamp(modelAssetPath);
-        bool sourceChanged = importer.userData != currentStamp;
+        string sourceStamp = GetSourceChangeStamp(modelAssetPath);
+        string currentStamp = MaterialRegenStampPrefix + sourceStamp;
+        // if the hash couldn't be computed, regenerate rather than risk skipping a real change
+        // (an empty stamp must never be able to "match" a stored empty stamp and skip forever)
+        bool sourceChanged = string.IsNullOrEmpty(sourceStamp) || importer.userData != currentStamp;
 
         if (!sourceChanged)
         {
