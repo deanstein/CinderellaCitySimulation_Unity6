@@ -61,12 +61,13 @@ public class AssetImportUpdate : AssetPostprocessor {
     // model post-processing is tied to a specific FBX pre-process; other imports must not re-run it
     static string pendingModelPostProcessPath;
 
-    // a genuine FBX change regenerates materials/textures via raw file ops during import; those
-    // changes need an AssetDatabase.Refresh afterward to finish material processing.
-    // this used to require the user to switch editor focus away and back (Unity Auto Refresh); we
-    // now schedule that refresh automatically. safe because the source-stamp gate makes the
-    // resulting reimport take the non-destructive path (no material regeneration, no pink).
-    static bool refreshPending;
+    // a genuine FBX change regenerates materials/textures via raw file ops during THIS import, but
+    // the model's renderer slots don't re-bind to the freshly-regenerated external materials until
+    // the model is reimported again - which is why materials stay pink until a manual reimport.
+    // we now schedule that second reimport automatically once this import batch settles. safe
+    // because the source-stamp gate makes the second pass take the non-destructive path (no
+    // regeneration, no pink, no loop); it only lets Unity re-bind the materials.
+    static readonly HashSet<string> modelsPendingRelink = new HashSet<string>();
     static bool refreshScheduled;
 
     // proxy replacements as required
@@ -447,9 +448,9 @@ public class AssetImportUpdate : AssetPostprocessor {
         // record the source stamp so subsequent (unchanged) reimports take the no-op path above
         importer.userData = currentStamp;
 
-        // the raw file regeneration above needs a follow-up AssetDatabase.Refresh to
-        // finish material processing; the post-processor schedules it once this import completes
-        refreshPending = true;
+        // the model's material slots won't re-bind to the regenerated external materials until it
+        // is reimported again; the post-processor schedules that second pass once this import settles
+        modelsPendingRelink.Add(modelAssetPath);
     }
 
     // define how to enable emission on a material and set its color and texture to emissive
@@ -2272,18 +2273,33 @@ public class AssetImportUpdate : AssetPostprocessor {
             isNewlyInstantiatedFBXContainer = false;
         }
 
-        // if a genuine FBX change regenerated materials/textures this import, refresh them
-        // automatically instead of waiting for the user to switch editor focus (Auto Refresh).
-        // delayCall runs once the editor is idle (after this import batch), so Refresh is safe.
-        if (refreshPending && !refreshScheduled)
+        // if a genuine FBX change regenerated materials/textures this import, finish the job
+        // automatically so the user never sees pink. this mirrors the manual fix (switch focus, then
+        // reimport) that reliably works, in the same order:
+        //   1. AssetDatabase.Refresh() - reconcile the raw filesystem changes made during import
+        //      (deleted/regenerated .mat, extracted .fbm textures, generated metallicMap PNGs).
+        //      without this, the first time the user switches focus Unity's Auto Refresh reconciles
+        //      them and disturbs the material bindings -> pink.
+        //   2. reimport the model(s) - force the renderer slots to re-bind to the regenerated
+        //      external materials, which Refresh alone does not do -> otherwise pink until reimport.
+        // delayCall runs once the editor is idle (after this import batch), so both are safe. the
+        // source-stamp gate makes the reimport non-destructive (no regeneration, no pink, no loop).
+        if (modelsPendingRelink.Count > 0 && !refreshScheduled)
         {
-            refreshPending = false;
             refreshScheduled = true;
+            string[] modelPaths = new string[modelsPendingRelink.Count];
+            modelsPendingRelink.CopyTo(modelPaths);
+            modelsPendingRelink.Clear();
             EditorApplication.delayCall += () =>
             {
                 refreshScheduled = false;
-                DebugUtils.DebugLog("Auto-refreshing regenerated materials/textures (AssetDatabase.Refresh)...");
+                DebugUtils.DebugLog("Reconciling regenerated materials/textures (AssetDatabase.Refresh)...");
                 AssetDatabase.Refresh();
+                DebugUtils.DebugLog("Re-binding regenerated materials by reimporting model(s)...");
+                foreach (string modelPath in modelPaths)
+                {
+                    AssetDatabase.ImportAsset(modelPath, ImportAssetOptions.ForceUpdate);
+                }
             };
         }
 
