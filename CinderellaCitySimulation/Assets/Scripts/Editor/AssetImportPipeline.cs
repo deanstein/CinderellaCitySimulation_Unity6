@@ -4,7 +4,9 @@ using System.IO;
 using System.Reflection;
 
 using UnityEditor;
-using UnityEngine.Rendering.PostProcessing;
+// TODO: [HDRP] PostProcessing Stack v2 (PostProcessVolume/PostProcessLayer) was removed in the Unity 6 / HDRP upgrade.
+// Reimplement copying camera post-processing onto generated proxy cameras with HDRP's GlobalVolume (UnityEngine.Rendering.Volume) and re-enable the commented block below.
+//using UnityEngine.Rendering.PostProcessing;
 using UnityEditor.SceneManagement;
 
 using UnityEngine;
@@ -1885,13 +1887,15 @@ public class AssetImportUpdate : AssetPostprocessor {
 
                 // copy the PostProcessing effects from the Main Camera
                 // this only applies to "real" FPS scenes, not the main menu, so exclude main menu
-                if (SceneManager.GetActiveScene().name != "MainMenu")
-                {
-                    PostProcessVolume existingVolume = Camera.main.GetComponent<PostProcessVolume>();
-                    PostProcessLayer existingLayer = Camera.main.GetComponent<PostProcessLayer>();
-                    CopyComponent<PostProcessVolume>(existingVolume, cameraObject);
-                    CopyComponent<PostProcessLayer>(existingLayer, cameraObject);
-                }
+                // TODO: [HDRP] Reimplement copying post-processing onto generated proxy cameras using a GlobalVolume (UnityEngine.Rendering.Volume).
+                // PPv2 PostProcessVolume/PostProcessLayer no longer exist after the Unity 6 / HDRP upgrade, so this block is disabled.
+                //if (SceneManager.GetActiveScene().name != "MainMenu")
+                //{
+                //    PostProcessVolume existingVolume = Camera.main.GetComponent<PostProcessVolume>();
+                //    PostProcessLayer existingLayer = Camera.main.GetComponent<PostProcessLayer>();
+                //    CopyComponent<PostProcessVolume>(existingVolume, cameraObject);
+                //    CopyComponent<PostProcessLayer>(existingLayer, cameraObject);
+                //}
 
                 // disable the camera to prevent performance issues
                 camera.enabled = false;

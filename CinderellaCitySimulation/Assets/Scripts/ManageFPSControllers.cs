@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering.PostProcessing;
+// TODO: [HDRP] PostProcessing Stack v2 (PostProcessVolume) was removed in the Unity 6 / HDRP upgrade.
+// Reimplement post-processing with HDRP's GlobalVolume (UnityEngine.Rendering.Volume) and re-enable the commented PPv2 blocks below.
+//using UnityEngine.Rendering.PostProcessing;
 using UnityStandardAssets.Characters.FirstPerson;
 
 /// <summary>
@@ -169,20 +171,22 @@ public class ManageFPSControllers : MonoBehaviour {
         GameObject activeFirstPersonCharacter = activeFPSController.transform.GetChild(0).gameObject;
         NavMeshAgent activeAgent = activeFPSController.GetComponentInChildren<NavMeshAgent>();
 
-        // get the existing post process volume and profile
-        PostProcessVolume existingVolume = activeFPSController.GetComponentInChildren<PostProcessVolume>();
-        PostProcessProfile existingProfile = existingVolume.profile;
+        // TODO: [HDRP] Reimplement motion-blur suppression during relocation using a GlobalVolume (UnityEngine.Rendering.Volume).
+        // PPv2 PostProcessVolume no longer exists after the Unity 6 / HDRP upgrade, so the block below is disabled to prevent null refs.
+        //// get the existing post process volume and profile
+        //PostProcessVolume existingVolume = activeFPSController.GetComponentInChildren<PostProcessVolume>();
+        //PostProcessProfile existingProfile = existingVolume.profile;
 
-        // create a temporary profile with no motion blur
-        PostProcessProfile newProfile = new PostProcessProfile();
-        newProfile = existingProfile;
-        MotionBlur blur;
-        newProfile.TryGetSettings(out blur);
-        blur.enabled.Override(false);
-        existingVolume.priority++;
+        //// create a temporary profile with no motion blur
+        //PostProcessProfile newProfile = new PostProcessProfile();
+        //newProfile = existingProfile;
+        //MotionBlur blur;
+        //newProfile.TryGetSettings(out blur);
+        //blur.enabled.Override(false);
+        //existingVolume.priority++;
 
-        // temporarily override the existing volume to avoid motion blur when relocating
-        existingVolume.profile = newProfile;
+        //// temporarily override the existing volume to avoid motion blur when relocating
+        //existingVolume.profile = newProfile;
 
         GameObject[] cameras = ManageSceneObjects.ProxyObjects.GetAllThumbnailCamerasInScene();
 
@@ -239,8 +243,9 @@ public class ManageFPSControllers : MonoBehaviour {
             DebugUtils.DebugLog("Failed to find a matching camera for: " + cameraPartialName);
         }
 
-        // restore the existing post process profile
-        existingVolume.profile = existingProfile;
+        // TODO: [HDRP] Restore the pre-relocation GlobalVolume profile once post-processing is migrated off PPv2.
+        //// restore the existing post process profile
+        //existingVolume.profile = existingProfile;
     }
 
     // serialize the FPSController into a JSON object
@@ -280,20 +285,22 @@ public class ManageFPSControllers : MonoBehaviour {
         GameObject activeFirstPersonCharacter = activeFPSController.transform.GetChild(0).gameObject;
         NavMeshAgent activeAgent = activeFPSController.GetComponentInChildren<NavMeshAgent>();
 
-        // get the existing post process volume and profile
-        PostProcessVolume existingVolume = activeFPSController.GetComponentInChildren<PostProcessVolume>();
-        PostProcessProfile existingProfile = existingVolume.profile;
+        // TODO: [HDRP] Reimplement motion-blur suppression during relocation using a GlobalVolume (UnityEngine.Rendering.Volume).
+        // PPv2 PostProcessVolume no longer exists after the Unity 6 / HDRP upgrade, so the block below is disabled to prevent null refs.
+        //// get the existing post process volume and profile
+        //PostProcessVolume existingVolume = activeFPSController.GetComponentInChildren<PostProcessVolume>();
+        //PostProcessProfile existingProfile = existingVolume.profile;
 
-        // create a temporary profile with no motion blur
-        PostProcessProfile newProfile = new PostProcessProfile();
-        newProfile = existingProfile;
-        MotionBlur blur;
-        newProfile.TryGetSettings(out blur);
-        blur.enabled.Override(false);
-        existingVolume.priority++;
+        //// create a temporary profile with no motion blur
+        //PostProcessProfile newProfile = new PostProcessProfile();
+        //newProfile = existingProfile;
+        //MotionBlur blur;
+        //newProfile.TryGetSettings(out blur);
+        //blur.enabled.Override(false);
+        //existingVolume.priority++;
 
-        // temporarily override the existing volume to avoid motion blur when relocating
-        existingVolume.profile = newProfile;
+        //// temporarily override the existing volume to avoid motion blur when relocating
+        //existingVolume.profile = newProfile;
 
         // need to make sure the camera transform doesn't include a rotation up or down (causes FPSCharacter to tilt)
         Vector3 currentCameraForward = new Vector3(serializedRestoreDataToMatch.restoreCameraForward[0], serializedRestoreDataToMatch.restoreCameraForward[1], serializedRestoreDataToMatch.restoreCameraForward[2]);
@@ -310,8 +317,9 @@ public class ManageFPSControllers : MonoBehaviour {
         // reset the FPSController mouse to avoid incorrect rotation due to interference
         activeFPSController.transform.GetComponent<FirstPersonController>().MouseReset();
 
-        // restore the existing post process profile
-        existingVolume.profile = existingProfile;
+        // TODO: [HDRP] Restore the pre-relocation GlobalVolume profile once post-processing is migrated off PPv2.
+        //// restore the existing post process profile
+        //existingVolume.profile = existingProfile;
     }
 
     // reposition and realign this FPSController to match the given one
@@ -327,20 +335,22 @@ public class ManageFPSControllers : MonoBehaviour {
 
         GameObject firstPersonCharacterToMatch = FPSControllerTransformToMatch.transform.GetChild(0).gameObject;
 
-        // get the existing post process volume and profile
-        PostProcessVolume existingVolume = activeFPSController.GetComponentInChildren<PostProcessVolume>();
-        PostProcessProfile existingProfile = existingVolume.profile;
+        // TODO: [HDRP] Reimplement motion-blur suppression during relocation using a GlobalVolume (UnityEngine.Rendering.Volume).
+        // PPv2 PostProcessVolume no longer exists after the Unity 6 / HDRP upgrade, so the block below is disabled to prevent null refs.
+        //// get the existing post process volume and profile
+        //PostProcessVolume existingVolume = activeFPSController.GetComponentInChildren<PostProcessVolume>();
+        //PostProcessProfile existingProfile = existingVolume.profile;
 
-        // create a temporary profile with no motion blur
-        PostProcessProfile newProfile = new PostProcessProfile();
-        newProfile = existingProfile;
-        MotionBlur blur;
-        newProfile.TryGetSettings(out blur);
-        blur.enabled.Override(false);
-        existingVolume.priority++;
+        //// create a temporary profile with no motion blur
+        //PostProcessProfile newProfile = new PostProcessProfile();
+        //newProfile = existingProfile;
+        //MotionBlur blur;
+        //newProfile.TryGetSettings(out blur);
+        //blur.enabled.Override(false);
+        //existingVolume.priority++;
 
-        // temporarily override the existing volume to avoid motion blur when relocating
-        existingVolume.profile = newProfile;
+        //// temporarily override the existing volume to avoid motion blur when relocating
+        //existingVolume.profile = newProfile;
 
         // match the FPSController's position and rotation to the referring controller's position and rotation
         activeFPSController.transform.SetPositionAndRotation(FPSControllerTransformToMatch.position, FPSControllerTransformToMatch.rotation);
@@ -357,8 +367,9 @@ public class ManageFPSControllers : MonoBehaviour {
         // hoist the FPSController to the right height
         HoistSceneObjects.HoistObjectOnSceneChange(activeFPSController);
 
-        // restore the existing post process profile
-        existingVolume.profile = existingProfile;
+        // TODO: [HDRP] Restore the pre-relocation GlobalVolume profile once post-processing is migrated off PPv2.
+        //// restore the existing post process profile
+        //existingVolume.profile = existingProfile;
     }
 
     public static void CopyAgentSettings(NavMeshAgent fromAgent, NavMeshAgent toAgent)
@@ -416,12 +427,15 @@ public class ManageFPSControllers : MonoBehaviour {
     {
         yield return new WaitForSeconds(delay);
 
-        // get the existing post process volume and profile
-        PostProcessVolume existingVolume = activeFPSController.GetComponentInChildren<PostProcessVolume>();
-        PostProcessProfile existingProfile = existingVolume.profile;
-        MotionBlur blur;
-        existingProfile.TryGetSettings(out blur);
-        blur.enabled.Override(false);
+        // TODO: [HDRP] Reimplement motion-blur toggling via a GlobalVolume (UnityEngine.Rendering.Volume).
+        // PPv2 PostProcessVolume no longer exists after the Unity 6 / HDRP upgrade; this block was null-reffing
+        // (~1s after the FPSController enabled) because GetComponentInChildren<PostProcessVolume>() returned null.
+        //// get the existing post process volume and profile
+        //PostProcessVolume existingVolume = activeFPSController.GetComponentInChildren<PostProcessVolume>();
+        //PostProcessProfile existingProfile = existingVolume.profile;
+        //MotionBlur blur;
+        //existingProfile.TryGetSettings(out blur);
+        //blur.enabled.Override(false);
     }
 
     // waits until the player moves a given max distance before restoring gravity

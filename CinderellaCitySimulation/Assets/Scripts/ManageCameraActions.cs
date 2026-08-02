@@ -1,7 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Rendering.PostProcessing;
+// TODO: [HDRP] PostProcessing Stack v2 (PostProcessVolume) was removed in the Unity 6 / HDRP upgrade.
+// Reimplement camera effects/profiles with HDRP's GlobalVolume (UnityEngine.Rendering.Volume) and re-enable the commented PPv2 blocks below.
+//using UnityEngine.Rendering.PostProcessing;
 using System.IO;
 
 /// <summary>
@@ -209,84 +211,91 @@ public class ManageCameraActions : MonoBehaviour
 
     // increment the current camera effect priority
     // this ensures that camera effects are always visible
-    public static void IncrementCameraEffectPriority(PostProcessVolume cameraEffectVolume)
-    {
-        // if this priority is higher than the last recorded, then we already have priority
-        if (CameraActionGlobals.highestKnownCameraEffectPriority < cameraEffectVolume.priority)
-        {
-            CameraActionGlobals.highestKnownCameraEffectPriority = cameraEffectVolume.priority;
-        }
-        // otherwise, increment this higher priority and set this to it
-        else
-        {
-            CameraActionGlobals.highestKnownCameraEffectPriority++;
-            cameraEffectVolume.priority = CameraActionGlobals.highestKnownCameraEffectPriority;
-        }
-    }
+    // TODO: [HDRP] Reimplement priority handling for GlobalVolume (UnityEngine.Rendering.Volume).
+    // PPv2 PostProcessVolume no longer exists after the Unity 6 / HDRP upgrade, so this method is disabled.
+    //public static void IncrementCameraEffectPriority(PostProcessVolume cameraEffectVolume)
+    //{
+    //    // if this priority is higher than the last recorded, then we already have priority
+    //    if (CameraActionGlobals.highestKnownCameraEffectPriority < cameraEffectVolume.priority)
+    //    {
+    //        CameraActionGlobals.highestKnownCameraEffectPriority = cameraEffectVolume.priority;
+    //    }
+    //    // otherwise, increment this higher priority and set this to it
+    //    else
+    //    {
+    //        CameraActionGlobals.highestKnownCameraEffectPriority++;
+    //        cameraEffectVolume.priority = CameraActionGlobals.highestKnownCameraEffectPriority;
+    //    }
+    //}
 
     // sets a post processing effects profile on this gameObject's child by the given name
     public static void SetPostProcessProfile(GameObject postProcessVolumeHost, string profileName)
     {
         // set this object as the globally-available postProcessingHost
         CameraActionGlobals.activeCameraHost = postProcessVolumeHost;
-        //get the post processing volume from the given object
-        PostProcessVolume postProcessVolume = postProcessVolumeHost.GetComponent<PostProcessVolume>();
 
-        // only set the requested effect if no effect is active,
-        // or if the requested effect is different than the active effect
-        if (CameraActionGlobals.activeCameraEffect == null || CameraActionGlobals.activeCameraEffect != profileName)
-        {
-            // find the target profile by the given name
-            PostProcessProfile targetProfile = Resources.Load(CameraActionGlobals.cameraEffectsPath + profileName) as PostProcessProfile;
+        // TODO: [HDRP] Reimplement camera-effect profiles using a GlobalVolume (UnityEngine.Rendering.Volume) + VolumeProfile.
+        // PPv2 PostProcessVolume/PostProcessProfile no longer exist after the Unity 6 / HDRP upgrade, so this is a no-op for now.
+        //// get the post processing volume from the given object
+        //PostProcessVolume postProcessVolume = postProcessVolumeHost.GetComponent<PostProcessVolume>();
 
-            // set the target profile as the current profile
-            postProcessVolume.profile = targetProfile;
+        //// only set the requested effect if no effect is active,
+        //// or if the requested effect is different than the active effect
+        //if (CameraActionGlobals.activeCameraEffect == null || CameraActionGlobals.activeCameraEffect != profileName)
+        //{
+        //    // find the target profile by the given name
+        //    PostProcessProfile targetProfile = Resources.Load(CameraActionGlobals.cameraEffectsPath + profileName) as PostProcessProfile;
 
-            // ensure the new volume has priority
-            IncrementCameraEffectPriority(postProcessVolume);
+        //    // set the target profile as the current profile
+        //    postProcessVolume.profile = targetProfile;
 
-            // indicate that an effect is active
-            CameraActionGlobals.isCameraEffectActive = true;
+        //    // ensure the new volume has priority
+        //    IncrementCameraEffectPriority(postProcessVolume);
 
-            // store the active effect for other cameras to access
-            CameraActionGlobals.activeCameraEffect = profileName;
-        }
-        // if the requested profile is the same as the active profile, return to the default profile
-        else if (CameraActionGlobals.activeCameraEffect == profileName)
-        {
-            // find the default profile for this scene
-            PostProcessProfile defaultProfile = Resources.Load(CameraActionGlobals.cameraEffectsPath + GetDefaultPostProcessProfileBySceneName(SceneManager.GetActiveScene().name)) as PostProcessProfile;
+        //    // indicate that an effect is active
+        //    CameraActionGlobals.isCameraEffectActive = true;
 
-            // set the default profile as the current profile
-            postProcessVolume.profile = defaultProfile;
+        //    // store the active effect for other cameras to access
+        //    CameraActionGlobals.activeCameraEffect = profileName;
+        //}
+        //// if the requested profile is the same as the active profile, return to the default profile
+        //else if (CameraActionGlobals.activeCameraEffect == profileName)
+        //{
+        //    // find the default profile for this scene
+        //    PostProcessProfile defaultProfile = Resources.Load(CameraActionGlobals.cameraEffectsPath + GetDefaultPostProcessProfileBySceneName(SceneManager.GetActiveScene().name)) as PostProcessProfile;
 
-            // ensure the new volume has priority
-            IncrementCameraEffectPriority(postProcessVolume);
+        //    // set the default profile as the current profile
+        //    postProcessVolume.profile = defaultProfile;
 
-            // indicate that an effect is no longer active
-            CameraActionGlobals.activeCameraEffect = GetDefaultPostProcessProfileBySceneName(SceneManager.GetActiveScene().name);
-        }
+        //    // ensure the new volume has priority
+        //    IncrementCameraEffectPriority(postProcessVolume);
+
+        //    // indicate that an effect is no longer active
+        //    CameraActionGlobals.activeCameraEffect = GetDefaultPostProcessProfileBySceneName(SceneManager.GetActiveScene().name);
+        //}
     }
 
     public static void SetPostProcessTransitionProfile(GameObject postProcessVolumeHost, string profileName)
     {
-        PostProcessVolume currentVolume = postProcessVolumeHost.GetComponent<PostProcessVolume>();
+        // TODO: [HDRP] Reimplement the flash/color-grading transition using a GlobalVolume (UnityEngine.Rendering.Volume) + VolumeProfile.
+        // PPv2 PostProcessVolume/PostProcessProfile/ColorGrading no longer exist after the Unity 6 / HDRP upgrade, so this is a no-op for now.
+        //PostProcessVolume currentVolume = postProcessVolumeHost.GetComponent<PostProcessVolume>();
 
-        // get the transition profile
-        PostProcessProfile flashProfile = Resources.Load(CameraActionGlobals.cameraEffectsPath + profileName) as PostProcessProfile;
+        //// get the transition profile
+        //PostProcessProfile flashProfile = Resources.Load(CameraActionGlobals.cameraEffectsPath + profileName) as PostProcessProfile;
 
-        // get the current color grading settings
-        PostProcessEffectSettings colorGradingSettings = currentVolume.profile.GetSetting<ColorGrading>();
+        //// get the current color grading settings
+        //PostProcessEffectSettings colorGradingSettings = currentVolume.profile.GetSetting<ColorGrading>();
 
-        // for continuity, remove any color grading settings from Flash, and replace them with the outgoing profile's settings
-        flashProfile.RemoveSettings<ColorGrading>();
-        flashProfile.AddSettings(colorGradingSettings);
+        //// for continuity, remove any color grading settings from Flash, and replace them with the outgoing profile's settings
+        //flashProfile.RemoveSettings<ColorGrading>();
+        //flashProfile.AddSettings(colorGradingSettings);
 
-        // set the flash profile
-        currentVolume.profile = flashProfile;
+        //// set the flash profile
+        //currentVolume.profile = flashProfile;
 
-        // ensure the new volume has priority
-        IncrementCameraEffectPriority(currentVolume);
+        //// ensure the new volume has priority
+        //IncrementCameraEffectPriority(currentVolume);
     }
 
     public static string GetDefaultPostProcessProfileBySceneName(string sceneName)

@@ -1,6 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+// TODO: [HDRP] PostProcessing Stack v2 (PostProcessVolume) was removed in the Unity 6 / HDRP upgrade.
+// Reimplement camera effects/blur with HDRP's GlobalVolume (UnityEngine.Rendering.Volume) and re-enable the commented PPv2 blocks below.
+//using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.FirstPerson;
 using System.Collections;
@@ -18,13 +20,13 @@ public class ToggleCameraActionsByInputEvent : MonoBehaviour {
     private void Awake()
     {
         // add this volume priority to the global priority value
-        // PostProcessing Stack v2 volumes don't exist under HDRP, so guard against a missing component
-        // TODO: Switch to HDRP PostProcessing and eliminate PPv2 guard
-        PostProcessVolume postProcessVolume = this.GetComponent<PostProcessVolume>();
-        if (postProcessVolume != null)
-        {
-            ManageCameraActions.CameraActionGlobals.highestKnownCameraEffectPriority += postProcessVolume.priority;
-        }
+        // TODO: [HDRP] Reimplement volume priority accumulation using a GlobalVolume (UnityEngine.Rendering.Volume).
+        // PPv2 PostProcessVolume no longer exists after the Unity 6 / HDRP upgrade, so this block is disabled.
+        //PostProcessVolume postProcessVolume = this.GetComponent<PostProcessVolume>();
+        //if (postProcessVolume != null)
+        //{
+        //    ManageCameraActions.CameraActionGlobals.highestKnownCameraEffectPriority += postProcessVolume.priority;
+        //}
     }
 
     private void Start()
@@ -72,12 +74,14 @@ public class ToggleCameraActionsByInputEvent : MonoBehaviour {
         }
         // toggle blur on/off
         if (Input.GetKeyDown("b"))
-        {          
-            PostProcessVolume existingVolume = this.GetComponent<PostProcessVolume>();
-            PostProcessProfile existingProfile = existingVolume.profile;
-            MotionBlur blur;
-            existingProfile.TryGetSettings(out blur);
-            blur.enabled.Override(!blur.enabled);
+        {
+            // TODO: [HDRP] Reimplement motion-blur toggling via a GlobalVolume (UnityEngine.Rendering.Volume) MotionBlur override.
+            // PPv2 PostProcessVolume/MotionBlur no longer exist after the Unity 6 / HDRP upgrade, so this block is disabled.
+            //PostProcessVolume existingVolume = this.GetComponent<PostProcessVolume>();
+            //PostProcessProfile existingProfile = existingVolume.profile;
+            //MotionBlur blur;
+            //existingProfile.TryGetSettings(out blur);
+            //blur.enabled.Override(!blur.enabled);
         }
 
         // capture screenshot

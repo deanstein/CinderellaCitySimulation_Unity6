@@ -1,7 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Rendering.PostProcessing;
+// TODO: [HDRP] PostProcessing Stack v2 (PostProcessVolume) was removed in the Unity 6 / HDRP upgrade.
+// Reimplement the scene-transition camera effect with HDRP's GlobalVolume (UnityEngine.Rendering.Volume) and re-enable the commented PPv2 usage below.
+//using UnityEngine.Rendering.PostProcessing;
 
 /// <summary>
 /// Toggles entire Scenes and associated UI via certain input events
@@ -63,17 +65,20 @@ public class ToggleSceneAndUI
     // toggles scenes and relocates player to another FPSCharacter (time-traveling), with a camera effect transition
     public static IEnumerator ToggleFromSceneToSceneWithTransition(string fromScene, string toScene, Transform FPSControllerTransformToMatch, GameObject postProcessHost, string transitionProfileName, float transitionTime)
     {
-        // get the PostProcessing Host's current profile so we can return to it
-        string currentProfileName = postProcessHost.GetComponent<PostProcessVolume>().profile.name;
+        // TODO: [HDRP] Reimplement the flash/color transition using a GlobalVolume (UnityEngine.Rendering.Volume) + VolumeProfile.
+        // PPv2 PostProcessVolume no longer exists after the Unity 6 / HDRP upgrade, so the effect swap is disabled;
+        // the transition delay + scene toggle below are preserved so time-traveling still works (just without the flash effect).
+        //// get the PostProcessing Host's current profile so we can return to it
+        //string currentProfileName = postProcessHost.GetComponent<PostProcessVolume>().profile.name;
 
-        // first, toggle the flash transition
-        ManageCameraActions.SetPostProcessTransitionProfile(postProcessHost, transitionProfileName);
+        //// first, toggle the flash transition
+        //ManageCameraActions.SetPostProcessTransitionProfile(postProcessHost, transitionProfileName);
 
         // wait for the transition time
         yield return new WaitForSeconds(transitionTime);
 
-        // reset the profile to the original
-        ManageCameraActions.SetPostProcessProfile(postProcessHost, currentProfileName);
+        //// reset the profile to the original
+        //ManageCameraActions.SetPostProcessProfile(postProcessHost, currentProfileName);
 
         // toggle to the requested scene
         ToggleFromSceneToSceneRelocatePlayerToFPSController(fromScene, toScene, ManageFPSControllers.FPSControllerGlobals.activeFPSControllerTransform);
