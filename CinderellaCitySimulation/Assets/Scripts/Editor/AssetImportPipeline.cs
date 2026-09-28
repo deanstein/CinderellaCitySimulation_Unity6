@@ -257,10 +257,10 @@ public class AssetImportUpdate : AssetPostprocessor {
             return;
         }
 
-        int instanceId = prefabToModify.GetInstanceID();
+        EntityId entityId = prefabToModify.GetEntityId();
         EditorApplication.delayCall += () =>
         {
-            GameObject instanceToReparent = EditorUtility.InstanceIDToObject(instanceId) as GameObject;
+            GameObject instanceToReparent = EditorUtility.EntityIdToObject(entityId) as GameObject;
             if (!instanceToReparent)
             {
                 return;

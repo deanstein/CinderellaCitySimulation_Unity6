@@ -306,7 +306,7 @@ public class ManageImportSettings
                 ImportParams.doSetMaterialEmission = false;
                 ImportParams.doSetMaterialSmoothnessMetallic = false;
                 ImportParams.doInstantiateProxyReplacements = false;
-                // doUpdateReflectionProbes both creates the probes and hides the proxy cuboid meshes
+                // doUpdateReflectionProbes creates reflection probes and light probe groups, then hides the proxy cuboid meshes
                 // (reusing the standard proxy-hide path), so the separate doHideProxyObjects pass is not needed
                 ImportParams.doHideProxyObjects = false;
                 ImportParams.doUpdateReflectionProbes = true;
@@ -579,6 +579,8 @@ public class ManageImportSettings
                 return -1.75f;
             case string name when name.Contains("blue mall illuminated ring"):
                 return 0.75f;
+            case string name when name.Contains("soffit high intensity"):
+                return 4.0f;
             case string name when name.Contains("cinder alley incandescent"):
                 return 3.75f;
             case string name when name.Contains("cinderella city signage background"):
@@ -645,7 +647,7 @@ public class ManageImportSettings
             case string name when name.Contains("no illumination"):
                 return -2.0f;
             case string name when name.Contains("penney's white"):
-                return 0.7f;
+                return 0.4f;
             case string name when name.Contains("robin hood corner metal"):
                 return -10.0f;
             case string name when name.Contains("sbarro neon"):

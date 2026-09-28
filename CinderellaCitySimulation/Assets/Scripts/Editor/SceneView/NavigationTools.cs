@@ -28,9 +28,9 @@ public static class NavigationTools
     const float MaxSceneViewSize = 2.5E+7f;
 
     static Vector2 s_LastMousePositionInSceneView;
-    static int s_LastSceneViewInstanceId;
+    static EntityId s_LastSceneViewEntityId;
     static PendingSceneAction s_PendingAction = PendingSceneAction.None;
-    static int s_PendingViewInstanceId;
+    static EntityId s_PendingViewEntityId;
     static readonly IntersectRayMeshDelegate s_IntersectRayMesh = CreateIntersectRayMeshDelegate();
 
     enum PendingSceneAction
@@ -179,7 +179,7 @@ public static class NavigationTools
         if (evt != null)
         {
             s_LastMousePositionInSceneView = evt.mousePosition;
-            s_LastSceneViewInstanceId = view.GetInstanceID();
+            s_LastSceneViewEntityId = view.GetEntityId();
 
             if (evt.type == EventType.Layout)
                 ProcessPendingSceneAction(view);
@@ -257,13 +257,13 @@ public static class NavigationTools
         }
 
         s_PendingAction = action;
-        s_PendingViewInstanceId = view.GetInstanceID();
+        s_PendingViewEntityId = view.GetEntityId();
         view.Repaint();
     }
 
     static void ProcessPendingSceneAction(SceneView view)
     {
-        if (s_PendingAction == PendingSceneAction.None || view.GetInstanceID() != s_PendingViewInstanceId)
+        if (s_PendingAction == PendingSceneAction.None || view.GetEntityId() != s_PendingViewEntityId)
             return;
 
         PendingSceneAction action = s_PendingAction;
@@ -554,7 +554,7 @@ public static class NavigationTools
 
     static Vector2 GetGuiPointForSceneView(SceneView view)
     {
-        if (view.GetInstanceID() == s_LastSceneViewInstanceId)
+        if (view.GetEntityId() == s_LastSceneViewEntityId)
             return s_LastMousePositionInSceneView;
 
         return new Vector2(view.camera.pixelWidth * 0.5f, view.camera.pixelHeight * 0.5f);
