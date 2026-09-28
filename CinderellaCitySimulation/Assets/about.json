@@ -1,5 +1,21 @@
 {
   "VersionHistory": {
+    "v0.9.0.202610": {
+      "Overview": "v0.9.0 upgrades the project game engine to Unity 6 and includes a completely overhauled graphics and reflections engine for more impressive environments, plus fixes and improvements in the environment models",
+      "Environment Updates": [
+        "New lighting and reflections across both 1968-1978 and 1987-1997 eras",
+        "Added missing mezzanine office storefronts in the west corner of the 1968-1978 Blue Mall",
+        "Added the City Campus storefront in the 1968-1978 Rose Mall based on a new photo",
+        "Added new historic photos including a Shamrock Mall escalator, City Campus, and an iconic parking garage ramp in the 1968-1978",
+        "Added wayfinding signage above the 1968-1978 Shamrock Mall escalator",
+        "Added bump maps to increase depth on textures including the 1968-1978 Blue Mall terracotta tile and concrete textures both inside and out",
+        "Enhanced brick textures used on the exterior of most mall buildings, including some interior walls and storefronts in both eras",
+        "Enhanced ashtray and gravel textures in the 1968-1978 era based on fan-submitted memories",
+        "Fixed missing guardrail geometry on the 1968-1978 northwest parking garage ramp",
+        "Fixed various z-fighting issues in both eras",
+        "Fixed signage misalignments for The Denver in the 1968-1978 era"
+        ]
+    },
     "0.8.2.202509": {
       "Overview": "v0.8.2 adds time travel peeking at select Guided Tour photos, improves Guided Tour fluidity and stability, adds new historic photos, adds new debug utilities, updates StartupConfig flags, and eliminates the legacy Textures folder creation on asset import to reduce friction for project integrators.",
       "Environment Updates": [
