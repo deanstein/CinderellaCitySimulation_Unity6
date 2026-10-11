@@ -743,10 +743,10 @@ public class ManageImportSettings
                 return 0.85f;
             case string name when name.Contains("mall - terra cotta tile"):
                 return 0.86f;
-            // if not specified, return -1 to indicate to calling functions that
-            // this material is not intended to have a custom smoothness value
+            // Unlisted materials are matte. HDRP/Lit's shader default is 0.5, so leaving
+            // them untouched reads as 50% smoothness. Only the cases above stay non-zero.
             default:
-                return -1;
+                return 0f;
         }
     }
 
