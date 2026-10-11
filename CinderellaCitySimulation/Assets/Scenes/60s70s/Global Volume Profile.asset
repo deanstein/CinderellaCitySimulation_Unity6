@@ -364,7 +364,7 @@ MonoBehaviour:
     m_Value: 65535
   reflectionLightingMultiplier:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 2
   reflectionLightingLayers:
     m_OverrideState: 1
     m_Value: 65535
@@ -400,6 +400,22 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0.95
   writeDepthAlphaThreshold:
+    m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &-7607053593818197042
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4ca3f87079ba246a93410400bb24c4, type: 3}
+  m_Name: ChromaKeying
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.Compositor.ChromaKeying
+  active: 1
+  activate:
     m_OverrideState: 1
     m_Value: 0
 --- !u!114 &-7441344040737155670
@@ -621,7 +637,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.4
   smoothness:
     m_OverrideState: 1
     m_Value: 0.2
@@ -996,7 +1012,7 @@ MonoBehaviour:
   interCascadeBorders: 1
   maxShadowDistance:
     m_OverrideState: 1
-    m_Value: 150
+    m_Value: 500
   directionalTransmissionMultiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -1133,7 +1149,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 1
   directLightingStrength:
     m_OverrideState: 1
     m_Value: 0
@@ -1303,6 +1319,8 @@ MonoBehaviour:
   - {fileID: 7092984410967006904}
   - {fileID: -7690208202782080951}
   - {fileID: 9026048332526813472}
+  - {fileID: -7607053593818197042}
+  - {fileID: 983115139351508676}
 --- !u!114 &498887562183370688
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1318,7 +1336,7 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 0
   meteringMode:
     m_OverrideState: 1
     m_Value: 1
@@ -1327,10 +1345,10 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 9
+    m_Value: 3
   compensation:
     m_OverrideState: 1
-    m_Value: 6
+    m_Value: 1
   limitMin:
     m_OverrideState: 1
     m_Value: 8.232727
@@ -1454,6 +1472,19 @@ MonoBehaviour:
   proceduralSoftness:
     m_OverrideState: 1
     m_Value: 0.5
+--- !u!114 &983115139351508676
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da907761ad48a684aa45e5dc639d9304, type: 3}
+  m_Name: AlphaInjection
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.Compositor.AlphaInjection
+  active: 1
 --- !u!114 &1910383599531065699
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1469,7 +1500,7 @@ MonoBehaviour:
   active: 1
   temperature:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 30
   tint:
     m_OverrideState: 1
     m_Value: 0
@@ -2249,7 +2280,7 @@ MonoBehaviour:
     m_Value: 0
   exposure:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 1.5
   multiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -2286,10 +2317,10 @@ MonoBehaviour:
     m_Value: 1
   atmosphericScattering:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   renderingMode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   material:
     m_OverrideState: 1
     m_Value: {fileID: -876546973899608171, guid: 02532cbb810fb404db49da84f1efe41e,
@@ -2314,10 +2345,10 @@ MonoBehaviour:
     m_Value: 0.05
   aerosolTint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.7294558, b: 0.57547164, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   aerosolMaximumAltitude:
     m_OverrideState: 1
-    m_Value: 8301.39
+    m_Value: 8145.8
   aerosolAnisotropy:
     m_OverrideState: 1
     m_Value: 0.861
@@ -2356,7 +2387,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0, z: 0}
   colorSaturation:
     m_OverrideState: 1
-    m_Value: 0.787
+    m_Value: 1
   alphaSaturation:
     m_OverrideState: 1
     m_Value: 0.515
@@ -2365,7 +2396,7 @@ MonoBehaviour:
     m_Value: 1
   horizonTint:
     m_OverrideState: 1
-    m_Value: {r: 0.59748423, g: 0.59748423, b: 0.59748423, a: 1}
+    m_Value: {r: 1, g: 0.73333335, b: 0.77402866, a: 1}
   zenithTint:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -2436,34 +2467,34 @@ MonoBehaviour:
     m_Value: 1
   enabled:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   enabledTransparent:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   tracing:
     m_OverrideState: 1
     m_Value: 1
   m_MinSmoothness:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 0.2
   m_SmoothnessFadeStart:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 0.2
   reflectSky:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   usedAlgorithm:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   depthBufferThickness:
     m_OverrideState: 1
-    m_Value: 0.01
+    m_Value: 0.946
   screenFadeDistance:
     m_OverrideState: 1
-    m_Value: 0.1
+    m_Value: 0
   accumulationFactor:
     m_OverrideState: 1
-    m_Value: 0.75
+    m_Value: 1
   biasFactor:
     m_OverrideState: 1
     m_Value: 0.5
@@ -2555,7 +2586,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.1
   tintColor:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -2567,7 +2598,7 @@ MonoBehaviour:
     m_Value: 1
   secondaryFlareIntensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   warpedFlareIntensity:
     m_OverrideState: 1
     m_Value: 1
