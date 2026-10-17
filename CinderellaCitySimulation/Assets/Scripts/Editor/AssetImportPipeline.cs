@@ -754,6 +754,44 @@ public class AssetImportUpdate : AssetPostprocessor {
         DebugUtils.DebugLog("<b>Set metallic on Material: </b>" + mat);
     }
 
+    // HDRP ignores base-color alpha while Surface Type is Opaque. FBX import writes the
+    // opacity into that alpha and leaves the surface opaque, so glass renders solid.
+    // Switching _SurfaceType and revalidating rebuilds the transparent keyword, blend
+    // state, ZWrite, and render queue the same way the material inspector does.
+    public static void SetMaterialSurfaceTransparent(string materialFilePath)
+    {
+        Material mat = (Material)AssetDatabase.LoadAssetAtPath(materialFilePath, typeof(Material));
+        if (mat == null)
+            return;
+
+        Color baseColor = mat.HasProperty("_BaseColor") ? mat.GetColor("_BaseColor") : mat.color;
+        // alpha of 1 means the source material is fully opaque; keep the opaque surface
+        if (baseColor.a >= 0.999f)
+            return;
+
+        if (IsHighDefinitionRenderPipelineActive())
+        {
+            if (!mat.HasProperty("_SurfaceType"))
+                return;
+            // 1 = SurfaceType.Transparent. Already-transparent materials are left alone.
+            if (mat.GetFloat("_SurfaceType") == 1f)
+                return;
+
+            mat.SetFloat("_SurfaceType", 1f);
+            // BlendingMode.Alpha. Keeps specular-preserving alpha blend rather than additive.
+            if (mat.HasProperty("_BlendMode"))
+                mat.SetFloat("_BlendMode", 0f);
+
+            ValidateHDRPMaterial(mat);
+            DebugUtils.DebugLog("<b>Set transparent surface on Material: </b>" + mat);
+            return;
+        }
+
+        MaterialUtils.SetMaterialRenderingMode(mat, MaterialUtils.RenderingMode.Fade);
+        EditorUtility.SetDirty(mat);
+        DebugUtils.DebugLog("<b>Set transparent surface on Material: </b>" + mat);
+    }
+
     // use the specular shader to set a material to no specular
     // important for non-reflective materials like concrete, asphalt, etc
     // specularValue is applied as RGB, 0-255
@@ -1189,28 +1227,47 @@ public class AssetImportUpdate : AssetPostprocessor {
             if (dependencyPathString.Contains(".mat"))
             {
                 float materialMetallic = ManageImportSettings.GetMaterialMetallicByName(dependencyPathString);
+                // 0 for any material not named in GetMaterialSmoothnessByName
                 float materialSmoothness = ManageImportSettings.GetMaterialSmoothnessByName(dependencyPathString);
 
-                // materials in the lookup table use the simple scalar (no mask map) workflow.
-                // setting smoothness/metallic clears the mask map so the Inspector shows plain sliders.
-                if (materialSmoothness != -1)
-                {
-                    SetMaterialSmoothness(dependencyPathString, materialSmoothness);
-                }
+                // Scalar workflow: clears any mask map so the smoothness slider is authoritative.
+                SetMaterialSmoothness(dependencyPathString, materialSmoothness);
 
                 if (materialMetallic != -1)
                 {
                     SetMaterialMetallic(dependencyPathString, materialMetallic);
                 }
-                else if (materialSmoothness != -1)
+                else
                 {
-                    // smoothness was applied (and the mask map removed), so give metallic a definite
-                    // dielectric value rather than leaving the leftover mask-workflow scalar (often 1).
+                    // Smoothness assignment removes the mask map, so an unlisted material needs an
+                    // explicit dielectric metallic. Otherwise a leftover mask-workflow scalar (often 1)
+                    // turns it fully metallic.
                     SetMaterialMetallic(dependencyPathString, 0f);
                 }
             }
 
             if (string.IsNullOrEmpty(dependencyPathString)) continue;
+        }
+    }
+
+    // promote glass and clear materials to a transparent surface so their imported alpha is used
+    public static void SetAllDependentMaterialsTransparentByName(GameObject targetObject)
+    {
+        // if the target object and the last-updated asset import object are the same,
+        // use the global game object dependencies that have already been calculated
+        // otherwise, get the dependencies from the provided object
+        UnityEngine.Object[] targetDependencies = (targetObject == importedAssetGameObject) ? importedAssetGameObjectDependencies : EditorUtility.CollectDependencies(new UnityEngine.Object[] { targetObject });
+
+        foreach (var dependency in targetDependencies)
+        {
+            var dependencyPath = AssetDatabase.GetAssetPath(dependency);
+            string dependencyPathString = dependencyPath.ToString();
+
+            if (dependencyPathString.Contains(".mat")
+                && ManageImportSettings.GetMaterialIsTransparentByName(dependencyPathString))
+            {
+                SetMaterialSurfaceTransparent(dependencyPathString);
+            }
         }
     }
 
@@ -2208,6 +2265,10 @@ public class AssetImportUpdate : AssetPostprocessor {
         {
             SetAllDependentMaterialsSmoothnessMetallicByName(importedAssetGameObject);
         }
+
+        // runs even when smoothness is off (doors-windows-solid, temp-fix) so glass
+        // extracted from those FBX files still becomes transparent
+        SetAllDependentMaterialsTransparentByName(importedAssetGameObject);
 
         // FBX-extracted textures import as Default (sRGB) color textures; re-type the ones
         // plugged into normal-map slots so they're treated as linear normal maps. Otherwise

@@ -750,6 +750,22 @@ public class ManageImportSettings
         }
     }
 
+    // FBX extraction writes opacity into base-color alpha and leaves the HDRP surface
+    // opaque, so that alpha is ignored. These names are see-through materials.
+    // The caller still requires base-color alpha below 1, so a fully opaque material
+    // that happens to contain "glass" (black storefront panels) stays opaque.
+    public static bool GetMaterialIsTransparentByName(string materialNameOrPath)
+    {
+        switch (materialNameOrPath)
+        {
+            case string name when name.Contains("glass")
+            || name.Contains("clear"):
+                return true;
+            default:
+                return false;
+        }
+    }
+
     // get the desired specular value (out of 255) for a given material name or path
     public static int GetMaterialSpecularByName(string materialNameOrPath)
     {
