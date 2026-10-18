@@ -1024,7 +1024,7 @@ public class CCPMenuActions : MonoBehaviour
 
         if (sceneObjects.Length > 0)
         {
-            // re-type normal map textures for each scene object's materials
+            // put imported textures back on materials that lost them, then re-type normal maps
             foreach (GameObject sceneObject in sceneObjects)
             {
                 AssetImportUpdate.SetAllDependentMaterialsNormalMapImportTypeByName(sceneObject);
@@ -1060,6 +1060,20 @@ public class CCPMenuActions : MonoBehaviour
             foreach (GameObject sceneObject in sceneObjects)
             {
                 AssetImportUpdate.SetAllDependentMaterialsSmoothnessMetallicByName(sceneObject);
+            }
+        }
+    }
+
+    [MenuItem("Cinderella City Project/Material Adjustments/Transparency/Update for Current Scene", false, 210)]
+    public static void SetAllMaterialTransparencyInCurrentScene()
+    {
+        GameObject[] sceneObjects = UpdateModeSelectorMenu.GetSceneObjectsByUpdateMode().ToArray();
+
+        if (sceneObjects.Length > 0)
+        {
+            foreach (GameObject sceneObject in sceneObjects)
+            {
+                AssetImportUpdate.SetAllDependentMaterialsTransparentByName(sceneObject);
             }
         }
     }

@@ -72,6 +72,24 @@ public class AssetImportUpdate : AssetPostprocessor {
     static readonly HashSet<string> modelsPendingRelink = new HashSet<string>();
     static bool refreshScheduled;
 
+    // Material edits made inside OnPostprocessAllAssets are discarded when the import
+    // batch reloads assets from disk (the refresh reports changed=0). Queue the paths
+    // and write them on the next editor tick, after that reload.
+    static readonly List<string> materialsPendingTransparentSave = new List<string>();
+    static bool transparentSaveScheduled;
+    static bool applyingDeferredSurfaceTransparency;
+
+    // same reason as the transparency queue: assigning a texture during OnPostprocessAllAssets
+    // is thrown away when that import batch reloads the material from disk
+    struct PendingMaterialTextureRepair
+    {
+        public string MaterialPath;
+        public string ModelPath;
+    }
+    static readonly List<PendingMaterialTextureRepair> materialsPendingTextureRepair = new List<PendingMaterialTextureRepair>();
+    static bool textureRepairScheduled;
+    static bool applyingDeferredTextureRepair;
+
     // proxy replacements as required
     static bool proxyReplacementProcessingRequired = false;
 
@@ -784,12 +802,59 @@ public class AssetImportUpdate : AssetPostprocessor {
 
             ValidateHDRPMaterial(mat);
             DebugUtils.DebugLog("<b>Set transparent surface on Material: </b>" + mat);
+            QueueTransparentMaterialSave(materialFilePath);
             return;
         }
 
         MaterialUtils.SetMaterialRenderingMode(mat, MaterialUtils.RenderingMode.Fade);
         EditorUtility.SetDirty(mat);
         DebugUtils.DebugLog("<b>Set transparent surface on Material: </b>" + mat);
+        QueueTransparentMaterialSave(materialFilePath);
+    }
+
+    // OnPostprocessAllAssets runs while the asset database is still importing. SetDirty
+    // there does not write the .mat, and the reload at the end of the batch restores the
+    // opaque file. Apply again once the editor is idle, then save just those materials.
+    static void QueueTransparentMaterialSave(string materialFilePath)
+    {
+        if (applyingDeferredSurfaceTransparency)
+            return;
+
+        if (!materialsPendingTransparentSave.Contains(materialFilePath))
+            materialsPendingTransparentSave.Add(materialFilePath);
+
+        if (transparentSaveScheduled)
+            return;
+
+        transparentSaveScheduled = true;
+        EditorApplication.delayCall += FlushTransparentMaterialSave;
+    }
+
+    static void FlushTransparentMaterialSave()
+    {
+        transparentSaveScheduled = false;
+        if (materialsPendingTransparentSave.Count == 0)
+            return;
+
+        List<string> paths = new List<string>(materialsPendingTransparentSave);
+        materialsPendingTransparentSave.Clear();
+
+        applyingDeferredSurfaceTransparency = true;
+        try
+        {
+            foreach (string path in paths)
+            {
+                // re-apply in case the import reload restored the on-disk opaque material
+                SetMaterialSurfaceTransparent(path);
+                Material mat = (Material)AssetDatabase.LoadAssetAtPath(path, typeof(Material));
+                if (mat != null)
+                    AssetDatabase.SaveAssetIfDirty(mat);
+            }
+        }
+        finally
+        {
+            applyingDeferredSurfaceTransparency = false;
+        }
     }
 
     // use the specular shader to set a material to no specular
@@ -838,6 +903,243 @@ public class AssetImportUpdate : AssetPostprocessor {
         Color32 specularColor = new Color32(specularValue, specularValue, specularValue, 255);
 
         mat.SetColor("_SpecColor", specularColor);
+    }
+
+    // FBX import extracts textures into the model's .fbm folder, then sometimes writes the
+    // external material without them - the slot is empty, or it still points at a guid from a
+    // texture that was deleted and re-extracted. Either way GetTexture returns null even though
+    // the file is imported. The FBX connection (DiffuseColor / NormalMap) is what says which
+    // file belongs on which slot. Slots that already resolve to a texture are left alone.
+    public static void AssignMissingImportedTextures(string materialFilePath, string modelAssetPath)
+    {
+        Material mat = (Material)AssetDatabase.LoadAssetAtPath(materialFilePath, typeof(Material));
+        if (mat == null)
+            return;
+
+        string fbxPath = ResolveFbxPathForMaterial(materialFilePath, modelAssetPath);
+
+        FbxMaterialTextureMap.MaterialTextures expected = default;
+        bool hasExpected = !string.IsNullOrEmpty(fbxPath)
+            && FbxMaterialTextureMap.TryGetMaterialTextures(fbxPath, mat.name, out expected);
+
+        bool waitingForTextureImport = false;
+        bool changed = false;
+
+        Texture diffuse = null;
+        if (hasExpected && !string.IsNullOrEmpty(expected.DiffuseFileName))
+            diffuse = LoadExtractedTexture(fbxPath, expected.DiffuseFileName, ref waitingForTextureImport);
+        changed |= FillEmptyTextureSlots(mat, new string[] { "_BaseColorMap", "_MainTex", "_BaseMap" }, diffuse);
+
+        Texture normal = null;
+        if (hasExpected && !string.IsNullOrEmpty(expected.NormalFileName))
+            normal = LoadExtractedTexture(fbxPath, expected.NormalFileName, ref waitingForTextureImport);
+        changed |= FillEmptyTextureSlots(mat, new string[] { "_NormalMap", "_BumpMap" }, normal);
+
+        if (changed)
+        {
+            // rebuild _NORMALMAP (and the base-color sampling keywords) from the slots we just filled
+            ValidateHDRPMaterial(mat);
+            EditorUtility.SetDirty(mat);
+            AssetDatabase.SaveAssetIfDirty(mat);
+        }
+
+        // a save made while an import batch is still open gets reloaded away; retry once the editor is idle
+        if (!applyingDeferredTextureRepair && postProcessingRequired && (changed || waitingForTextureImport))
+            QueueTextureRepair(materialFilePath, string.IsNullOrEmpty(fbxPath) ? modelAssetPath : fbxPath);
+    }
+
+    static bool FillEmptyTextureSlots(Material mat, string[] slots, Texture replacement)
+    {
+        Texture existing = null;
+        bool hasSlot = false;
+        foreach (string slot in slots)
+        {
+            if (!mat.HasProperty(slot))
+                continue;
+            hasSlot = true;
+            Texture current = mat.GetTexture(slot);
+            if (current != null && existing == null)
+                existing = current;
+        }
+
+        if (!hasSlot)
+            return false;
+
+        // a sibling slot that already has the texture wins over the FBX file, so we never
+        // replace a good assignment - we only copy it onto the empty companion slot
+        Texture toAssign = existing != null ? existing : replacement;
+        if (toAssign == null)
+            return false;
+
+        bool changed = false;
+        foreach (string slot in slots)
+        {
+            if (!mat.HasProperty(slot))
+                continue;
+            if (mat.GetTexture(slot) != null)
+                continue;
+
+            mat.SetTexture(slot, toAssign);
+            changed = true;
+            DebugUtils.DebugLog("<b>Assigned missing texture</b> " + toAssign.name + " to " + slot + " on " + mat.name);
+        }
+        return changed;
+    }
+
+    static Texture LoadExtractedTexture(string fbxPath, string fileName, ref bool waitingForTextureImport)
+    {
+        string assetPath = FindExtractedTextureAssetPath(fbxPath, fileName);
+        if (string.IsNullOrEmpty(assetPath))
+            return null;
+
+        Texture texture = (Texture)AssetDatabase.LoadAssetAtPath(assetPath, typeof(Texture));
+        if (texture != null)
+            return texture;
+
+        // the file is on disk but not in the asset database yet. importing it from inside
+        // OnPostprocessAllAssets re-enters the importer, so wait for the deferred pass.
+        if (postProcessingRequired && !applyingDeferredTextureRepair)
+        {
+            waitingForTextureImport = true;
+            return null;
+        }
+
+        AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+        return (Texture)AssetDatabase.LoadAssetAtPath(assetPath, typeof(Texture));
+    }
+
+    static string FindExtractedTextureAssetPath(string fbxPath, string fileName)
+    {
+        string modelDirectory = Path.GetDirectoryName(fbxPath);
+        if (string.IsNullOrEmpty(modelDirectory))
+            return null;
+        modelDirectory = modelDirectory.Replace('\\', '/');
+
+        string modelName = Path.GetFileNameWithoutExtension(fbxPath);
+        string[] folders = new string[]
+        {
+            modelDirectory + "/" + modelName + ".fbm",
+            modelDirectory + "/Textures"
+        };
+
+        foreach (string folder in folders)
+        {
+            string candidate = ToProjectAssetPath(folder + "/" + fileName);
+            if (File.Exists(candidate))
+                return candidate;
+
+            if (!Directory.Exists(folder))
+                continue;
+
+            string[] files = Directory.GetFiles(folder);
+            foreach (string file in files)
+            {
+                if (string.Equals(Path.GetFileName(file), fileName, StringComparison.OrdinalIgnoreCase))
+                    return ToProjectAssetPath(file);
+            }
+        }
+
+        return null;
+    }
+
+    static string ResolveFbxPathForMaterial(string materialFilePath, string hintedModelPath)
+    {
+        // materials are extracted beside the FBX that authored them. that folder is a better
+        // match than the scene object, which can depend on a material from a different model.
+        string directory = Path.GetDirectoryName(materialFilePath);
+        if (!string.IsNullOrEmpty(directory))
+        {
+            directory = directory.Replace('\\', '/');
+            if (string.Equals(Path.GetFileName(directory), "Materials", StringComparison.OrdinalIgnoreCase))
+                directory = Path.GetDirectoryName(directory);
+
+            if (!string.IsNullOrEmpty(directory) && Directory.Exists(directory))
+            {
+                string[] fbxFiles = Directory.GetFiles(directory, "*.fbx");
+                if (fbxFiles.Length == 1)
+                    return fbxFiles[0].Replace('\\', '/');
+
+                if (fbxFiles.Length > 1)
+                {
+                    string materialName = Path.GetFileNameWithoutExtension(materialFilePath);
+                    foreach (string fbxFile in fbxFiles)
+                    {
+                        if (FbxMaterialTextureMap.TryGetMaterialTextures(fbxFile, materialName, out _))
+                            return fbxFile.Replace('\\', '/');
+                    }
+                }
+            }
+        }
+
+        if (IsFbxPath(hintedModelPath) && File.Exists(hintedModelPath))
+            return hintedModelPath.Replace('\\', '/');
+
+        return null;
+    }
+
+    static bool IsFbxPath(string path)
+    {
+        return !string.IsNullOrEmpty(path) && path.EndsWith(".fbx", StringComparison.OrdinalIgnoreCase);
+    }
+
+    static string ToProjectAssetPath(string path)
+    {
+        if (string.IsNullOrEmpty(path))
+            return path;
+
+        path = path.Replace('\\', '/');
+        string dataPath = Application.dataPath.Replace('\\', '/');
+        if (path.StartsWith(dataPath, StringComparison.OrdinalIgnoreCase))
+            return "Assets" + path.Substring(dataPath.Length);
+        return path;
+    }
+
+    static void QueueTextureRepair(string materialFilePath, string modelAssetPath)
+    {
+        for (int i = 0; i < materialsPendingTextureRepair.Count; i++)
+        {
+            if (materialsPendingTextureRepair[i].MaterialPath == materialFilePath)
+                return;
+        }
+
+        materialsPendingTextureRepair.Add(new PendingMaterialTextureRepair
+        {
+            MaterialPath = materialFilePath,
+            ModelPath = modelAssetPath
+        });
+
+        if (textureRepairScheduled)
+            return;
+
+        textureRepairScheduled = true;
+        EditorApplication.delayCall += FlushTextureRepair;
+    }
+
+    static void FlushTextureRepair()
+    {
+        textureRepairScheduled = false;
+        if (materialsPendingTextureRepair.Count == 0)
+            return;
+
+        List<PendingMaterialTextureRepair> pending = new List<PendingMaterialTextureRepair>(materialsPendingTextureRepair);
+        materialsPendingTextureRepair.Clear();
+
+        applyingDeferredTextureRepair = true;
+        try
+        {
+            foreach (PendingMaterialTextureRepair item in pending)
+            {
+                AssignMissingImportedTextures(item.MaterialPath, item.ModelPath);
+                SetMaterialNormalMapImportType(item.MaterialPath);
+                Material mat = (Material)AssetDatabase.LoadAssetAtPath(item.MaterialPath, typeof(Material));
+                if (mat != null)
+                    AssetDatabase.SaveAssetIfDirty(mat);
+            }
+        }
+        finally
+        {
+            applyingDeferredTextureRepair = false;
+        }
     }
 
     // ensure any texture plugged into a material's normal-map slot is imported as a Normal map
@@ -1299,14 +1601,28 @@ public class AssetImportUpdate : AssetPostprocessor {
         }
     }
 
-    // re-type the normal map textures of every dependent material in the target object
-    // so they import as Normal maps (linear) rather than Default (sRGB color)
+    // put extracted textures back onto materials that lost them, then re-type the normal
+    // map textures so they import as Normal maps (linear) rather than Default (sRGB color)
     public static void SetAllDependentMaterialsNormalMapImportTypeByName(GameObject targetObject)
     {
+        if (!targetObject)
+            return;
+
+        // the asset being imported is not a scene instance, so the prefab-path lookup misses it
+        string modelPath = null;
+        if (targetObject == importedAssetGameObject && !string.IsNullOrEmpty(pendingModelPostProcessPath))
+            modelPath = pendingModelPostProcessPath;
+        else if (targetObject == importedAssetGameObject && !string.IsNullOrEmpty(importedAssetFilePath))
+            modelPath = importedAssetFilePath;
+        else
+            modelPath = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(targetObject);
+
         // if the target object and the last-updated asset import object are the same,
         // use the global game object dependencies that have already been calculated
         // otherwise, get the dependencies from the provided object
         UnityEngine.Object[] targetDependencies = (targetObject == importedAssetGameObject) ? importedAssetGameObjectDependencies : EditorUtility.CollectDependencies(new UnityEngine.Object[] { targetObject });
+        if (targetDependencies == null)
+            return;
 
         foreach (var dependency in targetDependencies)
         {
@@ -1316,6 +1632,7 @@ public class AssetImportUpdate : AssetPostprocessor {
             // limit changes to materials only
             if (dependencyPathString.Contains(".mat"))
             {
+                AssignMissingImportedTextures(dependencyPathString, modelPath);
                 SetMaterialNormalMapImportType(dependencyPathString);
             }
         }
