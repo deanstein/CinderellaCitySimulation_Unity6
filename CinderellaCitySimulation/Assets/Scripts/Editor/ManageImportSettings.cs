@@ -645,7 +645,7 @@ public class ManageImportSettings
             case string name when name.Contains("no illumination"):
                 return -2.0f;
             case string name when name.Contains("penney's white"):
-                return 0.7f;
+                return 0.3f;
             case string name when name.Contains("robin hood corner metal"):
                 return -10.0f;
             case string name when name.Contains("sbarro neon"):

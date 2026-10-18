@@ -1064,18 +1064,10 @@ public class CCPMenuActions : MonoBehaviour
         }
     }
 
-    [MenuItem("Cinderella City Project/Material Adjustments/Transparency/Update for Current Scene", false, 210)]
-    public static void SetAllMaterialTransparencyInCurrentScene()
+    [MenuItem("Cinderella City Project/Material Adjustments/Transparency/Update All Materials", false, 210)]
+    public static void SetAllMaterialTransparency()
     {
-        GameObject[] sceneObjects = UpdateModeSelectorMenu.GetSceneObjectsByUpdateMode().ToArray();
-
-        if (sceneObjects.Length > 0)
-        {
-            foreach (GameObject sceneObject in sceneObjects)
-            {
-                AssetImportUpdate.SetAllDependentMaterialsTransparentByName(sceneObject);
-            }
-        }
+        AssetImportUpdate.SetAllProjectMaterialsTransparent();
     }
 
     [MenuItem("Cinderella City Project/Material Adjustments/Emission/Update for Current Scene", false, 210)]

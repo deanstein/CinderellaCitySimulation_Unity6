@@ -776,24 +776,26 @@ public class AssetImportUpdate : AssetPostprocessor {
     // opacity into that alpha and leaves the surface opaque, so glass renders solid.
     // Switching _SurfaceType and revalidating rebuilds the transparent keyword, blend
     // state, ZWrite, and render queue the same way the material inspector does.
-    public static void SetMaterialSurfaceTransparent(string materialFilePath)
+    // deferPersistence is for the import callback, which cannot write .mat files itself.
+    // Returns true when the material was changed.
+    public static bool SetMaterialSurfaceTransparent(string materialFilePath, bool deferPersistence = true)
     {
         Material mat = (Material)AssetDatabase.LoadAssetAtPath(materialFilePath, typeof(Material));
         if (mat == null)
-            return;
+            return false;
 
         Color baseColor = mat.HasProperty("_BaseColor") ? mat.GetColor("_BaseColor") : mat.color;
         // alpha of 1 means the source material is fully opaque; keep the opaque surface
         if (baseColor.a >= 0.999f)
-            return;
+            return false;
 
         if (IsHighDefinitionRenderPipelineActive())
         {
             if (!mat.HasProperty("_SurfaceType"))
-                return;
-            // 1 = SurfaceType.Transparent. Already-transparent materials are left alone.
-            if (mat.GetFloat("_SurfaceType") == 1f)
-                return;
+                return false;
+            // 1 = SurfaceType.Transparent. Queue above the opaque range means it already renders transparent.
+            if (mat.GetFloat("_SurfaceType") == 1f && mat.renderQueue > 2500)
+                return false;
 
             mat.SetFloat("_SurfaceType", 1f);
             // BlendingMode.Alpha. Keeps specular-preserving alpha blend rather than additive.
@@ -801,15 +803,73 @@ public class AssetImportUpdate : AssetPostprocessor {
                 mat.SetFloat("_BlendMode", 0f);
 
             ValidateHDRPMaterial(mat);
+            // Validation can fail to move the material off the opaque queue. Apply the
+            // same render state the working glass materials already use.
+            if (mat.renderQueue <= 2500)
+            {
+                mat.SetOverrideTag("RenderType", "Transparent");
+                mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                if (mat.HasProperty("_DstBlend2"))
+                    mat.SetInt("_DstBlend2", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                if (mat.HasProperty("_ZWrite"))
+                    mat.SetInt("_ZWrite", 0);
+                mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+                mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+                EditorUtility.SetDirty(mat);
+            }
+
             DebugUtils.DebugLog("<b>Set transparent surface on Material: </b>" + mat);
-            QueueTransparentMaterialSave(materialFilePath);
-            return;
+            if (deferPersistence)
+                QueueTransparentMaterialSave(materialFilePath);
+            return true;
         }
 
         MaterialUtils.SetMaterialRenderingMode(mat, MaterialUtils.RenderingMode.Fade);
         EditorUtility.SetDirty(mat);
         DebugUtils.DebugLog("<b>Set transparent surface on Material: </b>" + mat);
-        QueueTransparentMaterialSave(materialFilePath);
+        if (deferPersistence)
+            QueueTransparentMaterialSave(materialFilePath);
+        return true;
+    }
+
+    // Walk every extracted material in the project. Does not reimport models.
+    public static int SetAllProjectMaterialsTransparent()
+    {
+        string[] guids = AssetDatabase.FindAssets("t:Material");
+        int changed = 0;
+
+        try
+        {
+            for (int i = 0; i < guids.Length; i++)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                if (i % 50 == 0)
+                    EditorUtility.DisplayProgressBar("Transparency", path, guids.Length == 0 ? 1f : (float)i / guids.Length);
+
+                if (!path.EndsWith(".mat", StringComparison.OrdinalIgnoreCase))
+                    continue;
+                if (!ManageImportSettings.GetMaterialIsTransparentByName(path))
+                    continue;
+
+                Material mat = (Material)AssetDatabase.LoadAssetAtPath(path, typeof(Material));
+                if (mat == null)
+                    continue;
+
+                if (!SetMaterialSurfaceTransparent(path, false))
+                    continue;
+
+                AssetDatabase.SaveAssetIfDirty(mat);
+                changed++;
+            }
+        }
+        finally
+        {
+            EditorUtility.ClearProgressBar();
+        }
+
+        Debug.Log("Set " + changed + " materials to a transparent surface.");
+        return changed;
     }
 
     // OnPostprocessAllAssets runs while the asset database is still importing. SetDirty
@@ -845,7 +905,8 @@ public class AssetImportUpdate : AssetPostprocessor {
             foreach (string path in paths)
             {
                 // re-apply in case the import reload restored the on-disk opaque material
-                SetMaterialSurfaceTransparent(path);
+                if (!SetMaterialSurfaceTransparent(path, false))
+                    continue;
                 Material mat = (Material)AssetDatabase.LoadAssetAtPath(path, typeof(Material));
                 if (mat != null)
                     AssetDatabase.SaveAssetIfDirty(mat);
@@ -1568,7 +1629,8 @@ public class AssetImportUpdate : AssetPostprocessor {
             if (dependencyPathString.Contains(".mat")
                 && ManageImportSettings.GetMaterialIsTransparentByName(dependencyPathString))
             {
-                SetMaterialSurfaceTransparent(dependencyPathString);
+                // Apply after this import reloads assets. Editing the material here is discarded.
+                QueueTransparentMaterialSave(dependencyPathString);
             }
         }
     }
